@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7efe3">
-<title>앤의 행복 정원</title>
+<title>앤의 행복 정원 · 완성판</title>
 <style>
 :root{
   --ink:#4b4137; --ink2:#6e6256; --green:#5f805e; --green2:#769a70;
@@ -47,6 +47,16 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
 @media(max-width:900px){.hero{min-height:480px}.hero-copy{padding:48px 30px}.hero-character{right:11%;width:34vw}.hero-dog{right:1%;width:20vw}.grid-3{grid-template-columns:repeat(2,1fr)}.welcome{grid-template-columns:1fr}.anne-card{min-height:210px}.timeline{grid-template-columns:repeat(5,minmax(110px,1fr));overflow:auto}.paper-layout,.letter-grid{grid-template-columns:1fr}.story-panel{margin-left:0}.garden-plots{grid-template-columns:repeat(4,1fr)}.plant-picker{grid-template-columns:repeat(4,1fr)}.decor-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){main{padding:10px 10px 90px}.topbar-inner{padding:8px 10px}.brand-mark{width:34px;height:34px}.brand{font-size:20px}.stat-pill{padding:6px 8px;font-size:12px}.stat-pill img{width:20px;height:20px}.hero{min-height:500px;border-radius:24px}.hero-bg{object-position:62% center}.hero-shade{background:linear-gradient(180deg,rgba(255,250,239,.9) 0 45%,rgba(255,250,239,.15) 66%,rgba(35,48,31,.08))}.hero-copy{padding:28px 20px;max-width:100%}.hero h1{font-size:40px}.hero p{font-size:15px;max-width:88%}.hero-character{width:50vw;right:23%;bottom:-10px}.hero-dog{width:29vw;right:0;bottom:20px}.hero-decor{display:none}.hero-garland{width:280px;right:-65px;opacity:.55}.tabbar{top:52px;padding-top:10px}.tab-btn{padding:8px 10px;font-size:13px}.tab-btn img{width:26px;height:26px}.grid-2,.grid-3{grid-template-columns:1fr 1fr}.quick-card{min-height:190px}.quick-card .thumb{height:110px}.quest-strip{grid-template-columns:1fr}.timeline{gap:8px}.paper-inner{padding:34px 24px}.garden-scene{min-height:470px}.garden-plots{grid-template-columns:repeat(3,1fr);left:3%;right:3%}.garden-plant{min-height:108px}.garden-plant img{max-height:95px}.plant-picker{grid-template-columns:repeat(3,1fr)}.story-stage{min-height:610px}.story-character{width:47vw;left:0;bottom:185px}.story-dog{width:30vw;left:32%;bottom:195px}.story-panel{left:10px;right:10px;bottom:10px}.book-hero .open{width:88vw}.book-hero .polaroid{width:120px;right:0}.memory-grid{grid-template-columns:1fr}.decor-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.stats .stat-pill:nth-child(3){display:none}.grid-2,.grid-3{grid-template-columns:1fr}.hero h1{font-size:36px}.hero-character{width:58vw;right:18%}.hero-dog{width:32vw}.plant-picker{grid-template-columns:repeat(2,1fr)}.garden-plots{grid-template-columns:repeat(3,1fr)}.section-head h2{font-size:26px}}
+
+.plant-choice img{width:100%;height:104px;object-fit:contain;display:block;margin:auto}
+.plant-choice{min-height:138px}
+.garden-plant img{width:100%;height:100%;object-fit:contain}
+.decor-option img{height:120px;object-fit:contain}
+@media(max-width:760px){
+  .plant-choice img{height:82px}
+  .plant-choice{min-height:118px}
+}
+
 </style>
 </head>
 <body>
@@ -153,6 +163,19 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
 
 <script>
 (()=>{'use strict';
+
+// GitHub 업로드 위치가 images/ 안이거나 저장소 루트여도 자동으로 한 번 더 찾아봅니다.
+document.addEventListener('error',function(e){
+  const el=e.target;
+  if(!(el instanceof HTMLImageElement)) return;
+  if(el.dataset.assetRetry) return;
+  const raw=el.getAttribute('src')||'';
+  if(raw.startsWith('images/')){
+    el.dataset.assetRetry='1';
+    el.src=raw.slice(7);
+  }
+},true);
+
 const KEY='annes-happiness-garden-v1';
 const initial={seeds:0,stars:0,diaries:[],flowers:[],letters:[],completedStories:[],activities:0,decor:null,watered:0};
 let data;try{data={...initial,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{data={...initial}};
@@ -175,13 +198,36 @@ const plantCatalog=[
  {name:'다정한 데이지',img:'images/plants/daisy_pot.png'},
  {name:'푸른 수국',img:'images/plants/blue_hydrangea_pot.png'},
  {name:'작은 들꽃',img:'images/plants/mixed_flower_pot.png'},
- {name:'봄의 꽃상자',img:'images/plants/flower_box_mixed.png'}
+ {name:'봄의 꽃상자',img:'images/plants/flower_box_mixed.png'},
+ {name:'분홍 수국',img:'images/plants/hydrangea_cluster.png'},
+ {name:'라벤더 한 포기',img:'images/plants/lavender.png'},
+ {name:'행복의 페튜니아',img:'images/plants/petunia_hanging_basket.png'},
+ {name:'한 송이 장미',img:'images/plants/rose.png'},
+ {name:'장미 정원',img:'images/plants/rose_bush.png'},
+ {name:'창가의 장미',img:'images/plants/rose_window_box.png'},
+ {name:'햇살 꽃밭',img:'images/plants/sunflower_cluster.png'},
+ {name:'첫 튤립',img:'images/plants/tulip_01.png'},
+ {name:'두 송이 튤립',img:'images/plants/tulip_02.png'},
+ {name:'튤립 꽃상자',img:'images/plants/tulip_planter.png'},
+ {name:'하얀 꽃 화분',img:'images/plants/white_blossom_pot.png'},
+ {name:'들꽃 상자',img:'images/plants/wildflower_box.png'},
+ {name:'노란 꽃나무',img:'images/plants/yellow_blossom_shrub_pot.png'},
+ {name:'노란 튤립 상자',img:'images/plants/yellow_tulip_box.png'},
+ {name:'데이지 장미 꽃상자',img:'images/plants/flower_box_daisy_rose.png'}
 ];
 const decorCatalog=[
  {name:'수선화 벤치',img:'images/objects/garden_bench_daffodil.png',cost:0},
  {name:'정원의 책장',img:'images/objects/bookshelf.png',cost:1},
- {name:'추억 엽서',img:'images/objects/postcard_collage.png',cost:2},
- {name:'꽃화분',img:'images/plants/daisy_pot.png',cost:3}
+ {name:'추억 엽서',img:'images/objects/postcard_collage.png',cost:1},
+ {name:'꽃화분',img:'images/plants/daisy_pot.png',cost:1},
+ {name:'초록지붕 집',img:'images/objects/house.png',cost:2},
+ {name:'빨간 우체통',img:'images/objects/red_mailbox.png',cost:2},
+ {name:'정원 표지판',img:'images/objects/wood_sign_cafe_garden.png',cost:2},
+ {name:'책 세 권',img:'images/objects/book_stack.png',cost:1},
+ {name:'장미 트렐리스',img:'images/decor/rose_trellis.png',cost:2},
+ {name:'꽃 가랜드',img:'images/decor/floral_garland_spring.png',cost:1},
+ {name:'크림 리본',img:'images/decor/cream_ribbon_banner.png',cost:1},
+ {name:'복숭아 리본',img:'images/decor/peach_ribbon_banner.png',cost:1}
 ];
 const stories=[
  {title:'초록 숲의 작은 비밀',intro:'숲길을 걷던 앤은 오래된 나무 아래에서 반짝이는 작은 열쇠를 발견했어요.',bg:'images/backgrounds/forest_path_01.png',anne:'images/characters/anne_walking.png',choices:[['꽃이 피어 있는 길로 간다','꽃향기를 따라가자 오래된 나무문이 나타났어요. 문 너머에는 이름 없는 작은 정원이 숨어 있었죠.'],['호수가 보이는 길로 간다','물빛을 따라 걷다 보니 잔잔한 호수 위로 햇살이 반짝였어요. 마음도 조금 조용해졌어요.'],['열쇠 이야기를 상상해 본다','앤의 상상 속에서 열쇠는 별빛 도서관을 여는 열쇠가 되었어요.']]},
