@@ -257,6 +257,34 @@ section:not(.active){content-visibility:auto}
   .daily-ko-wrap p,.daily-reflection p{font-size:16px;line-height:1.7}
 }
 
+
+/* ===== 관리자 테스트 모드 ===== */
+.admin-panel{
+  position:fixed;right:12px;bottom:12px;z-index:99999;width:min(330px,calc(100vw - 24px));
+  background:rgba(255,252,244,.98);border:1px solid #d9c6aa;border-radius:20px;
+  box-shadow:0 16px 50px rgba(57,45,33,.24);padding:14px;display:none;
+  font-family:var(--font-body);
+}
+.admin-panel.show{display:block}
+.admin-panel h3{margin:0 0 8px;font-family:var(--font-title);font-size:18px;color:#55463b}
+.admin-panel p{margin:0 0 10px;font-size:13px;line-height:1.5;color:#77695e}
+.admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.admin-btn{
+  appearance:none;border:1px solid #d8c8ae;border-radius:12px;background:#fffaf0;color:#574b40;
+  padding:10px 8px;font:700 14px var(--font-body);cursor:pointer
+}
+.admin-btn:hover{background:#f4ecdd}
+.admin-btn.danger{background:#fff1ee;border-color:#e8c1ba;color:#934d43}
+.admin-mini{
+  position:fixed;right:12px;bottom:12px;z-index:99998;display:none;
+  border:1px solid #d8c8ae;border-radius:999px;background:#fffaf0;padding:9px 12px;
+  box-shadow:0 8px 24px rgba(57,45,33,.18);font:700 13px var(--font-body);color:#574b40
+}
+.admin-mini.show{display:block}
+@media(max-width:520px){
+  .admin-panel{right:8px;bottom:8px;width:calc(100vw - 16px)}
+}
+
 </style>
 
 <link rel="preload" as="image" href="images/backgrounds/cottage_home.png" fetchpriority="high">
@@ -552,5 +580,22 @@ $('greeting').textContent='“오늘도 작은 기쁨 하나를 발견해 볼까
 refresh();navigate('home');
 })();
 </script>
+
+<div class="admin-panel" id="adminPanel" aria-label="관리자 테스트 도구">
+  <h3>관리자 테스트 모드</h3>
+  <p>실제 사용자 데이터와는 별개로, 현재 브라우저의 localStorage 값만 조정합니다.</p>
+  <div class="admin-grid">
+    <button class="admin-btn" data-admin="seed10">씨앗 +10</button>
+    <button class="admin-btn" data-admin="star10">별 +10</button>
+    <button class="admin-btn" data-admin="activity10">활동 +10</button>
+    <button class="admin-btn" data-admin="flower1">꽃 1개 심기</button>
+    <button class="admin-btn" data-admin="max">테스트 자원 채우기</button>
+    <button class="admin-btn" data-admin="toggle">패널 접기</button>
+    <button class="admin-btn danger" data-admin="reset">테스트 데이터 초기화</button>
+    <button class="admin-btn danger" data-admin="exit">관리자 모드 종료</button>
+  </div>
+</div>
+<button class="admin-mini" id="adminMini">관리자</button>
+
 </body></html>
 <!-- font-speed-fix: 2026-10-13 -->
