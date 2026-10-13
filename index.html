@@ -11,38 +11,38 @@
   --cream:#fffaf0; --paper:#fbf1dc; --peach:#efb99b; --rose:#d96a5f;
   --gold:#d69a43; --line:#e7d7bf; --shadow:0 18px 50px rgba(89,69,45,.14);
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--ink);font-family:ui-rounded,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;background:
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--ink);font-family:'AppleMyungjo','Iowan Old Style','Palatino Linotype','Book Antiqua','Noto Serif KR','NanumMyeongjo','Batang',serif;background:
 radial-gradient(circle at 20% 0,#fffdf7 0 18%,transparent 42%),linear-gradient(180deg,#f4ede1,#efe6d7 55%,#f6efe4)}
 button,input,textarea{font:inherit} button{cursor:pointer} img{max-width:100%;display:block} a{color:inherit}
 .app-shell{min-height:100vh}
 .topbar{position:sticky;top:0;z-index:50;background:rgba(255,249,239,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(213,190,158,.6)}
 .topbar-inner{max-width:1240px;margin:auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand-wrap{display:flex;align-items:center;gap:10px}.brand-mark{width:42px;height:42px;object-fit:contain}.brand{font-family:Georgia,"Times New Roman",serif;font-size:clamp(20px,2.2vw,30px);font-weight:800;color:#4f724f;letter-spacing:-.5px}.brand b{color:#e76f61}
+.brand-wrap{display:flex;align-items:center;gap:10px}.brand-mark{width:42px;height:42px;object-fit:contain}.brand{font-family:var(--font-title);font-size:clamp(20px,2.2vw,30px);font-weight:800;color:#4f724f;letter-spacing:-.5px}.brand b{color:#e76f61}
 .stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.stat-pill{border:1px solid #e3d3bb;background:#fffaf0;border-radius:999px;padding:8px 12px;display:flex;gap:6px;align-items:center;font-size:13px;box-shadow:0 4px 14px rgba(80,61,36,.05)}
 .stat-pill img{width:24px;height:24px;object-fit:contain}
 main{max-width:1240px;margin:auto;padding:16px 16px 100px}
 .hero{position:relative;min-height:520px;border-radius:32px;overflow:hidden;box-shadow:var(--shadow);border:1px solid #e5d3b7;background:#b5c58f}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.98) brightness(.98)}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,239,.94) 0 34%,rgba(255,250,239,.55) 47%,rgba(30,41,27,.04) 72%)}
-.hero-copy{position:relative;z-index:4;max-width:520px;padding:64px 46px 40px}.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#fff8e9;border:1px solid #ead9bd;border-radius:999px;padding:8px 12px;color:#7b6d5d;font-size:13px}.hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,5vw,68px);line-height:1.03;margin:18px 0 12px;color:#426844;letter-spacing:-2px}.hero h1 em{font-style:normal;color:#e76e5e}.hero p{font-size:17px;line-height:1.75;max-width:480px;color:#655b50}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero-copy{position:relative;z-index:4;max-width:520px;padding:64px 46px 40px}.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#fff8e9;border:1px solid #ead9bd;border-radius:999px;padding:8px 12px;color:#7b6d5d;font-size:13px}.hero h1{font-family:var(--font-title);font-size:clamp(38px,5vw,68px);line-height:1.03;margin:18px 0 12px;color:#426844;letter-spacing:-2px}.hero h1 em{font-style:normal;color:#e76e5e}.hero p{font-size:17px;line-height:1.75;max-width:480px;color:#655b50}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
 .image-btn{border:0;background:none;padding:0;position:relative}.image-btn img{height:54px;width:auto;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(74,55,32,.13))}.image-btn span{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;color:white;text-shadow:0 1px 1px rgba(0,0,0,.15);pointer-events:none}.image-btn.light span{color:#6b4e2e}.image-btn:active{transform:translateY(1px)}
 .hero-character{position:absolute;z-index:3;right:18%;bottom:-24px;width:min(360px,31vw);filter:drop-shadow(0 20px 20px rgba(49,52,31,.22))}.hero-dog{position:absolute;z-index:3;right:4%;bottom:25px;width:min(205px,18vw);filter:drop-shadow(0 14px 14px rgba(49,52,31,.18))}.hero-garland{position:absolute;z-index:2;right:-30px;top:-20px;width:420px;opacity:.82;transform:rotate(3deg)}
 .hero-decor{position:absolute;z-index:3;right:31%;bottom:10px;width:120px;max-height:150px;object-fit:contain;filter:drop-shadow(0 10px 10px rgba(49,52,31,.16))}
 .tabbar{display:flex;gap:8px;overflow:auto;padding:16px 0 12px;scrollbar-width:none;position:sticky;top:64px;z-index:40;background:linear-gradient(#f1e9dd 75%,transparent)}.tabbar::-webkit-scrollbar{display:none}.tab-btn{white-space:nowrap;border:1px solid #e0d0b8;background:#fffaf1;color:#594d40;border-radius:18px;padding:9px 13px;display:flex;align-items:center;gap:8px;font-weight:700;box-shadow:0 3px 10px rgba(80,61,36,.04)}.tab-btn img{width:30px;height:30px;object-fit:contain}.tab-btn.active{background:#668864;color:white;border-color:#668864}.tab-btn.active img{filter:drop-shadow(0 1px 1px rgba(255,255,255,.35))}
 section{display:none} section.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:8px 0 16px}.section-head h2{font-family:Georgia,serif;font-size:30px;margin:0;color:#4e714e}.section-head p{margin:5px 0 0;color:var(--ink2)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:8px 0 16px}.section-head h2{font-family:var(--font-title);font-size:30px;margin:0;color:#4e714e}.section-head p{margin:5px 0 0;color:var(--ink2)}
 .card{background:rgba(255,250,240,.96);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 10px 30px rgba(95,73,46,.07)}.card h3{margin:0 0 8px;color:#567254}.muted{color:#817466;line-height:1.65;font-size:14px}.grid{display:grid;gap:14px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .quick-card{min-height:210px;position:relative;overflow:hidden;padding:0;border-radius:24px;border:1px solid #e4d3bb;background:#fff;box-shadow:0 10px 25px rgba(83,65,42,.08);text-align:left}.quick-card .thumb{width:100%;height:126px;object-fit:cover}.quick-card .thumb.contain{object-fit:contain;padding:8px;background:#fbf3e4}.quick-card .content{padding:14px 15px 16px}.quick-card .content h3{margin:0 0 5px;color:#526f52;font-size:17px}.quick-card .content p{margin:0;color:#827666;font-size:13px;line-height:1.5}.quick-card:hover{transform:translateY(-2px);box-shadow:0 16px 35px rgba(83,65,42,.12)}
-.welcome{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;margin-bottom:15px}.welcome-copy{position:relative;overflow:hidden}.welcome-copy:after{content:"";position:absolute;right:-20px;bottom:-35px;width:190px;height:160px;background:url('images/decor/floral_garland_top.png') center/contain no-repeat;opacity:.3}.quote{font-family:Georgia,serif;font-size:22px;line-height:1.55;color:#634c3f;margin:8px 0 14px}.level-line{display:flex;align-items:center;gap:12px}.level{height:12px;background:#e7ddcc;border-radius:999px;overflow:hidden;flex:1}.level>div{height:100%;background:linear-gradient(90deg,#7ba070,#a9bf71);transition:width .35s}.level-tag{background:#eaf1e1;border:1px solid #d4e0cb;border-radius:999px;padding:7px 10px;color:#557254;font-weight:800;font-size:13px}.anne-card{display:flex;align-items:end;justify-content:center;min-height:230px;background:linear-gradient(#f7ecd7,#f7f0e5);overflow:hidden;padding:0}.anne-card img{max-height:260px;object-fit:contain}.anne-card .bubble{position:absolute;top:18px;left:18px;right:18px;background:#fffaf1dd;border:1px solid #e6d4ba;border-radius:18px;padding:12px 14px;font-family:Georgia,serif;color:#665043}
+.welcome{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;margin-bottom:15px}.welcome-copy{position:relative;overflow:hidden}.welcome-copy:after{content:"";position:absolute;right:-20px;bottom:-35px;width:190px;height:160px;background:url('images/decor/floral_garland_top.png') center/contain no-repeat;opacity:.3}.quote{font-family:var(--font-title);font-size:22px;line-height:1.55;color:#634c3f;margin:8px 0 14px}.level-line{display:flex;align-items:center;gap:12px}.level{height:12px;background:#e7ddcc;border-radius:999px;overflow:hidden;flex:1}.level>div{height:100%;background:linear-gradient(90deg,#7ba070,#a9bf71);transition:width .35s}.level-tag{background:#eaf1e1;border:1px solid #d4e0cb;border-radius:999px;padding:7px 10px;color:#557254;font-weight:800;font-size:13px}.anne-card{display:flex;align-items:end;justify-content:center;min-height:230px;background:linear-gradient(#f7ecd7,#f7f0e5);overflow:hidden;padding:0}.anne-card img{max-height:260px;object-fit:contain}.anne-card .bubble{position:absolute;top:18px;left:18px;right:18px;background:#fffaf1dd;border:1px solid #e6d4ba;border-radius:18px;padding:12px 14px;font-family:var(--font-title);color:#665043}
 .quest-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}.quest{display:flex;align-items:center;gap:12px;background:#fff9ef;border:1px solid #ead9c0;border-radius:18px;padding:12px}.quest img{width:54px;height:54px;object-fit:contain}.quest strong{display:block;color:#5a7256}.quest small{color:#887a69}
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stage{position:relative;text-align:center;background:#fffaf1;border:1px solid #e6d5bc;border-radius:20px;padding:12px 8px;opacity:.55}.stage.done,.stage.current{opacity:1}.stage.current{outline:3px solid #d7e2ce;box-shadow:0 10px 20px rgba(95,128,94,.12)}.stage img{height:82px;margin:auto;object-fit:contain}.stage b{display:block;font-size:12px;margin-top:6px}.stage small{color:#8b7d6d;font-size:11px}
-.paper-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.paper-card{position:relative;min-height:520px;overflow:hidden}.paper-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.96}.paper-inner{position:relative;z-index:2;padding:48px 54px}.paper-inner h3{font-family:Georgia,serif;font-size:24px;color:#89523f}.moods{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.mood-btn{border:1px solid #ddceb8;background:#fffaf0;border-radius:14px;padding:9px 12px;font-size:22px}.mood-btn.selected{outline:3px solid #9ab18d;background:#eef4e8}.paper-inner textarea,.paper-inner input,.letter-form textarea,.letter-form input{width:100%;border:1px solid #d9c8ae;border-radius:15px;background:rgba(255,255,255,.72);padding:13px;color:var(--ink);outline:none}.paper-inner textarea{min-height:220px;resize:vertical}.paper-inner textarea:focus,.letter-form textarea:focus,.letter-form input:focus{border-color:#8fa881;box-shadow:0 0 0 3px #dce8d5}
+.paper-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.paper-card{position:relative;min-height:520px;overflow:hidden}.paper-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.96}.paper-inner{position:relative;z-index:2;padding:48px 54px}.paper-inner h3{font-family:var(--font-title);font-size:24px;color:#89523f}.moods{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.mood-btn{border:1px solid #ddceb8;background:#fffaf0;border-radius:14px;padding:9px 12px;font-size:22px}.mood-btn.selected{outline:3px solid #9ab18d;background:#eef4e8}.paper-inner textarea,.paper-inner input,.letter-form textarea,.letter-form input{width:100%;border:1px solid #d9c8ae;border-radius:15px;background:rgba(255,255,255,.72);padding:13px;color:var(--ink);outline:none}.paper-inner textarea{min-height:220px;resize:vertical}.paper-inner textarea:focus,.letter-form textarea:focus,.letter-form input:focus{border-color:#8fa881;box-shadow:0 0 0 3px #dce8d5}
 .action{border:0;border-radius:14px;background:#63825f;color:#fff;font-weight:800;padding:12px 17px;box-shadow:0 5px 10px rgba(65,95,63,.12)}.action.secondary{background:#eee5d7;color:#5c5044}.action.rose{background:#ce6c60}.action:disabled{opacity:.45;cursor:not-allowed}.icon-action{background:none;border:0;padding:0}.icon-action img{height:54px;width:auto}.entry{background:#fff9ee;border:1px solid #ead8be;border-radius:16px;padding:14px;margin-bottom:10px}.entry-head{display:flex;justify-content:space-between;gap:12px;color:#5d7657;font-weight:800}.entry p{white-space:pre-wrap;line-height:1.65;margin:7px 0 0}
 .garden-scene{position:relative;min-height:420px;border-radius:28px;overflow:hidden;border:1px solid #dfcfae;background:#c8d49b;box-shadow:var(--shadow)}.garden-scene>.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.garden-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 62%,rgba(73,99,55,.24))}.garden-plots{position:absolute;z-index:4;left:4%;right:4%;bottom:16px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:end}.garden-plant{border:0;background:rgba(255,251,240,.78);border:1px solid rgba(229,210,180,.8);border-radius:18px;padding:8px;min-height:130px;display:flex;align-items:end;justify-content:center;backdrop-filter:blur(4px)}.garden-plant img{max-height:115px;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(56,70,44,.18))}.garden-empty{font-size:13px;color:#7a6e5f;align-self:center}.garden-hud{position:absolute;z-index:5;left:18px;top:18px;background:#fff9eed9;border:1px solid #e5d3b7;border-radius:16px;padding:10px 12px}.garden-hud strong{color:#537152}.plant-picker{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.plant-choice{border:1px solid #e6d5bd;background:#fffaf0;border-radius:18px;padding:8px;text-align:center}.plant-choice img{height:95px;margin:auto;object-fit:contain}.plant-choice span{display:block;font-size:12px;color:#716658;margin-top:5px}.plant-choice.selected{outline:3px solid #a1b995}.water-btn{display:flex;align-items:center;gap:8px}.water-btn img{width:46px;height:46px;object-fit:contain}
-.story-stage{position:relative;min-height:520px;border-radius:28px;overflow:hidden;border:1px solid #dfcfb3;box-shadow:var(--shadow)}.story-stage .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.story-stage:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(28,39,28,.44))}.story-character{position:absolute;z-index:3;left:8%;bottom:0;width:min(280px,28vw);filter:drop-shadow(0 13px 12px rgba(46,54,34,.25))}.story-dog{position:absolute;z-index:3;left:29%;bottom:26px;width:min(170px,18vw);filter:drop-shadow(0 10px 10px rgba(46,54,34,.2))}.story-panel{position:absolute;z-index:5;left:4%;right:4%;bottom:20px;background:rgba(255,250,239,.93);backdrop-filter:blur(8px);border:1px solid #e4d1b5;border-radius:22px;padding:18px 18px 16px;margin-left:min(300px,30vw)}.story-panel h3{font-family:Georgia,serif;font-size:25px;margin:0 0 7px;color:#72503e}.choices{display:grid;gap:8px;margin-top:12px}.choice{border:1px solid #e1d0b6;background:#fffdf7;border-radius:14px;padding:11px 13px;text-align:left;color:#5e5247}.choice:hover{background:#eef3e7}.story-result{background:#edf4e8;border-radius:15px;padding:12px;line-height:1.6}
-.letter-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.mailbox-card{min-height:470px;display:flex;align-items:end;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(#fbf1db,#e9d8b7)}.mailbox-card:before{content:"";position:absolute;inset:auto 0 0;height:42%;background:url('images/decor/floral_garland_spring.png') center bottom/120% auto no-repeat;opacity:.65}.mailbox-card img{position:relative;z-index:2;max-height:420px;object-fit:contain;filter:drop-shadow(0 18px 20px rgba(72,49,33,.2))}.letter-form{background:#fff9ef;border:1px solid #e4d1b3;border-radius:24px;padding:22px}.letter-form h3{font-family:Georgia,serif;font-size:28px;color:#875443}.letter-form textarea{min-height:210px;resize:vertical}.letter-form label{display:block;font-weight:800;color:#6d604f;margin:12px 0 6px}.letter-list{margin-top:18px}
+.story-stage{position:relative;min-height:520px;border-radius:28px;overflow:hidden;border:1px solid #dfcfb3;box-shadow:var(--shadow)}.story-stage .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.story-stage:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(28,39,28,.44))}.story-character{position:absolute;z-index:3;left:8%;bottom:0;width:min(280px,28vw);filter:drop-shadow(0 13px 12px rgba(46,54,34,.25))}.story-dog{position:absolute;z-index:3;left:29%;bottom:26px;width:min(170px,18vw);filter:drop-shadow(0 10px 10px rgba(46,54,34,.2))}.story-panel{position:absolute;z-index:5;left:4%;right:4%;bottom:20px;background:rgba(255,250,239,.93);backdrop-filter:blur(8px);border:1px solid #e4d1b5;border-radius:22px;padding:18px 18px 16px;margin-left:min(300px,30vw)}.story-panel h3{font-family:var(--font-title);font-size:25px;margin:0 0 7px;color:#72503e}.choices{display:grid;gap:8px;margin-top:12px}.choice{border:1px solid #e1d0b6;background:#fffdf7;border-radius:14px;padding:11px 13px;text-align:left;color:#5e5247}.choice:hover{background:#eef3e7}.story-result{background:#edf4e8;border-radius:15px;padding:12px;line-height:1.6}
+.letter-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.mailbox-card{min-height:470px;display:flex;align-items:end;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(#fbf1db,#e9d8b7)}.mailbox-card:before{content:"";position:absolute;inset:auto 0 0;height:42%;background:url('images/decor/floral_garland_spring.png') center bottom/120% auto no-repeat;opacity:.65}.mailbox-card img{position:relative;z-index:2;max-height:420px;object-fit:contain;filter:drop-shadow(0 18px 20px rgba(72,49,33,.2))}.letter-form{background:#fff9ef;border:1px solid #e4d1b3;border-radius:24px;padding:22px}.letter-form h3{font-family:var(--font-title);font-size:28px;color:#875443}.letter-form textarea{min-height:210px;resize:vertical}.letter-form label{display:block;font-weight:800;color:#6d604f;margin:12px 0 6px}.letter-list{margin-top:18px}
 .book-hero{position:relative;min-height:300px;overflow:hidden}.book-hero .open{width:min(520px,58vw);margin:auto;filter:drop-shadow(0 18px 18px rgba(70,50,34,.15))}.book-hero .polaroid{position:absolute;width:180px;right:6%;top:16%;transform:rotate(6deg);filter:drop-shadow(0 10px 8px rgba(70,50,34,.18))}.book-hero .garland{position:absolute;left:-4%;bottom:-18px;width:48%;opacity:.75}.stats-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0 16px}.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.memory{background:#fff9ef;border:1px solid #e5d3ba;border-radius:18px;overflow:hidden}.memory img{height:130px;width:100%;object-fit:cover}.memory .mem-body{padding:13px}.memory b{color:#577054}.memory p{font-size:13px;line-height:1.55;color:#75695b}
-.decorator{position:fixed;inset:0;z-index:100;background:rgba(47,43,35,.45);display:none;align-items:center;justify-content:center;padding:18px}.decorator.open{display:flex}.decor-panel{max-width:760px;width:100%;max-height:88vh;overflow:auto;background:#fff9ef;border:1px solid #e4d0b2;border-radius:28px;padding:20px;box-shadow:0 35px 80px rgba(33,26,18,.26)}.decor-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.decor-head h3{font-family:Georgia,serif;font-size:26px;margin:0;color:#557252}.decor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.decor-option{border:1px solid #e5d4bb;background:#fffdf6;border-radius:16px;padding:9px;text-align:center}.decor-option img{height:105px;object-fit:contain;margin:auto}.decor-option b{display:block;font-size:12px;margin-top:6px}.decor-option small{color:#8b7b69}.decor-option.locked{opacity:.55}.decor-option.selected{outline:3px solid #a6ba98}.close-x{border:0;background:none}.close-x img{width:44px;height:44px}
+.decorator{position:fixed;inset:0;z-index:100;background:rgba(47,43,35,.45);display:none;align-items:center;justify-content:center;padding:18px}.decorator.open{display:flex}.decor-panel{max-width:760px;width:100%;max-height:88vh;overflow:auto;background:#fff9ef;border:1px solid #e4d0b2;border-radius:28px;padding:20px;box-shadow:0 35px 80px rgba(33,26,18,.26)}.decor-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.decor-head h3{font-family:var(--font-title);font-size:26px;margin:0;color:#557252}.decor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.decor-option{border:1px solid #e5d4bb;background:#fffdf6;border-radius:16px;padding:9px;text-align:center}.decor-option img{height:105px;object-fit:contain;margin:auto}.decor-option b{display:block;font-size:12px;margin-top:6px}.decor-option small{color:#8b7b69}.decor-option.locked{opacity:.55}.decor-option.selected{outline:3px solid #a6ba98}.close-x{border:0;background:none}.close-x img{width:44px;height:44px}
 .footer{text-align:center;color:#887b6c;font-size:12px;line-height:1.6;margin:40px 0 0}.tiny-note{font-size:12px;color:#958879}.hidden{display:none!important}
 @media(max-width:900px){.hero{min-height:480px}.hero-copy{padding:48px 30px}.hero-character{right:11%;width:34vw}.hero-dog{right:1%;width:20vw}.grid-3{grid-template-columns:repeat(2,1fr)}.welcome{grid-template-columns:1fr}.anne-card{min-height:210px}.timeline{grid-template-columns:repeat(5,minmax(110px,1fr));overflow:auto}.paper-layout,.letter-grid{grid-template-columns:1fr}.story-panel{margin-left:0}.garden-plots{grid-template-columns:repeat(4,1fr)}.plant-picker{grid-template-columns:repeat(4,1fr)}.decor-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){main{padding:10px 10px 90px}.topbar-inner{padding:8px 10px}.brand-mark{width:34px;height:34px}.brand{font-size:20px}.stat-pill{padding:6px 8px;font-size:12px}.stat-pill img{width:20px;height:20px}.hero{min-height:500px;border-radius:24px}.hero-bg{object-position:62% center}.hero-shade{background:linear-gradient(180deg,rgba(255,250,239,.9) 0 45%,rgba(255,250,239,.15) 66%,rgba(35,48,31,.08))}.hero-copy{padding:28px 20px;max-width:100%}.hero h1{font-size:40px}.hero p{font-size:15px;max-width:88%}.hero-character{width:50vw;right:23%;bottom:-10px}.hero-dog{width:29vw;right:0;bottom:20px}.hero-decor{display:none}.hero-garland{width:280px;right:-65px;opacity:.55}.tabbar{top:52px;padding-top:10px}.tab-btn{padding:8px 10px;font-size:13px}.tab-btn img{width:26px;height:26px}.grid-2,.grid-3{grid-template-columns:1fr 1fr}.quick-card{min-height:190px}.quick-card .thumb{height:110px}.quest-strip{grid-template-columns:1fr}.timeline{gap:8px}.paper-inner{padding:34px 24px}.garden-scene{min-height:470px}.garden-plots{grid-template-columns:repeat(3,1fr);left:3%;right:3%}.garden-plant{min-height:108px}.garden-plant img{max-height:95px}.plant-picker{grid-template-columns:repeat(3,1fr)}.story-stage{min-height:610px}.story-character{width:47vw;left:0;bottom:185px}.story-dog{width:30vw;left:32%;bottom:195px}.story-panel{left:10px;right:10px;bottom:10px}.book-hero .open{width:88vw}.book-hero .polaroid{width:120px;right:0}.memory-grid{grid-template-columns:1fr}.decor-grid{grid-template-columns:repeat(2,1fr)}}
@@ -122,11 +122,11 @@ html,body{max-width:100%;overflow-x:hidden}
 
 
 /* ===== 감성 타이포그래피 & 읽기 좋은 줄바꿈 ===== */
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+700&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 
 :root{
-  --font-body:'Gowun Batang','Apple SD Gothic Neo','Malgun Gothic',serif;
-  --font-title:'Nanum Myeongjo','Gowun Batang','AppleMyungjo','Batang',serif;
+  --font-body:'AppleMyungjo','Iowan Old Style','Palatino Linotype','Book Antiqua','Noto Serif KR','NanumMyeongjo','Batang',serif;
+  --font-title:'AppleMyungjo','Iowan Old Style','Noto Serif KR','NanumMyeongjo','Batang',serif;
 }
 body,button,input,textarea{font-family:var(--font-body)}
 .brand,.hero h1,.section-head h2,.paper-inner h3,.quote,.letter-form h3,.decor-head h3,.story-panel h3,.anne-card .bubble{font-family:var(--font-title)}
@@ -181,42 +181,73 @@ body{font-size:16px;line-height:1.72;letter-spacing:-.015em}
   .mood-btn{min-height:58px;font-size:23px}
 }
 
+
+/* ===== 2026-10: 전체 감성 글꼴 통일 + 모바일 가독성 ===== */
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body,button,input,textarea,select{font-family:var(--font-body);font-synthesis:none}
+body{font-weight:400}
+.brand,.hero h1,.section-head h2,.paper-inner h3,.card h3,.quote,
+.story-panel h3,.decor-head h3,.anne-card .bubble,.quick-card .content h3{
+  font-family:var(--font-title);
+  font-weight:700;
+}
+.brand{letter-spacing:-.045em}
+.tab-btn,.action,.stat-pill,.level-tag{font-weight:700;letter-spacing:-.025em}
+p,.muted,.entry p,.choice,.story-result,.card h3,.section-head h2,.section-head p,
+.quick-card .content p,.tab-btn,.action,.plant-choice span,.quest,.memory p{
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  line-break:strict;
+}
+
+
+/* ===== 이미지 체감 로딩 개선 ===== */
+img{height:auto}
+section:not(.active){content-visibility:auto}
+.quick-card,.memory,.entry,.decor-option,.plant-choice{contain:layout paint style}
+.hero-bg,.hero-character,.hero-dog,.brand-mark{will-change:auto}
+
 </style>
+
+<link rel="preload" as="image" href="images/backgrounds/cottage_home.png" fetchpriority="high">
+<link rel="preload" as="image" href="images/characters/anne_bouquet.png" fetchpriority="high">
+<link rel="preload" as="image" href="images/pets/dog_sit_happy.png" fetchpriority="high">
+
 </head>
 <body>
 <div class="app-shell">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand-wrap"><img class="brand-mark" src="images/ui/icon_flower.png" alt=""><div class="brand"><b>앤</b>의 행복 정원</div></div>
-  <div class="stats"><div class="stat-pill"><img src="images/growth/seed_stage_01.png" alt=""> 씨앗 <b id="seeds">0</b></div><div class="stat-pill"><img src="images/ui/icon_flower.png" alt=""> 꽃 <b id="flowerStat">0</b></div><div class="stat-pill"><span style="font-size:21px">⭐</span> 별 <b id="stars">0</b></div></div>
+  <div class="brand-wrap"><img loading="eager" decoding="async" fetchpriority="high" class="brand-mark" src="images/ui/icon_flower.png" alt=""><div class="brand"><b>앤</b>의 행복 정원</div></div>
+  <div class="stats"><div class="stat-pill"><img loading="lazy" decoding="async" src="images/growth/seed_stage_01.png" alt=""> 씨앗 <b id="seeds">0</b></div><div class="stat-pill"><img loading="lazy" decoding="async" src="images/ui/icon_flower.png" alt=""> 꽃 <b id="flowerStat">0</b></div><div class="stat-pill"><span style="font-size:21px">⭐</span> 별 <b id="stars">0</b></div></div>
 </div></header>
 <main>
   <section id="heroSection" class="active" style="display:block">
     <div class="hero">
-      <img class="hero-bg" src="images/backgrounds/cottage_home.png" alt="꽃이 핀 정원과 집">
+      <img loading="eager" decoding="async" fetchpriority="high" class="hero-bg" src="images/backgrounds/cottage_home.png" alt="꽃이 핀 정원과 집">
       <div class="hero-shade"></div>
-      <img class="hero-garland" src="images/decor/floral_garland_top.png" alt="">
+      <img loading="lazy" decoding="async" class="hero-garland" src="images/decor/floral_garland_top.png" alt="">
       <div class="hero-copy">
         <span class="eyebrow">🌿 오늘의 작은 행복을 모으는 곳</span>
         <h1><em>앤</em>의 행복 정원</h1>
         <p>마음은 기록할수록 선명해지고, 작은 기쁨은 돌볼수록 자라요. 일기를 쓰고, 정원을 가꾸고, 이야기를 모험하며 나만의 행복 세계를 만들어 보세요.</p>
         <div class="hero-actions">
-          <button class="image-btn" data-go="diary"><img src="images/ui/button_start.png" alt="시작하기"></button>
+          <button class="image-btn" data-go="diary"><img loading="lazy" decoding="async" src="images/ui/button_start.png" alt="시작하기"></button>
           <button class="hero-action-secondary" id="openDecor" type="button"><span aria-hidden="true">🏡</span> 집 꾸미기 →</button>
         </div>
       </div>
-      <img class="hero-character" src="images/characters/anne_bouquet.png" alt="꽃다발을 든 앤">
-      <img class="hero-dog" src="images/pets/dog_sit_happy.png" alt="강아지">
-      <img class="hero-decor hidden" id="heroDecor" alt="집 꾸미기 장식">
+      <img loading="eager" decoding="async" fetchpriority="high" class="hero-character" src="images/characters/anne_bouquet.png" alt="꽃다발을 든 앤">
+      <img loading="eager" decoding="async" fetchpriority="high" class="hero-dog" src="images/pets/dog_sit_happy.png" alt="강아지">
+      <img loading="lazy" decoding="async" class="hero-decor hidden" id="heroDecor" alt="집 꾸미기 장식">
     </div>
   </section>
 
   <nav class="tabbar" aria-label="주요 메뉴">
-    <button type="button" class="tab-btn active" data-tab="home"><img src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
-    <button type="button" class="tab-btn" data-tab="diary"><img src="images/ui/icon_book.png" alt="">감정 일기</button>
-    <button type="button" class="tab-btn" data-tab="garden"><img src="images/ui/icon_pot.png" alt="">행복 정원</button>
-    <button type="button" class="tab-btn" data-tab="story"><img src="images/ui/icon_map.png" alt="">이야기 모험</button>
-    <button type="button" class="tab-btn" data-tab="letter"><img src="images/ui/icon_letter.png" alt="">마음 우체통</button>
-    <button type="button" class="tab-btn" data-tab="book"><img src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
+    <button type="button" class="tab-btn active" data-tab="home"><img loading="lazy" decoding="async" src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
+    <button type="button" class="tab-btn" data-tab="diary"><img loading="lazy" decoding="async" src="images/ui/icon_book.png" alt="">감정 일기</button>
+    <button type="button" class="tab-btn" data-tab="garden"><img loading="lazy" decoding="async" src="images/ui/icon_pot.png" alt="">행복 정원</button>
+    <button type="button" class="tab-btn" data-tab="story"><img loading="lazy" decoding="async" src="images/ui/icon_map.png" alt="">이야기 모험</button>
+    <button type="button" class="tab-btn" data-tab="letter"><img loading="lazy" decoding="async" src="images/ui/icon_letter.png" alt="">마음 우체통</button>
+    <button type="button" class="tab-btn" data-tab="book"><img loading="lazy" decoding="async" src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
   </nav>
 
   <section id="home" class="active">
@@ -226,23 +257,23 @@ body{font-size:16px;line-height:1.72;letter-spacing:-.015em}
         <div class="quote" id="greeting">“오늘은 어떤 멋진 일이 기다리고 있을까?”</div>
         <div class="level-line"><span class="level-tag" id="levelName">낯선 집의 첫날</span><div class="level"><div id="progressBar"></div></div><span class="muted" id="progressText"></span></div>
       </div>
-      <div class="card anne-card" style="position:relative"><div class="bubble" id="anneQuote">비가 오는 날에도 꽃은 자라거든. 오늘의 마음도 아주 소중한 이야기야.</div><img src="images/characters/anne_daydream.png" alt="생각에 잠긴 앤"></div>
+      <div class="card anne-card" style="position:relative"><div class="bubble" id="anneQuote">비가 오는 날에도 꽃은 자라거든. 오늘의 마음도 아주 소중한 이야기야.</div><img loading="lazy" decoding="async" src="images/characters/anne_daydream.png" alt="생각에 잠긴 앤"></div>
     </div>
 
     <div class="quest-strip">
-      <div class="quest"><img src="images/ui/icon_book.png" alt=""><div><strong>오늘의 마음 1줄</strong><small>일기를 쓰면 씨앗 +3</small></div></div>
-      <div class="quest"><img src="images/ui/icon_wateringcan.png" alt=""><div><strong>정원 돌보기</strong><small>꽃을 심으면 성장 +1</small></div></div>
-      <div class="quest"><img src="images/ui/icon_map.png" alt=""><div><strong>이야기 모험</strong><small>선택하면 별 +1</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_book.png" alt=""><div><strong>오늘의 마음 1줄</strong><small>일기를 쓰면 씨앗 +3</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt=""><div><strong>정원 돌보기</strong><small>꽃을 심으면 성장 +1</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_map.png" alt=""><div><strong>이야기 모험</strong><small>선택하면 별 +1</small></div></div>
     </div>
 
     <div class="section-head"><div><h2>오늘 어디로 갈까?</h2><p>기록과 놀이가 하나의 세계로 이어져요.</p></div></div>
     <div class="grid grid-3">
-      <button class="quick-card" data-go="diary"><img class="thumb contain" src="images/ui/notebook_page_large.png" alt=""><div class="content"><h3>감정 일기</h3><p>오늘의 감정을 골라 한 페이지를 남겨요.</p></div></button>
-      <button class="quick-card" data-go="garden"><img class="thumb" src="images/backgrounds/flower_arch.png" alt=""><div class="content"><h3>행복 정원</h3><p>씨앗으로 꽃을 심고 나만의 정원을 키워요.</p></div></button>
-      <button class="quick-card" data-go="story"><img class="thumb" src="images/backgrounds/forest_path_01.png" alt=""><div class="content"><h3>이야기 모험</h3><p>숲길, 바다, 별빛 길에서 선택형 이야기를 만나봐요.</p></div></button>
-      <button class="quick-card" data-go="letter"><img class="thumb contain" src="images/objects/red_mailbox.png" alt=""><div class="content"><h3>마음 우체통</h3><p>미래의 나에게 보내는 편지를 봉인해요.</p></div></button>
-      <button class="quick-card" data-go="book"><img class="thumb contain" src="images/objects/postcard_collage.png" alt=""><div class="content"><h3>나의 그림책</h3><p>지나온 기록이 하나의 추억책으로 쌓여요.</p></div></button>
-      <button class="quick-card" id="openDecor2"><img class="thumb contain" src="images/objects/bookshelf.png" alt=""><div class="content"><h3>집 꾸미기</h3><p>모은 별로 벤치와 책장, 꽃을 집에 들여놓아요.</p></div></button>
+      <button class="quick-card" data-go="diary"><img loading="lazy" decoding="async" class="thumb contain" src="images/ui/notebook_page_large.png" alt=""><div class="content"><h3>감정 일기</h3><p>오늘의 감정을 골라 한 페이지를 남겨요.</p></div></button>
+      <button class="quick-card" data-go="garden"><img loading="lazy" decoding="async" class="thumb" src="images/backgrounds/flower_arch.png" alt=""><div class="content"><h3>행복 정원</h3><p>씨앗으로 꽃을 심고 나만의 정원을 키워요.</p></div></button>
+      <button class="quick-card" data-go="story"><img loading="lazy" decoding="async" class="thumb" src="images/backgrounds/forest_path_01.png" alt=""><div class="content"><h3>이야기 모험</h3><p>숲길, 바다, 별빛 길에서 선택형 이야기를 만나봐요.</p></div></button>
+      <button class="quick-card" data-go="letter"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/red_mailbox.png" alt=""><div class="content"><h3>마음 우체통</h3><p>미래의 나에게 보내는 편지를 봉인해요.</p></div></button>
+      <button class="quick-card" data-go="book"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/postcard_collage.png" alt=""><div class="content"><h3>나의 그림책</h3><p>지나온 기록이 하나의 추억책으로 쌓여요.</p></div></button>
+      <button class="quick-card" id="openDecor2"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/bookshelf.png" alt=""><div class="content"><h3>집 꾸미기</h3><p>모은 별로 벤치와 책장, 꽃을 집에 들여놓아요.</p></div></button>
     </div>
 
     <div class="section-head" style="margin-top:24px"><div><h2>나의 성장 이야기</h2><p>활동을 할수록 앤의 세계가 조금씩 넓어져요.</p></div></div>
@@ -252,30 +283,30 @@ body{font-size:16px;line-height:1.72;letter-spacing:-.015em}
   <section id="diary">
     <div class="section-head"><div><h2>오늘의 감정 일기</h2><p>좋은 날도, 속상한 날도, 지친 날도 모두 기록할 가치가 있어요.</p></div></div>
     <div class="paper-layout">
-      <div class="paper-card"><img class="paper-bg" src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3>오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
-      <div><div class="card"><h3>앤의 한마디</h3><div class="row" style="align-items:flex-end"><img src="images/characters/anne_reading.png" alt="책 읽는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해.</p></div></div><div class="card" style="margin-top:14px"><h3>지난 일기</h3><div id="diaryList"></div></div></div>
+      <div class="paper-card"><img loading="lazy" decoding="async" class="paper-bg" src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3>오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
+      <div><div class="card"><h3>앤의 한마디</h3><div class="row" style="align-items:flex-end"><img loading="lazy" decoding="async" src="images/characters/anne_reading.png" alt="책 읽는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해.</p></div></div><div class="card" style="margin-top:14px"><h3>지난 일기</h3><div id="diaryList"></div></div></div>
     </div>
   </section>
 
   <section id="garden">
     <div class="section-head"><div><h2>나의 행복 정원</h2><p>씨앗 3개로 꽃 한 송이를 심을 수 있어요. 꽃마다 그날의 기억을 품고 있어요.</p></div></div>
-    <div class="garden-scene"><img class="bg" src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong id="gardenCount">0송이</strong><div class="tiny-note">꽃을 누르면 심은 날의 기억을 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
-    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 선택하고 씨앗을 사용하세요.</p></div><button class="action water-btn" id="waterGarden"><img src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
+    <div class="garden-scene"><img loading="lazy" decoding="async" class="bg" src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong id="gardenCount">0송이</strong><div class="tiny-note">꽃을 누르면 심은 날의 기억을 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
+    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 선택하고 씨앗을 사용하세요.</p></div><button class="action water-btn" id="waterGarden"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
   </section>
 
   <section id="story">
     <div class="section-head"><div><h2>앤과 이야기 모험</h2><p>정답은 없어요. 오늘의 마음이 가리키는 길을 골라보세요.</p></div></div>
-    <div class="story-stage" id="storyStage"><img class="bg" id="storyBg" src="images/backgrounds/forest_path_01.png" alt=""><img class="story-character" id="storyAnne" src="images/characters/anne_walking.png" alt="걷는 앤"><img class="story-dog" src="images/pets/dog_run_happy.png" alt="달리는 강아지"><div class="story-panel" id="storyBody"></div></div>
+    <div class="story-stage" id="storyStage"><img loading="lazy" decoding="async" class="bg" id="storyBg" src="images/backgrounds/forest_path_01.png" alt=""><img loading="lazy" decoding="async" class="story-character" id="storyAnne" src="images/characters/anne_walking.png" alt="걷는 앤"><img loading="lazy" decoding="async" class="story-dog" src="images/pets/dog_run_happy.png" alt="달리는 강아지"><div class="story-panel" id="storyBody"></div></div>
   </section>
 
   <section id="letter">
     <div class="section-head"><div><h2>마음 우체통</h2><p>지금의 마음을 미래의 나에게 보내보세요. 약속한 날에 편지가 열려요.</p></div></div>
-    <div class="letter-grid"><div class="card mailbox-card"><img src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
+    <div class="letter-grid"><div class="card mailbox-card"><img loading="lazy" decoding="async" src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img loading="lazy" decoding="async" src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
   </section>
 
   <section id="book">
     <div class="section-head"><div><h2>나의 행복 그림책</h2><p>일기와 모험이 차곡차곡 모여 나만의 한 권이 돼요.</p></div></div>
-    <div class="card book-hero"><img class="open" src="images/ui/open_book.png" alt="펼친 책"><img class="polaroid" src="images/objects/postcard_collage.png" alt="추억 사진"><img class="garland" src="images/decor/floral_garland_spring.png" alt=""></div>
+    <div class="card book-hero"><img loading="lazy" decoding="async" class="open" src="images/ui/open_book.png" alt="펼친 책"><img loading="lazy" decoding="async" class="polaroid" src="images/objects/postcard_collage.png" alt="추억 사진"><img loading="lazy" decoding="async" class="garland" src="images/decor/floral_garland_spring.png" alt=""></div>
     <div class="stats-row" id="bookStats"></div><div class="row" style="justify-content:center;margin-bottom:16px"><button class="action secondary" id="export">내 기록 백업하기 (JSON)</button></div><div class="memory-grid" id="bookPages"></div>
   </section>
 
@@ -283,7 +314,7 @@ body{font-size:16px;line-height:1.72;letter-spacing:-.015em}
 </main>
 </div>
 
-<div class="decorator" id="decorator" aria-hidden="true"><div class="decor-panel"><div class="decor-head"><div><h3>나의 집 꾸미기</h3><div class="muted">별을 모으면 새로운 소품을 놓을 수 있어요.</div></div><button class="close-x" id="closeDecor"><img src="images/ui/icon_close.png" alt="닫기"></button></div><div class="decor-grid" id="decorGrid"></div><p class="tiny-note">선택한 장식은 홈 화면 정원에 나타나요. 장식을 해제하려면 같은 항목을 다시 눌러주세요.</p></div></div>
+<div class="decorator" id="decorator" aria-hidden="true"><div class="decor-panel"><div class="decor-head"><div><h3>나의 집 꾸미기</h3><div class="muted">별을 모으면 새로운 소품을 놓을 수 있어요.</div></div><button class="close-x" id="closeDecor"><img loading="lazy" decoding="async" src="images/ui/icon_close.png" alt="닫기"></button></div><div class="decor-grid" id="decorGrid"></div><p class="tiny-note">선택한 장식은 홈 화면 정원에 나타나요. 장식을 해제하려면 같은 항목을 다시 눌러주세요.</p></div></div>
 
 <script>
 (()=>{'use strict';
@@ -309,6 +340,30 @@ document.addEventListener('error',function(e){
   // 끝까지 못 찾은 이미지는 alt 글씨/깨진 아이콘이 화면을 망치지 않게 숨김
   el.style.display='none';
 },true);
+
+
+// 첫 화면을 방해하지 않고, 잠시 뒤 주요 메뉴 이미지를 브라우저 캐시에 준비합니다.
+const warmAssets=[
+  'images/ui/notebook_page_large.png',
+  'images/backgrounds/path_day.png',
+  'images/backgrounds/forest_path_01.png',
+  'images/ui/envelope_flower.png',
+  'images/ui/open_book.png'
+];
+const warmImages=()=>{
+  warmAssets.forEach((src,i)=>{
+    setTimeout(()=>{
+      const im=new Image();
+      im.decoding='async';
+      im.src=src;
+    },i*220);
+  });
+};
+if('requestIdleCallback' in window){
+  requestIdleCallback(warmImages,{timeout:1800});
+}else{
+  setTimeout(warmImages,900);
+}
 
 const KEY='annes-happiness-garden-v1';
 const initial={seeds:0,stars:0,diaries:[],flowers:[],letters:[],completedStories:[],activities:0,decor:null,watered:0};
@@ -378,25 +433,25 @@ function refresh(){
  $('anneQuote').textContent=quotes[idx%quotes.length];
  renderTimeline();renderDiaries();renderGarden();renderLetters();renderBook();renderDecor();
 }
-function renderTimeline(){$('timeline').innerHTML=levels.map((l,i)=>`<div class="stage ${data.activities>=l.at?'done':''} ${i===levelIndex()?'current':''}"><img src="${l.img}" alt=""><b>${safe(l.name)}</b><small>${l.at} 활동</small></div>`).join('')}
+function renderTimeline(){$('timeline').innerHTML=levels.map((l,i)=>`<div class="stage ${data.activities>=l.at?'done':''} ${i===levelIndex()?'current':''}"><img loading="lazy" decoding="async" src="${l.img}" alt=""><b>${safe(l.name)}</b><small>${l.at} 활동</small></div>`).join('')}
 const moodData=[['😊','행복'],['😌','평온'],['😐','보통'],['😢','속상'],['😠','화남'],['🥱','지침'],['🥰','설렘']];
 $('moods').innerHTML=moodData.map(([m,n])=>`<button class="mood-btn" data-mood="${m}" title="${n}">${m}</button>`).join('');
 function paintMood(){document.querySelectorAll('[data-mood]').forEach(b=>b.classList.toggle('selected',b.dataset.mood===mood))}paintMood();$('moods').addEventListener('click',e=>{const b=e.target.closest('[data-mood]');if(b){mood=b.dataset.mood;paintMood()}});
 $('saveDiary').addEventListener('click',()=>{const text=$('diaryText').value.trim();if(!text)return alert('오늘의 마음을 한 줄이라도 적어줘.');data.diaries.unshift({id:Date.now(),date:today(),mood,text});data.seeds+=3;data.activities++;save();$('diaryText').value='';$('diaryReply').textContent='앤: 오늘의 마음을 들려줘서 고마워. 🌱 씨앗 3개를 받았어!';refresh()});
 function renderDiaries(){$('diaryList').innerHTML=data.diaries.length?data.diaries.slice(0,6).map(d=>`<div class="entry"><div class="entry-head"><span>${safe(d.mood)} ${safe(d.date)}</span></div><p>${safe(d.text)}</p></div>`).join(''):'<p class="muted">아직 기록이 없어요. 오늘 첫 페이지를 시작해 볼까요?</p>'}
-function renderPicker(){$('plantPicker').innerHTML=plantCatalog.map((p,i)=>`<button class="plant-choice ${i===selectedPlant?'selected':''}" data-plant="${i}"><img src="${p.img}" alt="${safe(p.name)}"><span>${safe(p.name)}</span></button>`).join('');$('selectedPlantName').textContent=`선택: ${plantCatalog[selectedPlant].name}`}
+function renderPicker(){$('plantPicker').innerHTML=plantCatalog.map((p,i)=>`<button class="plant-choice ${i===selectedPlant?'selected':''}" data-plant="${i}"><img loading="lazy" decoding="async" src="${p.img}" alt="${safe(p.name)}"><span>${safe(p.name)}</span></button>`).join('');$('selectedPlantName').textContent=`선택: ${plantCatalog[selectedPlant].name}`}
 $('plantPicker').addEventListener('click',e=>{const b=e.target.closest('[data-plant]');if(b){selectedPlant=Number(b.dataset.plant);renderPicker()}});renderPicker();
 $('plant').addEventListener('click',()=>{if(data.seeds<3)return alert('씨앗이 3개 필요해요. 감정 일기를 쓰면 씨앗 3개를 받을 수 있어요.');const p=plantCatalog[selectedPlant];data.seeds-=3;data.flowers.push({id:Date.now(),date:today(),name:p.name,img:p.img,memory:data.diaries[0]?.text||'오늘 심은 작은 희망'});data.activities++;save();refresh()});
 $('waterGarden').addEventListener('click',()=>{if(!data.flowers.length)return alert('먼저 꽃을 한 송이 심어볼까요?');data.watered=(data.watered||0)+1;save();alert('정원에 물을 주었어요. 🌿 오늘의 정원이 더 싱그러워졌어요!')});
-function renderGarden(){const max=10,arr=data.flowers.slice(-max);$('gardenItems').innerHTML=Array.from({length:max},(_,i)=>{const f=arr[i];return f?`<button class="garden-plant" data-flower="${i}" title="${safe(f.name)}"><img src="${f.img}" alt="${safe(f.name)}"></button>`:`<div class="garden-plant garden-empty">빈 자리</div>`}).join('');$('gardenCount').textContent=`지금까지 ${data.flowers.length}송이`}
+function renderGarden(){const max=10,arr=data.flowers.slice(-max);$('gardenItems').innerHTML=Array.from({length:max},(_,i)=>{const f=arr[i];return f?`<button class="garden-plant" data-flower="${i}" title="${safe(f.name)}"><img loading="lazy" decoding="async" src="${f.img}" alt="${safe(f.name)}"></button>`:`<div class="garden-plant garden-empty">빈 자리</div>`}).join('');$('gardenCount').textContent=`지금까지 ${data.flowers.length}송이`}
 $('gardenItems').addEventListener('click',e=>{const b=e.target.closest('[data-flower]');if(!b)return;const arr=data.flowers.slice(-10),f=arr[Number(b.dataset.flower)];if(f)alert(`${f.name}\n${f.date}\n\n${f.memory}`)});
 function renderStory(result){const s=stories[currentStory];$('storyBg').src=s.bg;$('storyAnne').src=s.anne;$('storyBody').innerHTML=result?`<div class="story-result"><strong>✨ 오늘의 이야기</strong><p>${safe(result)}</p><div class="muted">상상력 별 1개를 받았어요.</div></div><button class="action" id="nextStory" style="margin-top:10px">다음 이야기 →</button>`:`<h3>${safe(s.title)}</h3><p class="muted">${safe(s.intro)}</p><div class="choices">${s.choices.map((c,i)=>`<button class="choice" data-choice="${i}">${safe(c[0])}</button>`).join('')}</div>`}
 $('storyBody').addEventListener('click',e=>{const c=e.target.closest('[data-choice]');if(c){const s=stories[currentStory],ending=s.choices[Number(c.dataset.choice)][1];data.stars++;data.activities++;data.completedStories.push({date:today(),title:s.title,ending,bg:s.bg});save();refresh();renderStory(ending)}if(e.target.closest('#nextStory')){currentStory=(currentStory+1)%stories.length;renderStory()}});renderStory();
 $('letterDate').min=isoToday();$('letterDate').value=isoToday();$('saveLetter').addEventListener('click',()=>{const date=$('letterDate').value,text=$('letterText').value.trim();if(!date||!text)return alert('날짜와 편지 내용을 모두 적어주세요.');if(date<isoToday())return alert('오늘 또는 미래 날짜를 선택해 주세요.');data.letters.unshift({id:Date.now(),date,text});data.activities++;save();$('letterText').value='';refresh();alert('편지를 안전하게 봉인했어요. 💌')});
 function renderLetters(){$('letterList').innerHTML=data.letters.length?data.letters.map(l=>`<div class="entry"><div class="entry-head"><span>💌 ${safe(l.date)}에 열리는 편지</span></div><p>${l.date<=isoToday()?safe(l.text):'🔒 아직 봉인되어 있어요. 약속한 날 다시 만나요.'}</p></div>`).join(''):'<p class="muted">아직 편지가 없어요. 미래의 나에게 첫 편지를 보내볼까요?</p>'}
-function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span>`;const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${d.mood} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg}))].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
+function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span>`;const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${d.mood} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg}))].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img loading="lazy" decoding="async" src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
 $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'앤의 행복 정원',exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='annes-happiness-garden-'+isoToday()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
-function renderDecor(){const d=data.decor?decorCatalog.find(x=>x.img===data.decor):null;$('heroDecor').classList.toggle('hidden',!d);if(d)$('heroDecor').src=d.img;$('decorGrid').innerHTML=decorCatalog.map(o=>{const locked=data.stars<o.cost,selected=data.decor===o.img;return `<button class="decor-option ${locked?'locked':''} ${selected?'selected':''}" data-decor="${o.img}" data-cost="${o.cost}" ${locked?'disabled':''}><img src="${o.img}" alt="${safe(o.name)}"><b>${safe(o.name)}</b><small>${o.cost?`별 ${o.cost}개 필요`:'기본 장식'}</small></button>`}).join('')}
+function renderDecor(){const d=data.decor?decorCatalog.find(x=>x.img===data.decor):null;$('heroDecor').classList.toggle('hidden',!d);if(d)$('heroDecor').src=d.img;$('decorGrid').innerHTML=decorCatalog.map(o=>{const locked=data.stars<o.cost,selected=data.decor===o.img;return `<button class="decor-option ${locked?'locked':''} ${selected?'selected':''}" data-decor="${o.img}" data-cost="${o.cost}" ${locked?'disabled':''}><img loading="lazy" decoding="async" src="${o.img}" alt="${safe(o.name)}"><b>${safe(o.name)}</b><small>${o.cost?`별 ${o.cost}개 필요`:'기본 장식'}</small></button>`}).join('')}
 function openDecor(){renderDecor();$('decorator').classList.add('open');$('decorator').setAttribute('aria-hidden','false')}function closeDecor(){$('decorator').classList.remove('open');$('decorator').setAttribute('aria-hidden','true')}
 $('openDecor').addEventListener('click',openDecor);$('openDecor2').addEventListener('click',openDecor);$('closeDecor').addEventListener('click',closeDecor);$('decorator').addEventListener('click',e=>{if(e.target===$('decorator'))closeDecor();const b=e.target.closest('[data-decor]');if(b&&!b.disabled){data.decor=data.decor===b.dataset.decor?null:b.dataset.decor;save();renderDecor()}});
 $('greeting').textContent=`“${['오늘은 어떤 멋진 일이 기다리고 있을까?','평범한 하루도 자세히 보면 작은 기적이 숨어 있어.','좋은 생각은 정원의 씨앗처럼 천천히 자라나.','오늘의 나에게 다정한 한마디를 선물해 볼까?'][new Date().getDate()%4]}”`;
@@ -404,3 +459,4 @@ refresh();navigate('home');
 })();
 </script>
 </body></html>
+<!-- font-speed-fix: 2026-10-13 -->
