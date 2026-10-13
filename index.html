@@ -120,6 +120,67 @@ html,body{max-width:100%;overflow-x:hidden}
   .hero-dog{width:min(92px,24vw);right:2%;bottom:34px}
 }
 
+
+/* ===== 감성 타이포그래피 & 읽기 좋은 줄바꿈 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+:root{
+  --font-body:'Gowun Batang','Apple SD Gothic Neo','Malgun Gothic',serif;
+  --font-title:'Nanum Myeongjo','Gowun Batang','AppleMyungjo','Batang',serif;
+}
+body,button,input,textarea{font-family:var(--font-body)}
+.brand,.hero h1,.section-head h2,.paper-inner h3,.quote,.letter-form h3,.decor-head h3,.story-panel h3,.anne-card .bubble{font-family:var(--font-title)}
+
+/* 한국어가 글자 단위로 뚝뚝 끊기지 않도록 단어 단위 줄바꿈 */
+p,.muted,.quick-card .content p,.entry p,.choice,.story-result,.letter-form label,.paper-inner h3,.section-head h2,.section-head p,.card h3,.brand,.tab-btn,.action,.level-tag,.quest,.memory p{
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  line-break:strict;
+}
+
+body{font-size:16px;line-height:1.72;letter-spacing:-.015em}
+.section-head h2{font-size:32px;line-height:1.28;letter-spacing:-.035em}
+.section-head p{font-size:16px;line-height:1.8;max-width:760px}
+.card h3{font-family:var(--font-title);font-size:20px;line-height:1.4;letter-spacing:-.02em}
+.muted{font-size:16px;line-height:1.8}
+.quick-card .content h3{font-family:var(--font-title);font-size:18px;line-height:1.4}
+.quick-card .content p{font-size:15px;line-height:1.7}
+.paper-inner h3{font-size:27px;line-height:1.42;letter-spacing:-.025em;margin:0 0 16px}
+.paper-inner textarea,.paper-inner input,.letter-form textarea,.letter-form input{font-size:16px;line-height:1.75}
+.paper-inner textarea::placeholder,.letter-form textarea::placeholder,.letter-form input::placeholder{font-size:16px;line-height:1.7;color:#968a7f;opacity:.9}
+.entry p,.story-result,.choice{font-size:15.5px;line-height:1.8}
+.action{font-size:15px;line-height:1.35}
+
+@media(max-width:640px){
+  body{font-size:16px;line-height:1.75}
+  .section-head{display:block;margin:12px 4px 20px}
+  .section-head h2{font-size:29px!important;line-height:1.32;margin-bottom:7px}
+  .section-head p{font-size:16px!important;line-height:1.85;margin:0;max-width:100%}
+  .card h3{font-size:19px}
+  .muted{font-size:15.5px;line-height:1.8}
+  .quick-card .content p{font-size:14.5px;line-height:1.68}
+
+  /* 일기장 위쪽 꽃 장식과 제목이 겹치지 않도록 충분히 내려 배치 */
+  .paper-inner{padding:82px 24px 34px!important}
+  .paper-inner h3{font-size:25px;line-height:1.45;margin-bottom:16px;color:#7e4f3e}
+  .moods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0 16px}
+  .mood-btn{width:100%;min-height:62px;padding:8px 6px;font-size:24px;border-radius:16px}
+  .paper-inner textarea{min-height:245px;font-size:16px;line-height:1.78;padding:16px}
+  .paper-inner textarea::placeholder{font-size:15.5px;line-height:1.7}
+  .paper-inner .row{gap:8px}
+  .paper-inner .action{font-size:15.5px;padding:13px 16px}
+  .paper-inner .muted{font-size:14.5px}
+}
+
+@media(max-width:420px){
+  .section-head h2{font-size:28px!important}
+  .section-head p{font-size:15.5px!important}
+  .paper-inner{padding:80px 20px 32px!important}
+  .paper-inner h3{font-size:24px}
+  .moods{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .mood-btn{min-height:58px;font-size:23px}
+}
+
 </style>
 </head>
 <body>
