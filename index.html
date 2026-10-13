@@ -285,6 +285,189 @@ section:not(.active){content-visibility:auto}
   .admin-panel{right:8px;bottom:8px;width:calc(100vw - 16px)}
 }
 
+
+/* ===== 모바일 넘침/배치 최종 보정 ===== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+main,section,.card,.letter-form,.letter-grid,.letter-grid>div{min-width:0;max-width:100%}
+input,textarea,select,button{max-width:100%}
+
+
+/* ===== 마음 우체통 모바일 정리 ===== */
+.letter-form{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+.letter-form label{
+  font-size:18px;
+  line-height:1.45;
+  margin:18px 0 8px;
+  letter-spacing:-.025em;
+}
+.letter-form input,
+.letter-form textarea{
+  display:block;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  font-size:18px;
+  line-height:1.7;
+  padding:15px 16px;
+}
+.letter-form input[type="date"]{
+  min-height:58px;
+  text-align:center;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.letter-form textarea{
+  min-height:230px;
+}
+.letter-form textarea::placeholder{
+  font-size:17px;
+  line-height:1.65;
+}
+.letter-list h3{
+  font-size:25px;
+  margin-bottom:14px;
+}
+.letter-list .entry{
+  padding:18px;
+}
+.letter-list .entry-head{
+  font-size:18px;
+  line-height:1.5;
+}
+.letter-list .entry p{
+  font-size:17px;
+  line-height:1.75;
+  margin:12px 0 0;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.footer{
+  max-width:760px;
+  margin:34px auto 0;
+  padding:24px 20px 38px;
+  font-size:15px;
+  line-height:1.85;
+  color:#74685d;
+  text-align:left;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.footer strong{
+  display:block;
+  margin-bottom:7px;
+  font-size:17px;
+  color:#5d7158;
+}
+@media(max-width:620px){
+  .letter-grid{display:block}
+  .mailbox-card{display:none}
+  .letter-form{
+    padding:20px 16px;
+    border-radius:22px;
+  }
+  .letter-form h3{
+    font-size:32px;
+    margin:0 0 24px;
+  }
+  .letter-form label{
+    font-size:19px;
+    margin-top:22px;
+  }
+  .letter-form input,
+  .letter-form textarea{
+    font-size:18px;
+    padding:15px 14px;
+    border-radius:16px;
+  }
+  .letter-form input[type="date"]{
+    min-height:62px;
+  }
+  .letter-form textarea{
+    min-height:250px;
+  }
+  .letter-form .row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 88px;
+    gap:12px;
+    align-items:center;
+  }
+  .letter-form .row .action{
+    width:100%;
+    min-height:58px;
+    font-size:18px;
+  }
+  .letter-form .row img{
+    width:78px!important;
+    margin:0 auto!important;
+  }
+  .letter-list{
+    margin-top:22px;
+    padding:18px 16px;
+  }
+  .footer{
+    margin-top:28px;
+    padding:22px 18px 34px;
+    font-size:15.5px;
+    line-height:1.9;
+  }
+}
+
+
+/* ===== 관리자 테스트 모드: 페이지 안에서 확실히 보이도록 ===== */
+.admin-test-strip{
+  margin:14px 0 18px;
+  padding:16px;
+  border:2px dashed #92a886;
+  border-radius:20px;
+  background:#f3f7ec;
+  box-shadow:0 8px 24px rgba(72,91,62,.08);
+}
+.admin-test-strip[hidden],.admin-reopen[hidden]{display:none!important}
+.admin-test-head{
+  display:flex;justify-content:space-between;gap:12px;align-items:flex-start;
+}
+.admin-test-head b{
+  display:block;font-size:19px;color:#4f6b4d;margin-bottom:4px;
+}
+.admin-test-head span{
+  display:block;font-size:15px;line-height:1.6;color:#70685f;
+}
+.admin-close{
+  flex:0 0 auto;border:1px solid #cad6c3;border-radius:999px;background:#fff;
+  padding:8px 12px;font-size:14px;font-weight:700;color:#5d7058;
+}
+.admin-test-resources{
+  display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px;
+}
+.admin-test-resources span{
+  background:#fff;border:1px solid #d7e0d2;border-radius:999px;padding:8px 12px;
+  font-size:15px;color:#5b574f;
+}
+.admin-test-buttons{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;
+}
+.admin-test-buttons button,.admin-reopen{
+  border:1px solid #cbd7c4;background:#fffaf0;color:#4f604a;border-radius:13px;
+  padding:11px 9px;font-weight:800;font-size:14px;
+}
+.admin-test-strip>p{
+  margin:11px 0 0;font-size:13px;line-height:1.55;color:#81776c;
+}
+.admin-reopen{
+  position:fixed;right:12px;bottom:18px;z-index:9999;
+  box-shadow:0 8px 24px rgba(57,45,33,.16);
+}
+@media(max-width:700px){
+  .admin-test-strip{margin:12px 8px 16px;padding:14px}
+  .admin-test-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .admin-test-buttons button:last-child{grid-column:1/-1}
+}
+
 </style>
 
 <link rel="preload" as="image" href="images/backgrounds/cottage_home.png" fetchpriority="high">
@@ -327,6 +510,31 @@ section:not(.active){content-visibility:auto}
     <button type="button" class="tab-btn" data-tab="letter"><img loading="lazy" decoding="async" src="images/ui/icon_letter.png" alt="">마음 우체통</button>
     <button type="button" class="tab-btn" data-tab="book"><img loading="lazy" decoding="async" src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
   </nav>
+
+  <section class="admin-test-strip" id="adminTestStrip" hidden>
+    <div class="admin-test-head">
+      <div>
+        <b>🛠 관리자 테스트 모드</b>
+        <span>테스트용 자원을 바로 넣고 모든 기능을 확인할 수 있어요.</span>
+      </div>
+      <button type="button" class="admin-close" id="adminHide">접기</button>
+    </div>
+    <div class="admin-test-resources">
+      <span>🌱 씨앗 <b id="adminSeedView">0</b></span>
+      <span>⭐ 별 <b id="adminStarView">0</b></span>
+      <span>🌷 꽃 <b id="adminFlowerView">0</b></span>
+    </div>
+    <div class="admin-test-buttons">
+      <button type="button" data-admin-action="seed">씨앗 +30</button>
+      <button type="button" data-admin-action="star">별 +20</button>
+      <button type="button" data-admin-action="flower">꽃 +1</button>
+      <button type="button" data-admin-action="all">테스트 자원 채우기</button>
+      <button type="button" data-admin-action="reset">앱 데이터 초기화</button>
+    </div>
+    <p>관리자 모드 주소로 들어오면 처음 한 번 자동으로 씨앗 30개와 별 20개가 지급돼요.</p>
+  </section>
+  <button type="button" class="admin-reopen" id="adminReopen" hidden>🛠 관리자</button>
+
 
   <section id="home" class="active">
     <div class="welcome">
@@ -403,7 +611,7 @@ section:not(.active){content-visibility:auto}
 
   <section id="letter">
     <div class="section-head"><div><h2>마음 우체통</h2><p>지금의 마음을 미래의 나에게 보내보세요. 약속한 날에 편지가 열려요.</p></div></div>
-    <div class="letter-grid"><div class="card mailbox-card"><img loading="lazy" decoding="async" src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img loading="lazy" decoding="async" src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
+    <div class="letter-grid"><div class="card mailbox-card"><img loading="lazy" decoding="async" src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><p class="muted" style="font-size:17px;line-height:1.8;margin:-8px 0 16px">오늘의 마음을 적어 두면, 내가 정한 날에 다시 만날 수 있어요.</p><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img loading="lazy" decoding="async" src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
   </section>
 
   <section id="book">
@@ -412,7 +620,10 @@ section:not(.active){content-visibility:auto}
     <div class="stats-row" id="bookStats"></div><div class="row" style="justify-content:center;margin-bottom:16px"><button class="action secondary" id="export">내 기록 백업하기 (JSON)</button></div><div class="memory-grid" id="bookPages"></div>
   </section>
 
-  <p class="footer">앤의 행복 정원 · 고전적인 빨강머리 소녀의 낙관성과 자연 감성에서 영감을 받은 독립 창작 프로젝트<br>기록은 현재 브라우저에 저장됩니다. 중요한 기록은 그림책 메뉴에서 백업해 주세요.</p>
+  <div class="footer"><strong>앤의 행복 정원</strong>
+    고전적인 빨강머리 소녀의 낙관성과 자연 감성에서 영감을 받아 만든 독립 창작 프로젝트예요.<br>
+    기록은 현재 사용 중인 브라우저에 저장돼요. 오래 간직하고 싶은 기록은 <b>나의 그림책</b>에서 백업해 주세요.
+    </div>
 </main>
 </div>
 
@@ -576,26 +787,90 @@ $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({a
 function renderDecor(){const d=data.decor?decorCatalog.find(x=>x.img===data.decor):null;$('heroDecor').classList.toggle('hidden',!d);if(d)$('heroDecor').src=d.img;$('decorGrid').innerHTML=decorCatalog.map(o=>{const locked=data.stars<o.cost,selected=data.decor===o.img;return `<button class="decor-option ${locked?'locked':''} ${selected?'selected':''}" data-decor="${o.img}" data-cost="${o.cost}" ${locked?'disabled':''}><img loading="lazy" decoding="async" src="${o.img}" alt="${safe(o.name)}"><b>${safe(o.name)}</b><small>${o.cost?`별 ${o.cost}개 필요`:'기본 장식'}</small></button>`}).join('')}
 function openDecor(){renderDecor();$('decorator').classList.add('open');$('decorator').setAttribute('aria-hidden','false')}function closeDecor(){$('decorator').classList.remove('open');$('decorator').setAttribute('aria-hidden','true')}
 $('openDecor').addEventListener('click',openDecor);$('openDecor2').addEventListener('click',openDecor);$('closeDecor').addEventListener('click',closeDecor);$('decorator').addEventListener('click',e=>{if(e.target===$('decorator'))closeDecor();const b=e.target.closest('[data-decor]');if(b&&!b.disabled){data.decor=data.decor===b.dataset.decor?null:b.dataset.decor;save();renderDecor()}});
+
+// ===== 관리자 테스트 모드 =====
+const ADMIN_MODE = new URLSearchParams(location.search).get('admin') === '1';
+
+function saveAdminData(){
+  localStorage.setItem(KEY, JSON.stringify(data));
+}
+function addAdminFlower(){
+  const p = plantCatalog[Math.min(data.flowers.length % plantCatalog.length, plantCatalog.length-1)];
+  data.flowers.push({
+    id: Date.now() + Math.random(),
+    date: today(),
+    name: p.name,
+    img: p.img,
+    memory: '관리자 테스트용으로 심은 꽃'
+  });
+}
+function updateAdminViews(){
+  const sv=$('adminSeedView'), st=$('adminStarView'), fv=$('adminFlowerView');
+  if(sv) sv.textContent=data.seeds||0;
+  if(st) st.textContent=data.stars||0;
+  if(fv) fv.textContent=(data.flowers||[]).length;
+}
+function initAdminMode(){
+  if(!ADMIN_MODE) return;
+
+  // 관리자 URL 최초 진입 시 바로 테스트 가능하도록 자동 지급
+  if(sessionStorage.getItem('annes-admin-seeded')!=='1'){
+    data.seeds=Math.max(Number(data.seeds)||0,30);
+    data.stars=Math.max(Number(data.stars)||0,20);
+    data.activities=Math.max(Number(data.activities)||0,20);
+    sessionStorage.setItem('annes-admin-seeded','1');
+    saveAdminData();
+  }
+
+  const strip=$('adminTestStrip');
+  const reopen=$('adminReopen');
+  if(strip) strip.hidden=false;
+  if(reopen) reopen.hidden=true;
+
+  document.querySelectorAll('[data-admin-action]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const action=btn.dataset.adminAction;
+      if(action==='seed') data.seeds=(Number(data.seeds)||0)+30;
+      if(action==='star') data.stars=(Number(data.stars)||0)+20;
+      if(action==='flower') addAdminFlower();
+      if(action==='all'){
+        data.seeds=99;
+        data.stars=99;
+        data.activities=99;
+        while(data.flowers.length<8) addAdminFlower();
+      }
+      if(action==='reset'){
+        if(confirm('현재 브라우저에 저장된 앤의 행복 정원 데이터를 초기화할까요?')){
+          localStorage.removeItem(KEY);
+          sessionStorage.removeItem('annes-admin-seeded');
+          location.reload();
+        }
+        return;
+      }
+      saveAdminData();
+      refresh();
+      updateAdminViews();
+    });
+  });
+
+  $('adminHide')?.addEventListener('click',()=>{
+    if(strip) strip.hidden=true;
+    if(reopen) reopen.hidden=false;
+  });
+  reopen?.addEventListener('click',()=>{
+    if(strip) strip.hidden=false;
+    reopen.hidden=true;
+    strip.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  updateAdminViews();
+}
+
 $('greeting').textContent='“오늘도 작은 기쁨 하나를 발견해 볼까?”';
-refresh();navigate('home');
+refresh();navigate('home');initAdminMode();updateAdminViews();
 })();
 </script>
 
-<div class="admin-panel" id="adminPanel" aria-label="관리자 테스트 도구">
-  <h3>관리자 테스트 모드</h3>
-  <p>실제 사용자 데이터와는 별개로, 현재 브라우저의 localStorage 값만 조정합니다.</p>
-  <div class="admin-grid">
-    <button class="admin-btn" data-admin="seed10">씨앗 +10</button>
-    <button class="admin-btn" data-admin="star10">별 +10</button>
-    <button class="admin-btn" data-admin="activity10">활동 +10</button>
-    <button class="admin-btn" data-admin="flower1">꽃 1개 심기</button>
-    <button class="admin-btn" data-admin="max">테스트 자원 채우기</button>
-    <button class="admin-btn" data-admin="toggle">패널 접기</button>
-    <button class="admin-btn danger" data-admin="reset">테스트 데이터 초기화</button>
-    <button class="admin-btn danger" data-admin="exit">관리자 모드 종료</button>
-  </div>
-</div>
-<button class="admin-mini" id="adminMini">관리자</button>
 
 </body></html>
 <!-- font-speed-fix: 2026-10-13 -->
