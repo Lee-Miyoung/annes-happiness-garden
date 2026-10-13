@@ -664,6 +664,16 @@ input,textarea,select,button{max-width:100%}
   }
 }
 
+
+/* ===== 첫 화면 속도 개선 ===== */
+section:not(.active){display:none!important}
+section.active{display:block}
+img[data-src]{background:transparent}
+.hero-bg,.hero-character,.hero-dog{content-visibility:auto}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+
 </style>
 
 <link rel="preload" as="image" href="images/backgrounds/cottage_home.png" fetchpriority="high">
@@ -675,7 +685,7 @@ input,textarea,select,button{max-width:100%}
 <div class="app-shell">
 <header class="topbar"><div class="topbar-inner">
   <div class="brand-wrap"><img loading="eager" decoding="async" fetchpriority="high" class="brand-mark" src="images/ui/icon_flower.png" alt=""><div class="brand"><b>앤</b>의 행복 정원</div></div>
-  <div class="stats"><div class="stat-pill"><img loading="lazy" decoding="async" src="images/growth/seed_stage_01.png" alt=""> 씨앗 <b id="seeds">0</b></div><div class="stat-pill"><img loading="lazy" decoding="async" src="images/ui/icon_flower.png" alt=""> 꽃 <b id="flowerStat">0</b></div><div class="stat-pill"><span style="font-size:21px">⭐</span> 별 <b id="stars">0</b></div></div>
+  <div class="stats"><div class="stat-pill"><img loading="lazy" decoding="async" src="" data-src="images/growth/seed_stage_01.png" alt=""> 씨앗 <b id="seeds">0</b></div><div class="stat-pill"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_flower.png" alt=""> 꽃 <b id="flowerStat">0</b></div><div class="stat-pill"><span style="font-size:21px">⭐</span> 별 <b id="stars">0</b></div></div>
 </div></header>
 <main>
   <section id="heroSection" class="active" style="display:block">
@@ -699,12 +709,12 @@ input,textarea,select,button{max-width:100%}
   </section>
 
   <nav class="tabbar" aria-label="주요 메뉴">
-    <button type="button" class="tab-btn active" data-tab="home"><img loading="lazy" decoding="async" src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
-    <button type="button" class="tab-btn" data-tab="diary"><img loading="lazy" decoding="async" src="images/ui/icon_book.png" alt="">감정 일기</button>
-    <button type="button" class="tab-btn" data-tab="garden"><img loading="lazy" decoding="async" src="images/ui/icon_pot.png" alt="">행복 정원</button>
-    <button type="button" class="tab-btn" data-tab="story"><img loading="lazy" decoding="async" src="images/ui/icon_map.png" alt="">이야기 모험</button>
-    <button type="button" class="tab-btn" data-tab="letter"><img loading="lazy" decoding="async" src="images/ui/icon_letter.png" alt="">마음 우체통</button>
-    <button type="button" class="tab-btn" data-tab="book"><img loading="lazy" decoding="async" src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
+    <button type="button" class="tab-btn active" data-tab="home"><img loading="lazy" decoding="async" src="" data-src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
+    <button type="button" class="tab-btn" data-tab="diary"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_book.png" alt="">감정 일기</button>
+    <button type="button" class="tab-btn" data-tab="garden"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_pot.png" alt="">행복 정원</button>
+    <button type="button" class="tab-btn" data-tab="story"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_map.png" alt="">이야기 모험</button>
+    <button type="button" class="tab-btn" data-tab="letter"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_letter.png" alt="">마음 우체통</button>
+    <button type="button" class="tab-btn" data-tab="book"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
   </nav>
 
   <section class="admin-test-strip" id="adminTestStrip" hidden>
@@ -739,7 +749,7 @@ input,textarea,select,button{max-width:100%}
         <div class="quote" id="greeting">“오늘은 어떤 멋진 일이 기다리고 있을까?”</div>
         <div class="level-line"><span class="level-tag" id="levelName">낯선 집의 첫날</span><div class="level"><div id="progressBar"></div></div><span class="muted" id="progressText"></span></div>
       </div>
-      <div class="card anne-card" style="position:relative"><div class="bubble" id="anneQuote">비가 오는 날에도 꽃은 자라거든. 오늘의 마음도 아주 소중한 이야기야.</div><img loading="lazy" decoding="async" src="images/characters/anne_daydream.png" alt="생각에 잠긴 앤"></div>
+      <div class="card anne-card" style="position:relative"><div class="bubble" id="anneQuote">비가 오는 날에도 꽃은 자라거든. 오늘의 마음도 아주 소중한 이야기야.</div><img loading="lazy" decoding="async" src="" data-src="images/characters/anne_daydream.png" alt="생각에 잠긴 앤"></div>
     </div>
 
     <article class="daily-loop" id="dailyLoop">
@@ -790,26 +800,26 @@ input,textarea,select,button{max-width:100%}
         <p id="dailyQuoteReflection"></p>
       </div>
       <div class="daily-mission">
-        <img loading="lazy" decoding="async" src="images/ui/icon_flower.png" alt="">
+        <img loading="lazy" decoding="async" src="" data-src="images/ui/icon_flower.png" alt="">
         <div><b>오늘의 작은 미션</b><span id="dailyQuoteMission"></span></div>
       </div>
       <small class="daily-source" id="dailyQuoteSource">L. M. Montgomery, <i>Anne of Green Gables</i> · 영어 원문을 바탕으로 한 우리말 해석</small>
     </article>
 
     <div class="quest-strip">
-      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_book.png" alt=""><div><strong>오늘의 마음 1줄</strong><small>일기를 쓰면 씨앗 +3</small></div></div>
-      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt=""><div><strong>정원 돌보기</strong><small>꽃을 심으면 성장 +1</small></div></div>
-      <div class="quest"><img loading="lazy" decoding="async" src="images/ui/icon_map.png" alt=""><div><strong>이야기 모험</strong><small>선택하면 별 +1</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_book.png" alt=""><div><strong>오늘의 마음 1줄</strong><small>일기를 쓰면 씨앗 +3</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_wateringcan.png" alt=""><div><strong>정원 돌보기</strong><small>꽃을 심으면 성장 +1</small></div></div>
+      <div class="quest"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_map.png" alt=""><div><strong>이야기 모험</strong><small>선택하면 별 +1</small></div></div>
     </div>
 
     <div class="section-head"><div><h2>오늘 어디로 갈까?</h2><p>기록과 놀이가 하나의 세계로 이어져요.</p></div></div>
     <div class="grid grid-3">
-      <button class="quick-card" data-go="diary"><img loading="lazy" decoding="async" class="thumb contain" src="images/ui/notebook_page_large.png" alt=""><div class="content"><h3>감정 일기</h3><p>오늘의 감정을 골라 한 페이지를 남겨요.</p></div></button>
-      <button class="quick-card" data-go="garden"><img loading="lazy" decoding="async" class="thumb" src="images/backgrounds/flower_arch.png" alt=""><div class="content"><h3>행복 정원</h3><p>씨앗으로 꽃을 심고 나만의 정원을 키워요.</p></div></button>
-      <button class="quick-card" data-go="story"><img loading="lazy" decoding="async" class="thumb" src="images/backgrounds/forest_path_01.png" alt=""><div class="content"><h3>이야기 모험</h3><p>숲길, 바다, 별빛 길에서 선택형 이야기를 만나봐요.</p></div></button>
-      <button class="quick-card" data-go="letter"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/red_mailbox.png" alt=""><div class="content"><h3>마음 우체통</h3><p>미래의 나에게 보내는 편지를 봉인해요.</p></div></button>
-      <button class="quick-card" data-go="book"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/postcard_collage.png" alt=""><div class="content"><h3>나의 그림책</h3><p>지나온 기록이 하나의 추억책으로 쌓여요.</p></div></button>
-      <button class="quick-card" id="openDecor2"><img loading="lazy" decoding="async" class="thumb contain" src="images/objects/bookshelf.png" alt=""><div class="content"><h3>집 꾸미기</h3><p>모은 별로 벤치와 책장, 꽃을 집에 들여놓아요.</p></div></button>
+      <button class="quick-card" data-go="diary"><img loading="lazy" decoding="async" class="thumb contain" src="" data-src="images/ui/notebook_page_large.png" alt=""><div class="content"><h3>감정 일기</h3><p>오늘의 감정을 골라 한 페이지를 남겨요.</p></div></button>
+      <button class="quick-card" data-go="garden"><img loading="lazy" decoding="async" class="thumb" src="" data-src="images/backgrounds/flower_arch.png" alt=""><div class="content"><h3>행복 정원</h3><p>씨앗으로 꽃을 심고 나만의 정원을 키워요.</p></div></button>
+      <button class="quick-card" data-go="story"><img loading="lazy" decoding="async" class="thumb" src="" data-src="images/backgrounds/forest_path_01.png" alt=""><div class="content"><h3>이야기 모험</h3><p>숲길, 바다, 별빛 길에서 선택형 이야기를 만나봐요.</p></div></button>
+      <button class="quick-card" data-go="letter"><img loading="lazy" decoding="async" class="thumb contain" src="" data-src="images/objects/red_mailbox.png" alt=""><div class="content"><h3>마음 우체통</h3><p>미래의 나에게 보내는 편지를 봉인해요.</p></div></button>
+      <button class="quick-card" data-go="book"><img loading="lazy" decoding="async" class="thumb contain" src="" data-src="images/objects/postcard_collage.png" alt=""><div class="content"><h3>나의 그림책</h3><p>지나온 기록이 하나의 추억책으로 쌓여요.</p></div></button>
+      <button class="quick-card" id="openDecor2"><img loading="lazy" decoding="async" class="thumb contain" src="" data-src="images/objects/bookshelf.png" alt=""><div class="content"><h3>집 꾸미기</h3><p>모은 별로 벤치와 책장, 꽃을 집에 들여놓아요.</p></div></button>
     </div>
 
     <div class="section-head" style="margin-top:24px"><div><h2>나의 긍정 에너지</h2><p>작은 기록과 행동이 쌓일수록 밝음·용기·다정함이 자라나요.</p></div></div>
@@ -819,30 +829,30 @@ input,textarea,select,button{max-width:100%}
   <section id="diary">
     <div class="section-head"><div><h2>오늘의 감정 일기</h2><p>좋은 날도, 속상한 날도, 지친 날도 모두 기록할 가치가 있어요.</p></div></div>
     <div class="paper-layout">
-      <div class="paper-card"><img loading="lazy" decoding="async" class="paper-bg" src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3>오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
-      <div><div class="card"><h3>앤의 한마디</h3><div class="row" style="align-items:flex-end"><img loading="lazy" decoding="async" src="images/characters/anne_reading.png" alt="책 읽는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해.</p></div></div><div class="card" style="margin-top:14px"><h3>지난 일기</h3><div id="diaryList"></div></div></div>
+      <div class="paper-card"><img loading="lazy" decoding="async" class="paper-bg" src="" data-src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3>오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
+      <div><div class="card"><h3>앤의 한마디</h3><div class="row" style="align-items:flex-end"><img loading="lazy" decoding="async" src="" data-src="images/characters/anne_reading.png" alt="책 읽는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해.</p></div></div><div class="card" style="margin-top:14px"><h3>지난 일기</h3><div id="diaryList"></div></div></div>
     </div>
   </section>
 
   <section id="garden">
     <div class="section-head"><div><h2>나의 행복 정원</h2><p>씨앗 3개로 꽃 한 송이를 심을 수 있어요. 꽃마다 그날의 기억을 품고 있어요.</p></div></div>
-    <div class="garden-scene"><img loading="lazy" decoding="async" class="bg" src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong id="gardenCount">0송이</strong><div class="tiny-note">꽃을 누르면 심은 날의 기억을 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
-    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 선택하고 씨앗을 사용하세요.</p></div><button class="action water-btn" id="waterGarden"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
+    <div class="garden-scene"><img loading="lazy" decoding="async" class="bg" src="" data-src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong id="gardenCount">0송이</strong><div class="tiny-note">꽃을 누르면 심은 날의 기억을 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
+    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 선택하고 씨앗을 사용하세요.</p></div><button class="action water-btn" id="waterGarden"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
   </section>
 
   <section id="story">
     <div class="section-head"><div><h2>앤과 이야기 모험</h2><p>정답은 없어요. 오늘의 마음이 가리키는 길을 골라보세요.</p></div></div>
-    <div class="story-stage" id="storyStage"><img loading="lazy" decoding="async" class="bg" id="storyBg" src="images/backgrounds/forest_path_01.png" alt=""><img loading="lazy" decoding="async" class="story-character" id="storyAnne" src="images/characters/anne_walking.png" alt="걷는 앤"><img loading="lazy" decoding="async" class="story-dog" src="images/pets/dog_run_happy.png" alt="달리는 강아지"><div class="story-panel" id="storyBody"></div></div>
+    <div class="story-stage" id="storyStage"><img loading="lazy" decoding="async" class="bg" id="storyBg" src="" data-src="images/backgrounds/forest_path_01.png" alt=""><img loading="lazy" decoding="async" class="story-character" id="storyAnne" src="" data-src="images/characters/anne_walking.png" alt="걷는 앤"><img loading="lazy" decoding="async" class="story-dog" src="" data-src="images/pets/dog_run_happy.png" alt="달리는 강아지"><div class="story-panel" id="storyBody"></div></div>
   </section>
 
   <section id="letter">
     <div class="section-head"><div><h2>마음 우체통</h2><p>지금의 마음을 미래의 나에게 보내보세요. 약속한 날에 편지가 열려요.</p></div></div>
-    <div class="letter-grid"><div class="card mailbox-card"><img loading="lazy" decoding="async" src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><p class="muted" style="font-size:17px;line-height:1.8;margin:-8px 0 16px">오늘의 마음을 적어 두면, 내가 정한 날에 다시 만날 수 있어요.</p><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img loading="lazy" decoding="async" src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
+    <div class="letter-grid"><div class="card mailbox-card"><img loading="lazy" decoding="async" src="" data-src="images/objects/red_mailbox.png" alt="빨간 우체통"></div><div><div class="letter-form"><h3>미래의 나에게</h3><p class="muted" style="font-size:17px;line-height:1.8;margin:-8px 0 16px">오늘의 마음을 적어 두면, 내가 정한 날에 다시 만날 수 있어요.</p><label for="letterDate">편지를 열 날짜</label><input type="date" id="letterDate"><label for="letterText">편지 내용</label><textarea id="letterText" maxlength="3000" placeholder="미래의 나에게 들려주고 싶은 이야기를 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action rose" id="saveLetter">편지 봉인하기 💌</button><img loading="lazy" decoding="async" src="" data-src="images/ui/envelope_flower.png" alt="" style="width:90px;margin-left:auto"></div></div><div class="card letter-list"><h3>나의 우체통</h3><div id="letterList"></div></div></div></div>
   </section>
 
   <section id="book">
     <div class="section-head"><div><h2>나의 행복 그림책</h2><p>일기와 모험이 차곡차곡 모여 나만의 한 권이 돼요.</p></div></div>
-    <div class="card book-hero"><img loading="lazy" decoding="async" class="open" src="images/ui/open_book.png" alt="펼친 책"><img loading="lazy" decoding="async" class="polaroid" src="images/objects/postcard_collage.png" alt="추억 사진"><img loading="lazy" decoding="async" class="garland" src="images/decor/floral_garland_spring.png" alt=""></div>
+    <div class="card book-hero"><img loading="lazy" decoding="async" class="open" src="" data-src="images/ui/open_book.png" alt="펼친 책"><img loading="lazy" decoding="async" class="polaroid" src="" data-src="images/objects/postcard_collage.png" alt="추억 사진"><img loading="lazy" decoding="async" class="garland" src="" data-src="images/decor/floral_garland_spring.png" alt=""></div>
     <div class="stats-row" id="bookStats"></div><div class="row" style="justify-content:center;margin-bottom:16px"><button class="action secondary" id="export">내 기록 백업하기 (JSON)</button></div><div class="memory-grid" id="bookPages"></div>
   </section>
 
@@ -853,7 +863,7 @@ input,textarea,select,button{max-width:100%}
 </main>
 </div>
 
-<div class="decorator" id="decorator" aria-hidden="true"><div class="decor-panel"><div class="decor-head"><div><h3>나의 집 꾸미기</h3><div class="muted">별을 모으면 새로운 소품을 놓을 수 있어요.</div></div><button class="close-x" id="closeDecor"><img loading="lazy" decoding="async" src="images/ui/icon_close.png" alt="닫기"></button></div><div class="decor-grid" id="decorGrid"></div><p class="tiny-note">선택한 장식은 홈 화면 정원에 나타나요. 장식을 해제하려면 같은 항목을 다시 눌러주세요.</p></div></div>
+<div class="decorator" id="decorator" aria-hidden="true"><div class="decor-panel"><div class="decor-head"><div><h3>나의 집 꾸미기</h3><div class="muted">별을 모으면 새로운 소품을 놓을 수 있어요.</div></div><button class="close-x" id="closeDecor"><img loading="lazy" decoding="async" src="" data-src="images/ui/icon_close.png" alt="닫기"></button></div><div class="decor-grid" id="decorGrid"></div><p class="tiny-note">선택한 장식은 홈 화면 정원에 나타나요. 장식을 해제하려면 같은 항목을 다시 눌러주세요.</p></div></div>
 
 <script>
 (()=>{'use strict';
@@ -881,31 +891,8 @@ document.addEventListener('error',function(e){
 },true);
 
 
-// 첫 화면을 방해하지 않고, 잠시 뒤 주요 메뉴 이미지를 브라우저 캐시에 준비합니다.
-const warmAssets=[
-  'images/ui/notebook_page_large.png',
-  'images/backgrounds/path_day.png',
-  'images/backgrounds/forest_path_01.png',
-  'images/ui/envelope_flower.png',
-  'images/ui/open_book.png'
-];
-const warmImages=()=>{
-  warmAssets.forEach((src,i)=>{
-    setTimeout(()=>{
-      const im=new Image();
-      im.decoding='async';
-      im.src=src;
-    },i*220);
-  });
-};
-if('requestIdleCallback' in window){
-  requestIdleCallback(warmImages,{timeout:1800});
-}else{
-  setTimeout(warmImages,900);
-}
-
 const KEY='annes-happiness-garden-v1';
-const initial={seeds:0,stars:0,diaries:[],flowers:[],letters:[],completedStories:[],activities:0,decor:null,watered:0,visitStreak:0,lastVisit:'',dailyRewardDate:'',starterGift:false,guideSeen:false};
+const initial={seeds:0,stars:0,diaries:[],flowers:[],letters:[],completedStories:[],activities:0,decor:null,watered:0,visitStreak:0,lastVisit:'',dailyRewardDate:'',starterGift:false,guideSeen:true};
 let data;try{data={...initial,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{data={...initial}};
 let mood='😊', currentStory=0, selectedPlant=0;
 const $=id=>document.getElementById(id); const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1064,10 +1051,24 @@ function initFunLoop(){
     const g=$('starterGift'); if(g){g.disabled=true;g.textContent='✓ 첫 방문 선물 받음'}
   });
   $('loopDecor')?.addEventListener('click',()=> $('openDecor')?.click());
-  if(!data.guideSeen) setTimeout(openGuide,550);
 }
 
-function navigate(id){document.querySelectorAll('main>section:not(#heroSection)').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.getElementById('heroSection').style.display=id==='home'?'block':'none';window.scrollTo({top:0,behavior:'smooth'})}
+
+// ===== 빠른 시작: 화면에 필요한 이미지부터 불러오기 =====
+function hydrateImages(root=document){
+  root.querySelectorAll('img[data-src]').forEach(img=>{
+    if(!img.getAttribute('src')){
+      img.src=img.dataset.src;
+    }
+  });
+}
+function hydrateSection(id){
+  const section=document.getElementById(id);
+  if(section) hydrateImages(section);
+}
+
+function navigate(id){
+ hydrateSection(id);document.querySelectorAll('main>section:not(#heroSection)').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.getElementById('heroSection').style.display=id==='home'?'block':'none';window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.go)));
 function levelIndex(){return levels.reduce((a,l,i)=>data.activities>=l.at?i:a,0)}
 function refresh(){
@@ -1078,25 +1079,25 @@ function refresh(){
  renderTimeline();renderDiaries();renderGarden();renderLetters();renderBook();renderDecor();
  renderDailyLoop();
 }
-function renderTimeline(){$('timeline').innerHTML=levels.map((l,i)=>`<div class="stage ${data.activities>=l.at?'done':''} ${i===levelIndex()?'current':''}"><img loading="lazy" decoding="async" src="${l.img}" alt=""><b>${safe(l.name)}</b><small>${l.at} 활동</small></div>`).join('')}
+function renderTimeline(){$('timeline').innerHTML=levels.map((l,i)=>`<div class="stage ${data.activities>=l.at?'done':''} ${i===levelIndex()?'current':''}"><img loading="lazy" decoding="async" src="" data-src="${l.img}" alt=""><b>${safe(l.name)}</b><small>${l.at} 활동</small></div>`).join('')}
 const moodData=[['😊','행복'],['😌','평온'],['😐','보통'],['😢','속상'],['😠','화남'],['🥱','지침'],['🥰','설렘']];
 $('moods').innerHTML=moodData.map(([m,n])=>`<button class="mood-btn" data-mood="${m}" title="${n}">${m}</button>`).join('');
 function paintMood(){document.querySelectorAll('[data-mood]').forEach(b=>b.classList.toggle('selected',b.dataset.mood===mood))}paintMood();$('moods').addEventListener('click',e=>{const b=e.target.closest('[data-mood]');if(b){mood=b.dataset.mood;paintMood()}});
 $('saveDiary').addEventListener('click',()=>{const text=$('diaryText').value.trim();if(!text)return alert('오늘의 마음을 한 줄이라도 적어줘.');data.diaries.unshift({id:Date.now(),date:today(),mood,text});data.seeds+=3;data.activities++;save();$('diaryText').value='';$('diaryReply').textContent='앤: 오늘의 마음을 들려줘서 고마워. 🌱 씨앗 3개를 받았어!';refresh()});
 function renderDiaries(){$('diaryList').innerHTML=data.diaries.length?data.diaries.slice(0,6).map(d=>`<div class="entry"><div class="entry-head"><span>${safe(d.mood)} ${safe(d.date)}</span></div><p>${safe(d.text)}</p></div>`).join(''):'<p class="muted">아직 기록이 없어요. 오늘 첫 페이지를 시작해 볼까요?</p>'}
-function renderPicker(){$('plantPicker').innerHTML=plantCatalog.map((p,i)=>`<button class="plant-choice ${i===selectedPlant?'selected':''}" data-plant="${i}"><img loading="lazy" decoding="async" src="${p.img}" alt="${safe(p.name)}"><span>${safe(p.name)}</span></button>`).join('');$('selectedPlantName').textContent=`선택: ${plantCatalog[selectedPlant].name}`}
+function renderPicker(){$('plantPicker').innerHTML=plantCatalog.map((p,i)=>`<button class="plant-choice ${i===selectedPlant?'selected':''}" data-plant="${i}"><img loading="lazy" decoding="async" src="" data-src="${p.img}" alt="${safe(p.name)}"><span>${safe(p.name)}</span></button>`).join('');$('selectedPlantName').textContent=`선택: ${plantCatalog[selectedPlant].name}`}
 $('plantPicker').addEventListener('click',e=>{const b=e.target.closest('[data-plant]');if(b){selectedPlant=Number(b.dataset.plant);renderPicker()}});renderPicker();
 $('plant').addEventListener('click',()=>{if(data.seeds<3)return alert('씨앗이 3개 필요해요. 감정 일기를 쓰면 씨앗 3개를 받을 수 있어요.');const p=plantCatalog[selectedPlant];data.seeds-=3;data.flowers.push({id:Date.now(),date:today(),name:p.name,img:p.img,memory:data.diaries[0]?.text||'오늘 심은 작은 희망'});data.activities++;save();refresh()});
 $('waterGarden').addEventListener('click',()=>{if(!data.flowers.length)return alert('먼저 꽃을 한 송이 심어볼까요?');data.watered=(data.watered||0)+1;save();alert('정원에 물을 주었어요. 🌿 오늘의 정원이 더 싱그러워졌어요!')});
-function renderGarden(){const max=10,arr=data.flowers.slice(-max);$('gardenItems').innerHTML=Array.from({length:max},(_,i)=>{const f=arr[i];return f?`<button class="garden-plant" data-flower="${i}" title="${safe(f.name)}"><img loading="lazy" decoding="async" src="${f.img}" alt="${safe(f.name)}"></button>`:`<div class="garden-plant garden-empty">빈 자리</div>`}).join('');$('gardenCount').textContent=`지금까지 ${data.flowers.length}송이`}
+function renderGarden(){const max=10,arr=data.flowers.slice(-max);$('gardenItems').innerHTML=Array.from({length:max},(_,i)=>{const f=arr[i];return f?`<button class="garden-plant" data-flower="${i}" title="${safe(f.name)}"><img loading="lazy" decoding="async" src="" data-src="${f.img}" alt="${safe(f.name)}"></button>`:`<div class="garden-plant garden-empty">빈 자리</div>`}).join('');$('gardenCount').textContent=`지금까지 ${data.flowers.length}송이`}
 $('gardenItems').addEventListener('click',e=>{const b=e.target.closest('[data-flower]');if(!b)return;const arr=data.flowers.slice(-10),f=arr[Number(b.dataset.flower)];if(f)alert(`${f.name}\n${f.date}\n\n${f.memory}`)});
 function renderStory(result){const s=stories[currentStory];$('storyBg').src=s.bg;$('storyAnne').src=s.anne;$('storyBody').innerHTML=result?`<div class="story-result"><strong>✨ 오늘의 이야기</strong><p>${safe(result)}</p><div class="muted">상상력 별 1개를 받았어요.</div></div><button class="action" id="nextStory" style="margin-top:10px">다음 이야기 →</button>`:`<h3>${safe(s.title)}</h3><p class="muted">${safe(s.intro)}</p><div class="choices">${s.choices.map((c,i)=>`<button class="choice" data-choice="${i}">${safe(c[0])}</button>`).join('')}</div>`}
 $('storyBody').addEventListener('click',e=>{const c=e.target.closest('[data-choice]');if(c){const s=stories[currentStory],ending=s.choices[Number(c.dataset.choice)][1];data.stars++;data.activities++;data.completedStories.push({date:today(),title:s.title,ending,bg:s.bg});save();refresh();renderStory(ending)}if(e.target.closest('#nextStory')){currentStory=(currentStory+1)%stories.length;renderStory()}});renderStory();
 $('letterDate').min=isoToday();$('letterDate').value=isoToday();$('saveLetter').addEventListener('click',()=>{const date=$('letterDate').value,text=$('letterText').value.trim();if(!date||!text)return alert('날짜와 편지 내용을 모두 적어주세요.');if(date<isoToday())return alert('오늘 또는 미래 날짜를 선택해 주세요.');data.letters.unshift({id:Date.now(),date,text});data.activities++;save();$('letterText').value='';refresh();alert('편지를 안전하게 봉인했어요. 💌')});
 function renderLetters(){$('letterList').innerHTML=data.letters.length?data.letters.map(l=>`<div class="entry"><div class="entry-head"><span>💌 ${safe(l.date)}에 열리는 편지</span></div><p>${l.date<=isoToday()?safe(l.text):'🔒 아직 봉인되어 있어요. 약속한 날 다시 만나요.'}</p></div>`).join(''):'<p class="muted">아직 편지가 없어요. 미래의 나에게 첫 편지를 보내볼까요?</p>'}
-function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span>`;const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${d.mood} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg}))].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img loading="lazy" decoding="async" src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
+function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span>`;const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${d.mood} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg}))].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img loading="lazy" decoding="async" src="" data-src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
 $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'앤의 행복 정원',exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='annes-happiness-garden-'+isoToday()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
-function renderDecor(){const d=data.decor?decorCatalog.find(x=>x.img===data.decor):null;$('heroDecor').classList.toggle('hidden',!d);if(d)$('heroDecor').src=d.img;$('decorGrid').innerHTML=decorCatalog.map(o=>{const locked=data.stars<o.cost,selected=data.decor===o.img;return `<button class="decor-option ${locked?'locked':''} ${selected?'selected':''}" data-decor="${o.img}" data-cost="${o.cost}" ${locked?'disabled':''}><img loading="lazy" decoding="async" src="${o.img}" alt="${safe(o.name)}"><b>${safe(o.name)}</b><small>${o.cost?`별 ${o.cost}개 필요`:'기본 장식'}</small></button>`}).join('')}
+function renderDecor(){const d=data.decor?decorCatalog.find(x=>x.img===data.decor):null;$('heroDecor').classList.toggle('hidden',!d);if(d)$('heroDecor').src=d.img;$('decorGrid').innerHTML=decorCatalog.map(o=>{const locked=data.stars<o.cost,selected=data.decor===o.img;return `<button class="decor-option ${locked?'locked':''} ${selected?'selected':''}" data-decor="${o.img}" data-cost="${o.cost}" ${locked?'disabled':''}><img loading="lazy" decoding="async" src="" data-src="${o.img}" alt="${safe(o.name)}"><b>${safe(o.name)}</b><small>${o.cost?`별 ${o.cost}개 필요`:'기본 장식'}</small></button>`}).join('')}
 function openDecor(){renderDecor();$('decorator').classList.add('open');$('decorator').setAttribute('aria-hidden','false')}function closeDecor(){$('decorator').classList.remove('open');$('decorator').setAttribute('aria-hidden','true')}
 $('openDecor').addEventListener('click',openDecor);$('openDecor2').addEventListener('click',openDecor);$('closeDecor').addEventListener('click',closeDecor);$('decorator').addEventListener('click',e=>{if(e.target===$('decorator'))closeDecor();const b=e.target.closest('[data-decor]');if(b&&!b.disabled){data.decor=data.decor===b.dataset.decor?null:b.dataset.decor;save();renderDecor()}});
 
@@ -1179,7 +1180,7 @@ function initAdminMode(){
 }
 
 $('greeting').textContent='“오늘도 작은 기쁨 하나를 발견해 볼까?”';
-refresh();navigate('home');initAdminMode();updateAdminViews(); initFunLoop();
+refresh();hydrateSection('home');navigate('home');initAdminMode();updateAdminViews(); initFunLoop();
 })();
 </script>
 
