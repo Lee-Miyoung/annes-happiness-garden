@@ -57,6 +57,69 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
   .plant-choice{min-height:118px}
 }
 
+
+/* ===== 2026-10 모바일 UI 정리 ===== */
+html,body{max-width:100%;overflow-x:hidden}
+.tabbar{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-snap-type:x proximity}
+.tab-btn{flex:0 0 auto;min-width:max-content;max-width:none;white-space:nowrap;overflow:visible;text-overflow:clip;scroll-snap-align:start}
+.tab-btn img{flex:0 0 auto}
+.hero-action-secondary{border:1px solid #d8c59f;background:rgba(255,249,235,.96);color:#5d4c38;border-radius:999px;min-height:54px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:800;white-space:nowrap;box-shadow:0 5px 12px rgba(74,55,32,.12)}
+.hero-action-secondary:active{transform:translateY(1px)}
+
+@media(max-width:640px){
+  main{width:100%;max-width:100%;padding-left:12px;padding-right:12px}
+  .topbar-inner{gap:8px}
+  .brand-wrap{min-width:0;flex:1 1 auto}
+  .brand{white-space:nowrap;font-size:19px}
+  .stats{flex:0 0 auto;gap:5px;flex-wrap:nowrap}
+  .stat-pill{white-space:nowrap;padding:6px 8px}
+
+  /* 메뉴는 줄이지 않고 손가락으로 가로 스크롤 */
+  .tabbar{margin-left:-12px;margin-right:-12px;padding:10px 12px 12px;gap:7px;top:53px;background:rgba(244,236,224,.96);backdrop-filter:blur(10px)}
+  .tab-btn{flex:0 0 auto!important;min-width:max-content!important;width:auto!important;padding:8px 11px!important;gap:6px!important;font-size:13px!important;line-height:1!important;border-radius:16px}
+  .tab-btn img{width:23px!important;height:23px!important}
+
+  /* 첫 화면: 텍스트/버튼과 캐릭터가 서로 겹치지 않게 공간 분리 */
+  .hero{min-height:760px;border-radius:24px}
+  .hero-bg{object-position:52% center}
+  .hero-copy{padding:28px 18px 355px;max-width:100%}
+  .eyebrow{font-size:12px;padding:7px 10px}
+  .hero h1{font-size:38px;line-height:1.06;margin:16px 0 12px}
+  .hero p{font-size:15px;line-height:1.72;max-width:100%;margin-right:0}
+  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px;width:min(100%,360px)}
+  .image-btn,.hero-action-secondary{width:100%;min-width:0}
+  .image-btn img{width:100%;height:52px;object-fit:contain}
+  .hero-action-secondary{min-height:52px;padding:0 12px;font-size:14px}
+  .hero-character{width:min(235px,58vw);right:auto;left:48%;transform:translateX(-50%);bottom:-3px;z-index:3}
+  .hero-dog{width:min(105px,25vw);right:3%;bottom:42px;z-index:4}
+  .hero-garland{width:260px;right:-70px;top:-25px;opacity:.48}
+
+  .section-head{align-items:flex-start}
+  .section-head h2{font-size:25px}
+  .section-head p{font-size:13px}
+  .card{border-radius:20px;padding:16px}
+}
+
+@media(max-width:420px){
+  .topbar-inner{padding-left:8px;padding-right:8px}
+  .brand-mark{width:30px;height:30px}
+  .brand{font-size:18px}
+  .stat-pill{font-size:11px;padding:5px 7px;gap:4px}
+  .stat-pill img{width:18px;height:18px}
+  .tabbar{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
+  .tab-btn{font-size:12.5px!important;padding:8px 10px!important}
+  .tab-btn img{width:22px!important;height:22px!important}
+  .hero{min-height:735px}
+  .hero-copy{padding:24px 16px 340px}
+  .hero h1{font-size:35px;letter-spacing:-1.5px}
+  .hero p{font-size:14px}
+  .hero-actions{grid-template-columns:1fr;max-width:230px}
+  .image-btn img{height:50px}
+  .hero-action-secondary{min-height:48px}
+  .hero-character{width:min(220px,61vw);left:47%}
+  .hero-dog{width:min(92px,24vw);right:2%;bottom:34px}
+}
+
 </style>
 </head>
 <body>
@@ -77,7 +140,7 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
         <p>마음은 기록할수록 선명해지고, 작은 기쁨은 돌볼수록 자라요. 일기를 쓰고, 정원을 가꾸고, 이야기를 모험하며 나만의 행복 세계를 만들어 보세요.</p>
         <div class="hero-actions">
           <button class="image-btn" data-go="diary"><img src="images/ui/button_start.png" alt="시작하기"></button>
-          <button class="image-btn light" id="openDecor"><img src="images/ui/button_next.png" alt="집 꾸미기"><span>집 꾸미기 →</span></button>
+          <button class="hero-action-secondary" id="openDecor" type="button"><span aria-hidden="true">🏡</span> 집 꾸미기 →</button>
         </div>
       </div>
       <img class="hero-character" src="images/characters/anne_bouquet.png" alt="꽃다발을 든 앤">
@@ -87,12 +150,12 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
   </section>
 
   <nav class="tabbar" aria-label="주요 메뉴">
-    <button class="tab-btn active" data-tab="home"><img src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
-    <button class="tab-btn" data-tab="diary"><img src="images/ui/icon_book.png" alt="">감정 일기</button>
-    <button class="tab-btn" data-tab="garden"><img src="images/ui/icon_pot.png" alt="">행복 정원</button>
-    <button class="tab-btn" data-tab="story"><img src="images/ui/icon_map.png" alt="">이야기 모험</button>
-    <button class="tab-btn" data-tab="letter"><img src="images/ui/icon_letter.png" alt="">마음 우체통</button>
-    <button class="tab-btn" data-tab="book"><img src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
+    <button type="button" class="tab-btn active" data-tab="home"><img src="images/backgrounds/cottage_green_roof.png" alt="">나의 집</button>
+    <button type="button" class="tab-btn" data-tab="diary"><img src="images/ui/icon_book.png" alt="">감정 일기</button>
+    <button type="button" class="tab-btn" data-tab="garden"><img src="images/ui/icon_pot.png" alt="">행복 정원</button>
+    <button type="button" class="tab-btn" data-tab="story"><img src="images/ui/icon_map.png" alt="">이야기 모험</button>
+    <button type="button" class="tab-btn" data-tab="letter"><img src="images/ui/icon_letter.png" alt="">마음 우체통</button>
+    <button type="button" class="tab-btn" data-tab="book"><img src="images/ui/icon_openbook.png" alt="">나의 그림책</button>
   </nav>
 
   <section id="home" class="active">
@@ -164,16 +227,26 @@ section{display:none} section.active{display:block;animation:fade .25s ease}@key
 <script>
 (()=>{'use strict';
 
-// GitHub 업로드 위치가 images/ 안이거나 저장소 루트여도 자동으로 한 번 더 찾아봅니다.
+// GitHub 업로드 위치 차이를 자동 보정합니다.
 document.addEventListener('error',function(e){
   const el=e.target;
   if(!(el instanceof HTMLImageElement)) return;
-  if(el.dataset.assetRetry) return;
-  const raw=el.getAttribute('src')||'';
-  if(raw.startsWith('images/')){
-    el.dataset.assetRetry='1';
-    el.src=raw.slice(7);
+  const original=el.dataset.assetOriginal || el.getAttribute('src') || '';
+  if(!el.dataset.assetOriginal) el.dataset.assetOriginal=original;
+  const step=Number(el.dataset.assetStep||0);
+  const candidates=[];
+  if(original.startsWith('images/')){
+    candidates.push(original.slice(7));              // pets/x.png
+    candidates.push('images/'+original);             // images/images/pets/x.png
+    candidates.push('./'+original);                  // ./images/pets/x.png
   }
+  if(step<candidates.length){
+    el.dataset.assetStep=String(step+1);
+    el.src=candidates[step];
+    return;
+  }
+  // 끝까지 못 찾은 이미지는 alt 글씨/깨진 아이콘이 화면을 망치지 않게 숨김
+  el.style.display='none';
 },true);
 
 const KEY='annes-happiness-garden-v1';
