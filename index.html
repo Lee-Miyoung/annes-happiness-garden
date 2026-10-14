@@ -1321,6 +1321,19 @@ body,button,input,textarea,select{
 .english-done{width:100%;margin-top:15px;border:0;border-radius:15px;min-height:50px;background:#6b8768;color:#fff;font-weight:900;font-size:15px}.english-done-note{margin:8px 2px 0;text-align:center;color:#7e7266;font-size:13px;line-height:1.6}
 @media(max-width:640px){.english-study-top{display:block}.english-nav-buttons{justify-content:flex-start;margin-top:9px}.english-next{padding:7px 10px!important}.english-progress-wrap{align-items:flex-start;flex-direction:column;gap:5px}.english-progress{width:100%}.english-progress-wrap>span{white-space:normal}.english-source-box blockquote{font-size:20px!important}.english-application-box>b{font-size:16.5px!important}.english-buttons button{flex:1 1 calc(50% - 4px)}#englishCopy{flex-basis:100%}.english-inline-actions button{flex:1}}
 
+
+/* ===== 영어 난이도 완화 + 발음 녹음 ===== */
+.english-record-box{margin-top:14px;padding:13px;border:1px solid #d9ccb8;border-radius:15px;background:#fffaf2}
+.english-record-box strong{display:block;color:#5c7358;font-size:15px;margin-bottom:4px}
+.english-record-box p{margin:0 0 10px!important;font-size:13px!important;line-height:1.55!important;color:#7a6f65!important}
+.english-record-actions{display:flex;flex-wrap:wrap;gap:7px}
+.english-record-actions button{min-height:40px;padding:8px 11px;border:1px solid #d8cab6;border-radius:12px;background:#fff;color:#5d534b;font:700 13px/1.2 var(--font-body)}
+.english-record-actions #englishRecordStart{background:#d96f63;color:#fff;border-color:#d96f63}
+.english-record-actions button:disabled{opacity:.45}
+.english-record-status{margin-top:8px;font-size:12.5px;line-height:1.5;color:#887a6d}
+#englishRecordAudio{width:100%;margin-top:9px;height:42px}
+@media(max-width:640px){.english-record-actions{display:grid;grid-template-columns:1fr 1fr}.english-record-actions button{width:100%;font-size:12.5px}}
+
 </style>
 
 
@@ -1568,14 +1581,14 @@ body,button,input,textarea,select{
   <section id="english">
     <div class="section-hero-mini english-mini">
       <img id="englishAnne" decoding="async" src="images/characters/anne_reading.png" alt="영어를 읽는 앤" loading="lazy">
-      <div><b>앤의 영어 한입</b><span>Anne 원문에서 출발해 B2~C1 표현·어휘·영작까지 한 카드로 공부해요.</span></div>
+      <div><b>앤의 영어 한입</b><span>Anne 원문에서 출발해 B1+~B2 표현·어휘·영작까지 부담 없이 깊게 공부해요.</span></div>
       <img id="englishDog" class="english-dog" decoding="async" src="images/pets/dog_sit_happy.png" alt="함께 공부하는 강아지" loading="lazy">
     </div>
     <div class="section-head"><div><h2>오늘의 원문 영어</h2><p>총 500카드. 원문을 읽고 → 표현을 이해하고 → 소리 내어 말하고 → 직접 한 문장 써보는 순서예요.</p></div></div>
 
     <div class="english-study-card" id="englishStudyCard">
       <div class="english-study-top">
-        <div class="english-badge-wrap"><span class="english-badge" id="englishBadge">원문 활용 심화 · C1</span><span class="english-counter" id="englishCounter">1 / 500</span></div>
+        <div class="english-badge-wrap"><span class="english-badge" id="englishBadge">원문 활용 중급+ · B1+~B2</span><span class="english-counter" id="englishCounter">1 / 500</span></div>
         <div class="english-nav-buttons">
           <button type="button" class="english-next" id="englishPrev">← 이전</button>
           <button type="button" class="english-next" id="englishRandom">랜덤</button>
@@ -1601,16 +1614,16 @@ body,button,input,textarea,select{
 
       <div class="english-application-box">
         <span>심화 응용 문장</span>
-        <b id="englishSentence">Even when the future remains uncertain, it is possible to remain attentive to small possibilities without demanding a complete answer immediately.</b>
-        <p id="englishTranslation">앞날이 불확실하게 느껴질 때에도 당장 완전한 답을 요구하는 것 없이 작은 가능성에 계속 주의를 기울이는 것은 가능해.</p>
+        <b id="englishSentence">Even when the future feels uncertain, we can pay attention to small possibilities without needing every answer right away.</b>
+        <p id="englishTranslation">앞날이 불확실해도 모든 답을 당장 알아야 한다고 생각하지 않고 작은 가능성에 주의를 기울일 수 있어.</p>
         <button type="button" class="english-apply-listen" id="englishApplyListen">🔊 응용문장 듣기</button>
       </div>
 
       <div class="english-grid">
-        <article><span>① 핵심 표현</span><b id="englishPattern">Even when A, it is possible to B without C.</b><p id="englishPatternKo">‘A한 상황에서도 C하지 않고 B할 수 있다’는 대조 구조예요.</p></article>
+        <article><span>① 핵심 표현</span><b id="englishPattern">Even when A, we can B without C.</b><p id="englishPatternKo">‘A한 상황에서도 C하지 않고 B할 수 있다’는 자연스러운 대조 표현이에요.</p></article>
         <article><span>② 핵심 어휘 5개</span><div id="englishWords" class="english-words"><div class="english-word"><b>uncertainty</b><span>불확실성</span></div><div class="english-word"><b>attentive</b><span>주의 깊은</span></div><div class="english-word"><b>possibility</b><span>가능성</span></div><div class="english-word"><b>overlook</b><span>간과하다</span></div><div class="english-word"><b>possible</b><span>가능한</span></div></div></article>
         <article class="english-example"><span>③ 응용 예문</span><b id="englishExample">Even when the outcome is unclear, it is possible to stay thoughtful without becoming passive.</b><p id="englishExampleKo">결과가 불분명해도 수동적이 되지 않고 신중함을 유지할 수 있어.</p></article>
-        <article class="english-practice"><span>④ 소리 내어 말하기</span><b id="englishSay">Even when the future remains uncertain.</b><p>먼저 듣고, 화면을 보지 않고 한 번 말해보세요.</p><div class="english-inline-actions"><button type="button" id="englishSayListen">🔊 따라 듣기</button><button type="button" id="englishSpokenDone">✓ 읽었어요</button></div></article>
+        <article class="english-practice"><span>④ 소리 내어 말하기</span><b id="englishSay">Even when the future feels uncertain.</b><p>먼저 듣고, 화면을 보지 않고 한 번 말해보세요.</p><div class="english-inline-actions"><button type="button" id="englishSayListen">🔊 따라 듣기</button><button type="button" id="englishSpokenDone">✓ 읽었어요</button></div><div class="english-record-box"><strong>🎙 내 발음 녹음</strong><p>내 목소리를 녹음한 뒤 바로 들어볼 수 있어요. 녹음은 서버에 올라가지 않고 이 화면에서만 사용돼요.</p><div class="english-record-actions"><button type="button" id="englishRecordStart">● 녹음 시작</button><button type="button" id="englishRecordStop" disabled>■ 중지</button><button type="button" id="englishRecordPlay" disabled>▶ 내 녹음 듣기</button><button type="button" id="englishRecordDelete" disabled>삭제</button></div><div class="english-record-status" id="englishRecordStatus">마이크 권한은 처음 한 번만 허용하면 돼요.</div><audio id="englishRecordAudio" controls hidden></audio></div></article>
         <article class="english-challenge"><span>⑤ 오늘의 영작</span><b id="englishChallenge">‘불확실해도 포기하지 않고 계속 배울 수 있다’를 영어로 바꿔보기.</b><textarea id="englishWritingInput" maxlength="500" placeholder="여기에 직접 영어 문장을 써보세요."></textarea><div class="english-inline-actions"><button type="button" id="englishWritingSave">저장</button><button type="button" id="englishWritingClear">지우기</button></div><p id="englishWritingNote">정답 하나만 있는 문제는 아니에요. 핵심 표현을 직접 써보는 게 목표예요.</p></article>
       </div>
 
@@ -1890,8 +1903,101 @@ function englishStudyIndex(){
   ensureEnglishStudyData();
   return Math.max(0,Math.min(englishStudyCards.length-1,Number(data.englishCardIndex)||0));
 }
-function englishStudyCard(){ return englishStudyCards[englishStudyIndex()]; }
+
+const ENGLISH_WORD_SOFTEN={
+  'attentive':['careful','주의 깊은'], 'reinterpret':['rethink','다시 생각하다'], 'verdict':['judgment','판단'],
+  'distinct':['clear','뚜렷한'], 'distinguish':['tell apart','구별하다'], 'isolated':['alone','고립된, 혼자인'],
+  'sincerity':['honesty','진심, 솔직함'], 'withdraw':['pull away','거리를 두다'], 'sustain':['keep up','계속 유지하다'],
+  'modest':['small but steady','작지만 꾸준한'], 'abandon':['give up','포기하다'], 'durable':['lasting','오래가는'],
+  'receptive':['open','수용적인'], 'disorienting':['confusing','혼란스러운'], 'acknowledge':['admit','인정하다'],
+  'accountability':['responsibility','책임'], 'diminish':['reduce','줄이다'], 'repairable':['fixable','고칠 수 있는'],
+  'coexist':['exist together','함께 존재하다'], 'insignificant':['unimportant','대수롭지 않은'], 'aspiration':['goal','목표'],
+  'self-acceptance':['accepting yourself','자기 자신을 받아들이기'], 'emotionally charged':['emotional','감정적인'],
+  'surrender':['give up','포기하다'], 'capacity':['ability','능력, 여력'], 'strategic':['planned','계획적인'],
+  'depleted':['exhausted','기진맥진한'], 'ambiguous':['unclear','모호한'], 'premature':['too early','성급한'],
+  'discernment':['good judgment','분별력'], 'dismiss':['ignore','무시하다'], 'vividly':['clearly','생생하게'],
+  'recreate':['create again','다시 만들어내다'], 'extract':['learn','끌어내어 배우다'], 'humbling':['eye-opening','겸손하게 만드는'],
+  'overcontrol':['too much control','과도한 통제'], 'rigid':['inflexible','경직된'], 'brevity':['shortness','짧음'],
+  'resentment':['hurt feelings','서운함, 원망'], 'infer':['guess','추론하다'], 'optimize':['improve','더 좋게 만들다'],
+  'rigidity':['inflexibility','경직성'], 'intimidating':['challenging','부담스럽고 어려운'], 'peculiar':['special','특별한'],
+  'cultivate':['develop','기르다'], 'constructive':['helpful','건설적인, 도움이 되는'], 'contradiction':['conflict','모순, 충돌'],
+  'transform':['change','변화시키다'], 'overlook':['miss','간과하다'], 'overlooked':['missed','지나친'],
+  'fleeting':['brief','짧고 순간적인'], 'clarify':['make clear','명확히 하다']
+};
+function softenEnglishText(s){
+  if(!s)return s;
+  let x=String(s);
+  const rules=[
+    [/Even when (.*?), it is possible to (.*?) without (.*?)\.$/i,'Even when $1, we can $2 without $3.'],
+    [/What initially feels (.*?) may eventually become (.*?)\.$/i,'What feels $1 at first may later become $2.'],
+    [/I have gradually learned that (.*?) matters more than (.*?)\.$/i,'I have learned over time that $1 matters more than $2.'],
+    [/Rather than (.*?), I would rather (.*?)\.$/i,'Instead of $1, I would rather $2.'],
+    [/It takes a certain kind of courage to (.*?), especially when (.*?)\.$/i,'It takes courage to $1, especially when $2.'],
+    [/There is something quietly reassuring about (.*?)\.$/i,'There is something comforting about $1.'],
+    [/A meaningful life may depend less on (.*?) than on (.*?)\.$/i,'A meaningful life may depend more on $2 than on $1.'],
+    [/The habit of choosing to (.*?) can gradually transform the way I respond when (.*?)\.$/i,'Choosing to $1 can slowly change how I respond when $2.'],
+    [/It is easy to overlook how much (.*?) can influence the way (.*?)\.$/i,'It is easy to forget how much $1 can affect the way $2.'],
+    [/There is no contradiction between (.*?) and (.*?); sometimes both are necessary\.$/i,'$1 and $2 do not have to be opposites; sometimes we need both.'],
+    [/Instead of treating (.*?) as (.*?), I can regard it as (.*?)\.$/i,'Instead of seeing $1 as $2, I can see it as $3.'],
+    [/I am beginning to appreciate the subtle difference between (.*?) and (.*?)\.$/i,'I am starting to see the difference between $1 and $2.'],
+    [/The possibility that (.*?) is reason enough to (.*?)\.$/i,'The chance that $1 is enough reason to $2.'],
+    [/Perhaps (.*?) means learning to (.*?)\.$/i,'Maybe $1 means learning to $2.'],
+    [/The ability to (.*?) becomes especially valuable when (.*?)\.$/i,'Being able to $1 is especially useful when $2.'],
+    [/I want to cultivate the kind of (.*?) that (.*?)\.$/i,'I want to develop the kind of $1 that $2.'],
+    [/Sometimes the most constructive response to (.*?) is to (.*?)\.$/i,'Sometimes the best response to $1 is to $2.'],
+    [/There is a peculiar freedom in (.*?)\.$/i,'There is a special kind of freedom in $1.'],
+    [/The future becomes less intimidating when I focus on (.*?) rather than the entire outcome\.$/i,'The future feels less difficult when I focus on $1 instead of the whole result.']
+  ];
+  for(const [a,b] of rules)x=x.replace(a,b);
+  const phrases=[
+    ['remain attentive to','pay attention to'],['demanding a complete answer immediately','needing every answer right away'],
+    ['final verdict','final judgment'],['mistaking slow progress for no progress at all','thinking slow progress means no progress'],
+    ['clinging to','holding on to'],['without accepting every judgment as equally valid','without believing every opinion is equally right'],
+    ['especially valuable','especially useful'],['the entire outcome','the whole result']
+  ];
+  for(const [a,b] of phrases)x=x.split(a).join(b);
+  for(const [hard,[easy]] of Object.entries(ENGLISH_WORD_SOFTEN)){
+    const re=new RegExp('\\b'+hard.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')+'\\b','gi');
+    x=x.replace(re,easy);
+  }
+  return x;
+}
+const ENGLISH_PATTERN_SOFTEN={
+  'Even when A, it is possible to B without C.':['Even when A, we can B without C.','‘A한 상황에서도 C하지 않고 B할 수 있다’는 자연스러운 대조 표현이에요.'],
+  'What initially feels A may eventually become B.':['What feels A at first may later become B.','처음에는 A처럼 느껴져도 나중에는 B가 될 수 있다는 변화 표현이에요.'],
+  'I have gradually learned that ...':['I have learned over time that ...','시간이 지나면서 ~을 알게 되었다고 말할 때 좋아요.'],
+  'Rather than A, I would rather B.':['Instead of A, I would rather B.','A보다는 B를 선택하고 싶다는 뜻이에요.'],
+  'There is no contradiction between A and B.':['A and B do not have to be opposites.','A와 B가 꼭 서로 반대일 필요는 없다는 표현이에요.'],
+  'Instead of A, I can regard B as C.':['Instead of seeing A as B, I can see it as C.','A를 B라고만 보지 않고 C로 바라볼 수 있다는 표현이에요.'],
+  'begin to appreciate the subtle difference between A and B':['start to see the difference between A and B','A와 B의 차이를 점점 알아가기 시작한다는 뜻이에요.'],
+  'The possibility that ... is reason enough to ...':['The chance that ... is enough reason to ...','~할 가능성만으로도 충분한 이유가 된다는 표현이에요.'],
+  'Perhaps A means learning to B.':['Maybe A means learning to B.','A란 어쩌면 B하는 법을 배우는 것일 수 있다는 표현이에요.'],
+  'The ability to A becomes especially valuable when B.':['Being able to A is especially useful when B.','B한 상황에서 A할 수 있는 능력이 특히 유용하다는 뜻이에요.'],
+  'cultivate the kind of ... that ...':['develop the kind of ... that ...','~한 종류의 태도나 습관을 기른다는 표현이에요.'],
+  'the most constructive response to A is to B':['the best response to A is to B','A에 대한 가장 좋은 대응은 B하는 것이라는 표현이에요.'],
+  'There is a peculiar freedom in -ing ...':['There is a special kind of freedom in -ing ...','~하는 데에는 특별한 자유로움이 있다는 표현이에요.'],
+  'become less A when ... rather than ...':['feel less A when ... instead of ...','~보다 …에 집중하면 덜 A하게 느껴진다는 표현이에요.']
+};
+function softenEnglishCard(raw,idx){
+  if(!raw)return raw;
+  const c={...raw};
+  c.en=softenEnglishText(raw.en);
+  c.example=softenEnglishText(raw.example);
+  c.say=softenEnglishText(raw.say);
+  const pm=ENGLISH_PATTERN_SOFTEN[raw.pattern];
+  if(pm){c.pattern=pm[0];c.patternKo=pm[1];}
+  c.words=(raw.words||[]).map(([w,k])=>{
+    const m=ENGLISH_WORD_SOFTEN[String(w).toLowerCase()];
+    return m?[m[0],m[1]]:[w,k];
+  }).slice(0,5);
+  c.level=(idx%4===0?'B2':'B1+–B2');
+  c.kind='원문 활용 중급+';
+  return c;
+}
+function englishStudyCard(){ return softenEnglishCard(englishStudyCards[englishStudyIndex()],englishStudyIndex()); }
+
 function setEnglishCardIndex(i){
+  resetEnglishRecording?.();
   ensureEnglishStudyData();
   const n=englishStudyCards.length;
   data.englishCardIndex=((Number(i)||0)%n+n)%n;
@@ -1905,7 +2011,7 @@ function renderEnglishStudy(){
     const idx=englishStudyIndex();
     const c=englishStudyCards[idx];
     if(!c || !$('englishSentence')) return;
-    $('englishBadge').textContent=`${c.kind||'원문 활용 심화'} · ${c.level||'B2-C1'}`;
+    $('englishBadge').textContent=`${c.kind||'원문 활용 중급+'} · ${c.level||'B1+–B2'}`;
     $('englishCounter').textContent=`${idx+1} / ${englishStudyCards.length}`;
     $('englishSourceSentence').textContent='“'+c.sourceEn+'”';
     $('englishSourceTranslation').textContent=c.sourceKo;
@@ -1983,6 +2089,60 @@ function completeEnglishCard(){
   save();refresh();renderEnglishStudy();updateAdminViews?.();
   alert('영어 카드 '+(idx+1)+'번을 완료했어요.'+reward);
 }
+
+let englishMediaRecorder=null,englishRecordChunks=[],englishRecordUrl='',englishRecordStream=null,englishRecordTimer=null,englishRecordSeconds=0;
+function setEnglishRecordStatus(msg){const el=$('englishRecordStatus');if(el)el.textContent=msg;}
+function stopEnglishMicTracks(){if(englishRecordStream){englishRecordStream.getTracks().forEach(t=>t.stop());englishRecordStream=null;}}
+function resetEnglishRecording(){
+  if(englishMediaRecorder&&englishMediaRecorder.state==='recording'){try{englishMediaRecorder.stop()}catch{}}
+  clearInterval(englishRecordTimer);englishRecordTimer=null;stopEnglishMicTracks();englishRecordChunks=[];englishRecordSeconds=0;
+  if(englishRecordUrl){URL.revokeObjectURL(englishRecordUrl);englishRecordUrl='';}
+  const audio=$('englishRecordAudio');if(audio){audio.pause();audio.removeAttribute('src');audio.hidden=true;}
+  if($('englishRecordStart'))$('englishRecordStart').disabled=false;
+  if($('englishRecordStop'))$('englishRecordStop').disabled=true;
+  if($('englishRecordPlay'))$('englishRecordPlay').disabled=true;
+  if($('englishRecordDelete'))$('englishRecordDelete').disabled=true;
+  setEnglishRecordStatus('마이크 권한은 처음 한 번만 허용하면 돼요.');
+}
+async function startEnglishRecording(){
+  if(!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder==='undefined'){
+    alert('이 브라우저는 녹음 기능을 지원하지 않아요. 아이폰은 Safari, 안드로이드는 Chrome에서 열어보세요.');return;
+  }
+  try{
+    resetEnglishRecording();
+    englishRecordStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    englishRecordChunks=[];
+    englishMediaRecorder=new MediaRecorder(englishRecordStream);
+    englishMediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size)englishRecordChunks.push(e.data)};
+    englishMediaRecorder.onstop=()=>{
+      clearInterval(englishRecordTimer);englishRecordTimer=null;
+      const type=englishMediaRecorder?.mimeType||'audio/mp4';
+      const blob=new Blob(englishRecordChunks,{type});
+      if(englishRecordUrl)URL.revokeObjectURL(englishRecordUrl);
+      englishRecordUrl=URL.createObjectURL(blob);
+      const audio=$('englishRecordAudio');if(audio){audio.src=englishRecordUrl;audio.hidden=false;}
+      if($('englishRecordStart'))$('englishRecordStart').disabled=false;
+      if($('englishRecordStop'))$('englishRecordStop').disabled=true;
+      if($('englishRecordPlay'))$('englishRecordPlay').disabled=false;
+      if($('englishRecordDelete'))$('englishRecordDelete').disabled=false;
+      stopEnglishMicTracks();setEnglishRecordStatus(`녹음 완료 · ${englishRecordSeconds}초. 내 녹음을 들어보고 원문과 비교해 보세요.`);
+    };
+    englishMediaRecorder.start();
+    englishRecordSeconds=0;
+    if($('englishRecordStart'))$('englishRecordStart').disabled=true;
+    if($('englishRecordStop'))$('englishRecordStop').disabled=false;
+    setEnglishRecordStatus('● 녹음 중 · 0초');
+    englishRecordTimer=setInterval(()=>{englishRecordSeconds++;setEnglishRecordStatus(`● 녹음 중 · ${englishRecordSeconds}초`);if(englishRecordSeconds>=60)stopEnglishRecording();},1000);
+  }catch(err){
+    stopEnglishMicTracks();
+    setEnglishRecordStatus('마이크를 사용할 수 없어요. 브라우저의 마이크 권한을 확인해 주세요.');
+    alert('마이크 권한이 필요해요. 카카오톡 안 브라우저라면 Safari에서 열어보세요.');
+  }
+}
+function stopEnglishRecording(){if(englishMediaRecorder&&englishMediaRecorder.state==='recording'){englishMediaRecorder.stop();}}
+function playEnglishRecording(){const a=$('englishRecordAudio');if(a&&englishRecordUrl){a.currentTime=0;a.play().catch(()=>{});}}
+function deleteEnglishRecording(){resetEnglishRecording();setEnglishRecordStatus('녹음을 삭제했어요. 다시 녹음할 수 있어요.');}
+
 window.AnneEnglishStudy={render:renderEnglishStudy,next:()=>setEnglishCardIndex(englishStudyIndex()+1),prev:()=>setEnglishCardIndex(englishStudyIndex()-1),random:()=>setEnglishCardIndex(Math.floor(Math.random()*englishStudyCards.length))};
 
 const quoteThemes=[
@@ -2142,6 +2302,10 @@ $('englishSlow')?.addEventListener('click',()=>speakEnglish(.62,'source'));
 $('englishApplyListen')?.addEventListener('click',()=>speakEnglish(.84,'apply'));
 $('englishSayListen')?.addEventListener('click',()=>speakEnglish(.78,'say'));
 $('englishSpokenDone')?.addEventListener('click',markEnglishSpoken);
+$('englishRecordStart')?.addEventListener('click',startEnglishRecording);
+$('englishRecordStop')?.addEventListener('click',stopEnglishRecording);
+$('englishRecordPlay')?.addEventListener('click',playEnglishRecording);
+$('englishRecordDelete')?.addEventListener('click',deleteEnglishRecording);
 $('englishWritingSave')?.addEventListener('click',saveEnglishWriting);
 $('englishWritingClear')?.addEventListener('click',()=>{const el=$('englishWritingInput');if(el){el.value='';ensureEnglishStudyData();delete data.englishWriting[String(englishStudyIndex())];save();renderEnglishStudy();}});
 $('englishCopy')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(englishStudyCard().sourceEn);alert('원문을 복사했어요.');}catch{alert('복사가 제한된 브라우저예요. 문장을 길게 눌러 복사해 주세요.');}});
