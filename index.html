@@ -122,7 +122,6 @@ html,body{max-width:100%;overflow-x:hidden}
 
 
 /* ===== 감성 타이포그래피 & 읽기 좋은 줄바꿈 ===== */
-700&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 
 :root{
   --font-body:'AppleMyungjo','Iowan Old Style','Palatino Linotype','Book Antiqua','Noto Serif KR','NanumMyeongjo','Batang',serif;
@@ -1003,6 +1002,247 @@ img{max-width:100%;height:auto}
 }
 @media(max-width:430px){.story-visual{min-height:410px}.story-character{width:62%!important}.story-dog{width:30%!important}.story-panel{padding:20px 15px 22px!important}.trait-strip span{font-size:12px}.adventure-theme b{font-size:21px}}
 
+
+/* ===== 모든 화면 공통: 이전 / 닫기 ===== */
+.app-nav-controls{position:sticky;top:126px;z-index:89;display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;margin:2px 0 12px;pointer-events:none}
+.app-nav-controls[hidden]{display:none!important}.app-nav-controls button{pointer-events:auto;min-height:44px;padding:9px 14px;border-radius:999px;border:1px solid #d9c9b1;box-shadow:0 6px 18px rgba(65,51,38,.12);backdrop-filter:blur(12px);font:800 14px/1 var(--font-body)}
+.app-nav-back{background:rgba(255,250,241,.95);color:#5d5146}.app-nav-close{background:rgba(102,136,100,.96);border-color:#668864!important;color:white}
+.guide-modal{top:118px!important;bottom:0!important;left:0!important;right:0!important;height:auto!important;align-items:flex-start!important;padding:16px 18px 28px!important;overflow-y:auto!important}
+.guide-card{position:relative;margin:auto}.guide-top-controls{position:sticky;top:0;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-4px -2px 14px;padding:4px 0 8px;background:linear-gradient(#fffaf0 70%,rgba(255,250,240,0))}
+.guide-top-back,.guide-top-close{border:1px solid #d9cab4;background:#fff;color:#5f554b;min-height:42px;border-radius:999px;padding:8px 13px;font:800 14px var(--font-body)}.guide-top-close{width:42px;padding:0;font-size:18px}
+.decor-head{position:sticky;top:-20px;z-index:10;background:rgba(255,249,239,.96);backdrop-filter:blur(10px);padding:12px 0 10px}
+.close-x{flex:0 0 auto;width:46px;height:46px;display:grid;place-items:center;border-radius:50%!important;background:#fff!important;border:1px solid #ddccb4!important;box-shadow:0 5px 15px rgba(60,45,30,.10)}.close-x img{width:30px!important;height:30px!important}
+@media(max-width:640px){.app-nav-controls{top:112px;margin:0 2px 10px}.app-nav-controls button{min-height:42px;padding:8px 12px;font-size:13px}.guide-modal{top:104px!important;padding:12px 10px 24px!important}.guide-card{border-radius:24px!important}}
+
+
+
+/* ===== 2026-10-15 레이아웃 정리 / 모바일 가독성 개선 ===== */
+html,body{overflow-x:hidden}
+main,section,.paper-layout,.letter-grid,.memory-grid,.card,.paper-card,.garden-scene,.section-hero-mini,.letter-form,.footer{max-width:100%;min-width:0}
+img{max-width:100%;height:auto}
+
+/* 상단 기능 탭 - 크기 축소, 더 단정하게 */
+.tabbar{gap:7px!important;padding-top:10px!important;padding-bottom:10px!important}
+.tab-btn{
+  min-height:48px;
+  padding:8px 12px!important;
+  gap:7px!important;
+  border-radius:16px!important;
+  font-size:14px!important;
+  box-shadow:0 2px 8px rgba(80,61,36,.05)!important;
+}
+.tab-btn img{width:24px!important;height:24px!important}
+
+/* 제목/설명 비율 정리 */
+.section-head h2{font-size:clamp(28px,4.5vw,36px)!important;line-height:1.22!important;letter-spacing:-.03em!important}
+.section-head p{font-size:17px!important;line-height:1.82!important;color:#74685d!important;max-width:840px!important}
+.section-hero-mini b{font-size:clamp(20px,3.2vw,28px)!important}
+.section-hero-mini span{font-size:16px!important;line-height:1.72!important}
+.card h3,.letter-form h3{font-size:clamp(20px,3vw,26px)!important;line-height:1.32!important}
+.muted{font-size:15.5px!important;line-height:1.76!important}
+.footer{font-size:16px!important;line-height:1.85!important;text-align:center;color:#7a6f63;padding:10px 8px 0}
+
+/* 감정일기 - 겹침/넘침 방지 */
+#diary .paper-card{overflow:hidden}
+#diary .paper-inner{padding:92px 26px 26px!important}
+#diary .paper-inner h3{
+  margin:0 0 16px!important;
+  font-size:clamp(20px,4vw,31px)!important;
+  line-height:1.25!important;
+  color:#7c4d3f!important;
+  position:relative;z-index:2;
+}
+#diary .moods{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 16px!important}
+#diary .mood-btn{min-width:0;width:100%;min-height:74px;padding:8px 4px!important;border-radius:16px!important;display:grid;place-items:center}
+#diary textarea{display:block;width:100%;max-width:100%;min-width:0;min-height:255px!important;padding:16px!important}
+#diary .paper-inner .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#diary #saveDiary{flex:0 0 auto}
+#diary #diaryReply{margin-top:8px}
+#diary .paper-layout > div:last-child .card:first-child .row{align-items:flex-start!important}
+#diary .paper-layout > div:last-child .card:first-child img{flex:0 0 auto;width:118px!important}
+
+/* 정원 - 화분을 가리는 HUD 정리 */
+.garden-hud{
+  left:14px!important; right:14px!important; top:14px!important; max-width:none!important;
+  display:flex!important; align-items:center!important; justify-content:space-between!important; gap:12px!important;
+  padding:10px 14px!important; background:rgba(255,249,238,.92)!important; backdrop-filter:blur(8px);
+}
+.garden-hud strong{font-size:18px!important;white-space:nowrap}
+.garden-hud .tiny-note{font-size:12.5px!important;line-height:1.5!important;color:#74675a!important;text-align:right}
+.garden-plots{top:92px!important;bottom:16px!important;align-content:end!important}
+.scene-helper{margin:10px 4px 0;color:#7b6e61;font-size:15px;line-height:1.72;word-break:keep-all}
+
+/* 마음 우체통 */
+.letter-form{padding:20px!important;border-radius:22px!important}
+.letter-form h3{color:#7a5146!important}
+.letter-form input,.letter-form textarea{font-size:16px!important;max-width:100%;min-width:0}
+.letter-form label{font-size:15px!important}
+
+/* 그림책 */
+.stats-row{gap:9px!important;margin:10px 0 16px!important}
+.stats-row > *{font-size:15px!important}
+#export{min-height:48px!important;padding:12px 18px!important}
+.memory .mem-body{padding:14px 15px!important}
+.memory b{font-size:22px!important;line-height:1.28!important;display:block;margin-bottom:8px}
+.memory p{font-size:15px!important;line-height:1.72!important}
+
+/* 공통 카드/버튼 미세 개선 */
+.card,.letter-form,.quick-card,.memory,.story-panel,.decor-panel{border-radius:24px!important}
+.action{border-radius:16px!important}
+.quick-card .content h3{font-size:18px!important}
+.quick-card .content p{font-size:14.5px!important;line-height:1.65!important}
+
+@media (max-width:900px){
+  .section-head h2{font-size:30px!important}
+  .section-head p{font-size:16.5px!important}
+}
+
+@media (max-width:640px){
+  main{padding-left:12px!important;padding-right:12px!important}
+  .tabbar{margin-left:-12px!important;margin-right:-12px!important;padding-left:12px!important;padding-right:12px!important;gap:6px!important}
+  .tab-btn{min-height:44px!important;padding:7px 10px!important;font-size:12.5px!important}
+  .tab-btn img{width:20px!important;height:20px!important}
+
+  .section-hero-mini{padding:14px 14px!important;gap:10px!important;border-radius:22px!important}
+  .section-hero-mini img{width:82px!important;height:96px!important}
+  .section-hero-mini b{font-size:18px!important;line-height:1.28!important;margin-bottom:4px!important}
+  .section-hero-mini span{font-size:14.5px!important;line-height:1.65!important}
+
+  .section-head{margin:10px 2px 16px!important}
+  .section-head h2{font-size:24px!important;line-height:1.22!important}
+  .section-head p{font-size:15.5px!important;line-height:1.75!important}
+
+  /* 감정 일기 모바일 */
+  #diary .paper-inner{padding:72px 14px 18px!important}
+  #diary .paper-inner h3{font-size:18px!important;margin-bottom:12px!important;max-width:88%}
+  #diary .moods{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;margin-bottom:14px!important}
+  #diary .mood-btn{min-height:68px!important;font-size:22px!important;border-radius:14px!important}
+  #diary textarea{min-height:215px!important;padding:14px!important;font-size:15.5px!important}
+  #diary .paper-inner .row{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;align-items:stretch!important}
+  #diary #saveDiary{width:100%!important}
+  #diary .paper-inner .row .muted{display:block;text-align:center;font-size:14px!important;line-height:1.6!important}
+  #diary .paper-layout > div:last-child .card:first-child .row{display:block!important}
+  #diary .paper-layout > div:last-child .card:first-child img{width:92px!important;margin:0 auto 10px!important}
+  #diary .paper-layout > div:last-child .card:first-child p{font-size:15px!important;text-align:center}
+
+  /* 정원 모바일 */
+  .garden-scene{min-height:680px!important}
+  .garden-hud{display:block!important;padding:10px 12px!important}
+  .garden-hud strong{display:block;font-size:16px!important;margin-bottom:4px}
+  .garden-hud .tiny-note{text-align:left!important;font-size:12px!important;line-height:1.45!important}
+  .garden-plots{top:86px!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  .garden-plant{min-height:130px!important;padding:6px!important;border-radius:16px!important}
+  .garden-plant img{max-height:88px!important}
+  .garden-empty{font-size:12px!important}
+  .plant-picker{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .plant-choice img{height:82px!important}
+  .scene-helper{font-size:14px;margin-left:2px;margin-right:2px}
+
+  /* 우체통 모바일 */
+  .letter-grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .mailbox-card{min-height:180px!important;display:none!important} /* 모바일에서는 장식 우체통 제거 */
+  .letter-form{padding:16px!important}
+  .letter-form h3{font-size:20px!important;line-height:1.28!important;margin-bottom:10px!important}
+  .letter-form .row{display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important}
+  .letter-form .row img{width:70px!important;margin-left:0!important}
+  .letter-list{margin-top:14px!important}
+
+  /* 그림책 모바일 */
+  .book-hero .polaroid{display:none!important}
+  .stats-row{justify-content:flex-start!important}
+  .stats-row > *{font-size:14px!important}
+  #book .row[style*="justify-content:center"]{justify-content:flex-start!important}
+  #export{width:100%!important}
+
+  /* 퀘스트/퀵카드 */
+  .quest-strip{grid-template-columns:1fr!important;gap:10px!important}
+  .quest{padding:12px!important}
+  .quick-card{min-height:176px!important}
+}
+
+@media (max-width:420px){
+  .tab-btn{padding:7px 9px!important;font-size:12px!important}
+  .tab-btn img{width:18px!important;height:18px!important}
+  .section-head h2{font-size:22px!important}
+  .section-head p{font-size:15px!important}
+  #diary .paper-inner{padding:66px 12px 16px!important}
+  #diary .paper-inner h3{font-size:17px!important;max-width:86%}
+  #diary .mood-btn{min-height:62px!important;font-size:21px!important}
+  .garden-scene{min-height:640px!important}
+}
+
+
+/* ===== 전체 디자인 리파인 V2 ===== */
+:root{
+  --ink:#514940; --ink2:#776f67; --green:#5f7f5e; --green2:#789a72;
+  --cream:#fffaf2; --paper:#f8f0df; --rose:#d66f63; --line:#e3d6c2;
+  --shadow-soft:0 8px 24px rgba(85,67,46,.07);
+}
+body,button,input,textarea,select{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif!important;
+  letter-spacing:-.025em;
+}
+.brand,.hero h1,.section-head h2,.paper-inner h3,.card h3,.quick-card .content h3,
+.story-panel h3,.letter-form h3,.decor-head h3,.daily-anne-top h2,.quote,.section-hero-mini b,.memory b{
+  font-family:'AppleMyungjo','Noto Serif KR','NanumMyeongjo','Batang',serif!important;
+  letter-spacing:-.035em;
+}
+.topbar{background:rgba(251,247,239,.93)!important;box-shadow:0 4px 16px rgba(90,70,45,.04)!important}
+.topbar-inner{padding:8px 12px!important}
+.brand-mark{width:34px!important;height:34px!important}.brand{font-size:21px!important}
+.stats{gap:6px!important}.stat-pill{padding:6px 9px!important;box-shadow:none!important;font-size:12.5px!important}.stat-pill img{width:20px!important;height:20px!important}
+
+.tabbar{gap:6px!important;padding:8px 0 9px!important;background:linear-gradient(180deg,rgba(244,238,228,.97) 0 78%,rgba(244,238,228,0))!important}
+.tab-btn{min-height:41px!important;padding:6px 10px!important;border-radius:13px!important;font-size:12.5px!important;box-shadow:none!important;border:1px solid #dfd2bf!important;background:rgba(255,251,244,.97)!important;color:#5d554d!important}
+.tab-btn img{width:19px!important;height:19px!important}.tab-btn.active{background:#678766!important;border-color:#678766!important;color:#fff!important;box-shadow:0 5px 14px rgba(87,119,82,.16)!important}
+
+.section-head{margin:10px 2px 13px!important;align-items:flex-start!important}
+.section-head h2{font-size:28px!important;line-height:1.2!important;margin:0 0 5px!important;color:#4d6f4e!important}
+.section-head p{font-size:16px!important;line-height:1.78!important;color:#776f67!important;margin:0!important}
+.section-hero-mini{min-height:108px!important;padding:11px 14px!important;border-radius:20px!important;box-shadow:0 6px 18px rgba(84,65,44,.045)!important}
+.section-hero-mini img{width:78px!important;height:86px!important}.section-hero-mini b{font-size:19px!important}.section-hero-mini span{font-size:14.5px!important;line-height:1.6!important}
+
+.card,.letter-form,.quick-card,.memory,.story-panel,.quote-collection-card,.daily-anne-card{box-shadow:var(--shadow-soft)!important;border-color:var(--line)!important}
+.card{padding:16px!important;border-radius:20px!important}.card h3{font-size:20px!important;margin-bottom:6px!important}.muted{font-size:15px!important;line-height:1.75!important}
+.action{min-height:46px!important;padding:10px 15px!important;border-radius:14px!important;box-shadow:none!important;font-size:14.5px!important}
+.action.secondary{background:#efe6d9!important;color:#5e554d!important}.action.rose{background:#d46d61!important}
+
+.quick-card{min-height:164px!important;border-radius:18px!important}.quick-card .thumb{height:94px!important}.quick-card .content{padding:10px 12px 12px!important}.quick-card .content h3{font-size:17px!important}.quick-card .content p{font-size:13.8px!important;line-height:1.55!important}
+
+#diary .paper-card{border-radius:22px!important;box-shadow:var(--shadow-soft)!important}
+#diary .paper-inner{padding-top:68px!important}#diary .paper-inner h3{font-size:19px!important;color:#735043!important}
+#diary .mood-btn{box-shadow:0 3px 9px rgba(82,67,47,.04)!important;background:rgba(255,253,248,.92)!important}
+#diary .mood-btn.selected{outline:none!important;border:2px solid #8ea985!important;background:#eef4e9!important}
+#diary textarea{background:rgba(255,255,255,.82)!important;border-color:#ddd2c0!important}
+
+.garden-scene{border-radius:22px!important;box-shadow:var(--shadow-soft)!important}.garden-hud{border-radius:13px!important;box-shadow:0 4px 14px rgba(71,55,39,.07)!important}.garden-plant{box-shadow:0 4px 10px rgba(71,55,39,.05)!important}.plant-choice{border-radius:15px!important}.plant-choice.selected{outline:none!important;border:2px solid #8fa986!important;background:#eef5e9!important}
+
+.letter-form{border-radius:20px!important}.letter-form h3{font-size:21px!important}.letter-form input,.letter-form textarea{background:#fffdf9!important;border-radius:13px!important}
+
+.memory{border-radius:17px!important}.memory .mem-body{padding:12px 13px!important}.memory b{font-size:19px!important}.memory p{font-size:14px!important;line-height:1.65!important}
+.stats-row .level-tag{background:#eef4e9!important;color:#587058!important;border-color:#d7e2d1!important}
+#export{border-radius:14px!important}
+
+.daily-anne-card,.quote-collection-card{border-radius:20px!important}.daily-original{font-size:22px!important}.quote-action{min-height:42px!important;font-size:13px!important;border-radius:13px!important}
+.footer{font-size:14px!important;text-align:center!important;color:#887e74!important}
+
+@media(max-width:640px){
+  main{padding:9px 10px 84px!important}
+  .topbar-inner{padding:7px 9px!important}.brand-mark{width:28px!important;height:28px!important}.brand{font-size:17.5px!important}
+  .stat-pill{padding:4px 7px!important;font-size:11px!important}.stat-pill img{width:17px!important;height:17px!important}
+  .tabbar{margin-left:-10px!important;margin-right:-10px!important;padding-left:10px!important;padding-right:10px!important}
+  .tab-btn{min-height:38px!important;padding:5px 8px!important;font-size:11.5px!important}.tab-btn img{width:17px!important;height:17px!important}
+  .section-hero-mini{min-height:96px!important;padding:9px 11px!important}.section-hero-mini img{width:64px!important;height:74px!important}.section-hero-mini b{font-size:16.5px!important}.section-hero-mini span{font-size:13px!important;line-height:1.52!important}
+  .section-head{margin:8px 2px 11px!important}.section-head h2{font-size:22px!important}.section-head p{font-size:14.8px!important;line-height:1.7!important}
+  .card{padding:13px!important;border-radius:17px!important}.card h3{font-size:18px!important}.muted{font-size:14.5px!important}
+  .quick-card{min-height:148px!important;border-radius:16px!important}.quick-card .thumb{height:84px!important}.quick-card .content{padding:9px 11px 11px!important}.quick-card .content h3{font-size:16px!important}.quick-card .content p{font-size:13px!important}
+  #diary .paper-inner{padding:62px 11px 15px!important}#diary .paper-inner h3{font-size:16.5px!important;margin-bottom:9px!important}#diary .mood-btn{min-height:56px!important;font-size:20px!important}#diary textarea{min-height:195px!important;font-size:14.8px!important}
+  .garden-hud{left:9px!important;right:9px!important;top:9px!important;padding:8px 10px!important}.garden-hud strong{font-size:14.5px!important}.garden-hud .tiny-note{font-size:11px!important}
+  .letter-form{padding:13px!important}.letter-form h3{font-size:18px!important}
+  .memory b{font-size:17px!important}.memory p{font-size:13.5px!important}
+  .daily-original{font-size:19px!important}
+}
+
 </style>
 
 
@@ -1017,7 +1257,12 @@ img{max-width:100%;height:auto}
   <div class="stats"><div class="stat-pill"><img loading="lazy" decoding="async" src="images/growth/seed_stage_01.png" alt=""> 씨앗 <b id="seeds">0</b></div><div class="stat-pill"><img loading="lazy" decoding="async" src="images/ui/icon_flower.png" alt=""> 꽃 <b id="flowerStat">0</b></div><div class="stat-pill"><span style="font-size:21px">⭐</span> 별 <b id="stars">0</b></div></div>
 </div></header>
 <main>
-  <section id="heroSection" class="active" style="display:block">
+  
+  <div class="app-nav-controls" id="appNavControls" hidden>
+    <button type="button" class="app-nav-back" id="appBackBtn">← 이전</button>
+    <button type="button" class="app-nav-close" id="appCloseBtn">✕ 닫기</button>
+  </div>
+<section id="heroSection" class="active" style="display:block">
     <div class="hero">
       <img loading="eager" decoding="async" fetchpriority="high" class="hero-bg" src="images/backgrounds/cottage_home.png" alt="꽃이 핀 정원과 집">
       <div class="hero-shade"></div>
@@ -1207,8 +1452,9 @@ img{max-width:100%;height:auto}
   <section id="garden">
     <div class="section-hero-mini garden-mini"><img decoding="async" src="images/characters/anne_planting.png" alt="꽃을 심는 소녀" loading="lazy"><div><b>오늘의 씨앗이 내일의 풍경이 돼요</b><span>심고, 물 주고, 기억을 쌓아보세요.</span></div></div>
     <div class="section-head"><div><h2>나의 행복 정원</h2><p>씨앗 3개로 꽃 한 송이를 심을 수 있어요. 꽃마다 그날의 기억을 품고 있어요.</p></div></div>
-    <div class="garden-scene"><img loading="lazy" decoding="async" class="bg" src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong id="gardenCount">0송이</strong><div class="tiny-note">꽃을 누르면 심은 날의 기억을 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
-    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 선택하고 씨앗을 사용하세요.</p></div><button class="action water-btn" id="waterGarden"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
+    <div class="garden-scene"><img loading="lazy" decoding="async" class="bg" src="images/backgrounds/path_day.png" alt="정원 풍경"><div class="garden-hud"><strong><span id="gardenCount">0송이</span> 심었어요</strong><div class="tiny-note">꽃을 누르면 그날의 기억을 다시 볼 수 있어요.</div></div><div class="garden-plots" id="gardenItems"></div></div>
+    <p class="scene-helper">심은 꽃은 장면 속에 차곡차곡 쌓여요. 꽃 카드를 누르면 그날의 메모가 열려요.</p>
+    <div class="card" style="margin-top:14px"><div class="row" style="justify-content:space-between"><div><h3>심고 싶은 꽃 고르기</h3><p class="muted">원하는 꽃을 고른 뒤 씨앗 3개로 정원에 심어 보세요.</p></div><button class="action water-btn" id="waterGarden"><img loading="lazy" decoding="async" src="images/ui/icon_wateringcan.png" alt="">정원 물주기</button></div><div class="plant-picker" id="plantPicker"></div><div class="row" style="margin-top:14px"><button class="action" id="plant">선택한 꽃 심기 · 씨앗 3개</button><span class="muted" id="selectedPlantName"></span></div></div>
   </section>
 
   <section id="story">
@@ -1247,7 +1493,7 @@ img{max-width:100%;height:auto}
     <div class="section-hero-mini book-mini"><img decoding="async" src="images/characters/anne_happy.png" alt="행복한 소녀" loading="lazy"><div><b>내가 만든 하루들이 한 권의 그림책으로</b><span>일기와 모험, 꽃과 편지가 추억이 돼요.</span></div></div>
     <div class="section-head"><div><h2>나의 행복 그림책</h2><p>일기와 모험이 차곡차곡 모여 나만의 한 권이 돼요.</p></div></div>
     <div class="card book-hero"><img loading="lazy" decoding="async" class="open" src="images/ui/open_book.png" alt="펼친 책"><img loading="lazy" decoding="async" class="polaroid" src="images/objects/postcard_collage.png" alt="추억 사진"><img loading="lazy" decoding="async" class="garland" src="images/decor/floral_garland_spring.png" alt=""></div>
-    <div class="stats-row" id="bookStats"></div><div class="row" style="justify-content:center;margin-bottom:16px"><button class="action secondary" id="export">내 기록 백업하기 (JSON)</button></div><div class="memory-grid" id="bookPages"></div>
+    <div class="stats-row" id="bookStats"></div><div class="row" style="justify-content:center;margin-bottom:16px"><button class="action secondary" id="export">내 기록 저장 파일 받기</button></div><div class="memory-grid" id="bookPages"></div>
   </section>
 
   <div class="footer"><strong>앤의 행복 정원</strong>
@@ -1639,20 +1885,47 @@ function initFunLoop(){
   });
   $('openGuide')?.addEventListener('click',openGuide);
   $('dailyChest')?.addEventListener('click',()=>{const r=todayRoutine();if(!(r.diary&&r.garden&&r.story)||data.dailyChestDate===dateKey())return;const rewards=[{s:3,st:0,msg:'씨앗 3개'},{s:1,st:1,msg:'씨앗 1개 + 별 1개'},{s:0,st:2,msg:'별 2개'}];const rw=rewards[Math.floor(Math.random()*rewards.length)];data.seeds+=rw.s;data.stars+=rw.st;data.dailyChestDate=dateKey();save();refresh();renderDailyLoop();alert('🎁 보물상자를 열었어요!\n'+rw.msg+'를 받았어요.');});
-  $('closeGuide')?.addEventListener('click',closeGuide);
-  $('guideModal')?.addEventListener('click',e=>{if(e.target.id==='guideModal')closeGuide()});
-  $('starterGift')?.addEventListener('click',()=>{
-    if(data.starterGift)return;
-    data.seeds=(Number(data.seeds)||0)+3;
-    data.starterGift=true;
-    save(); refresh(); renderDailyLoop();
-    const g=$('starterGift'); if(g){g.disabled=true;g.textContent='✓ 첫 방문 선물 받음'}
-  });
+
   $('loopDecor')?.addEventListener('click',()=> $('openDecor')?.click());
 }
 
-function navigate(id){document.querySelectorAll('main>section:not(#heroSection)').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.getElementById('heroSection').style.display=id==='home'?'block':'none';window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.go)));
+let currentAppSection='home';
+let appHistoryDepth=0;
+function renderSection(id){
+ const valid=['home','diary','garden','story','letter','book']; if(!valid.includes(id))id='home';
+ document.querySelectorAll('main>section:not(#heroSection)').forEach(s=>s.classList.toggle('active',s.id===id));
+ document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+ const hero=document.getElementById('heroSection'); if(hero)hero.style.display=id==='home'?'block':'none';
+ currentAppSection=id; const nav=$('appNavControls'); if(nav)nav.hidden=id==='home';
+ document.querySelector(`[data-tab=\"${id}\"]`)?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function navigate(id,opts={}){
+ if($('guideModal')?.classList.contains('show'))closeGuide(); if($('decorator')?.classList.contains('open'))closeDecor();
+ if(id===currentAppSection&&!opts.force)return; renderSection(id); if(opts.fromPop)return;
+ const state={anneApp:true,section:id};
+ if(opts.replace)history.replaceState(state,'',id==='home'?location.pathname+location.search:`#${id}`); else{history.pushState(state,'',`#${id}`);appHistoryDepth++;}
+}
+function appBack(){
+ if($('guideModal')?.classList.contains('show')){closeGuide();return}
+ if($('decorator')?.classList.contains('open')){closeDecor();return}
+ if(appHistoryDepth>0){history.back();return}
+ if(currentAppSection!=='home')navigate('home',{replace:true,force:true});
+}
+function appClose(){
+ if($('guideModal')?.classList.contains('show'))closeGuide(); if($('decorator')?.classList.contains('open'))closeDecor();
+ renderSection('home'); history.replaceState({anneApp:true,section:'home'},'',location.pathname+location.search); appHistoryDepth=0;
+}
+window.addEventListener('popstate',e=>{const section=e.state?.section||(location.hash?location.hash.slice(1):'home');if(appHistoryDepth>0)appHistoryDepth--;renderSection(section)});
+document.addEventListener('click',e=>{
+ const tab=e.target.closest('[data-tab]');if(tab){navigate(tab.dataset.tab);return}
+ const go=e.target.closest('[data-go]');if(go){navigate(go.dataset.go);return}
+ if(e.target.closest('#appBackBtn')){appBack();return}
+ if(e.target.closest('#appCloseBtn')){appClose();return}
+ if(e.target.closest('#closeGuide,#guideTopClose,#guideBackBtn')){closeGuide();return}
+ if(e.target.id==='guideModal'){closeGuide();return}
+ if(e.target.closest('#starterGift')){if(!data.starterGift){data.seeds=(Number(data.seeds)||0)+3;data.starterGift=true;save();refresh();renderDailyLoop()}closeGuide();return}
+});
 function levelIndex(){return levels.reduce((a,l,i)=>data.activities>=l.at?i:a,0)}
 function refresh(){
  ensureQuoteData();syncUnlockedQuotePlants();
@@ -1783,6 +2056,8 @@ $('decorator').addEventListener('click',e=>{
 });
 $('sceneShuffle')?.addEventListener('click',()=>{sceneIndex=(sceneIndex+1)%sceneVariants.length;renderHomeScene()});
 
+document.addEventListener('keydown',e=>{if(e.key==='Escape')appBack()});
+
 // ===== 관리자 테스트 모드 =====
 const ADMIN_MODE = new URLSearchParams(location.search).get('admin') === '1';
 
@@ -1864,7 +2139,7 @@ function initAdminMode(){
 }
 
 $('greeting').textContent='“오늘도 작은 기쁨 하나를 발견해 볼까?”';
-refresh();navigate('home');initAdminMode();updateAdminViews(); initFunLoop();
+refresh();navigate('home',{replace:true,force:true});initAdminMode();updateAdminViews(); initFunLoop();
 })();
 </script>
 
@@ -1872,6 +2147,10 @@ refresh();navigate('home');initAdminMode();updateAdminViews(); initFunLoop();
 
 <div class="guide-modal" id="guideModal" aria-hidden="true">
   <div class="guide-card">
+    <div class="guide-top-controls">
+      <button type="button" class="guide-top-back" id="guideBackBtn">← 뒤로</button>
+      <button type="button" class="guide-top-close" id="guideTopClose" aria-label="안내 닫기">✕</button>
+    </div>
     <h2>행복 정원은 이렇게 놀아요</h2>
     <p>매일 거창하게 할 필요는 없어요. <b>마음 한 줄 → 꽃 한 송이 → 짧은 모험</b>. 이 세 가지만 해도 나만의 정원이 계속 달라져요.</p>
     <div class="guide-steps">
