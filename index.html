@@ -1359,6 +1359,95 @@ body,button,input,textarea,select{
 .english-connection{margin:12px 0 2px;padding:11px 13px;border-radius:14px;background:#fffaf0;border:1px dashed #d9c89f;color:#6c6256;font-size:14px;line-height:1.65;word-break:keep-all}
 .english-connection b{color:#66805f;margin-right:5px}
 
+
+/* ===== diary polish 2026-10-15 ===== */
+.diary-mini{
+  position:relative;
+  background:
+    linear-gradient(120deg,rgba(247,251,244,.98),rgba(253,244,233,.98)),
+    url('images/decor/floral_garland_spring.png') right -8px bottom -6px/170px auto no-repeat;
+  box-shadow:0 14px 32px rgba(88,70,48,.08);
+}
+.diary-mini:before{
+  content:"";position:absolute;inset:0;
+  background:url('images/decor/yellow_flower_sprig.png') left 12px top 12px/92px auto no-repeat;
+  opacity:.13;pointer-events:none;
+}
+.diary-mini .mini-label{
+  display:inline-block;margin-bottom:8px;padding:6px 10px;border-radius:999px;
+  background:#fff7ee;border:1px solid #ead7bc;color:#876a54;font-size:12px;font-style:normal;font-weight:700;
+}
+.diary-mini img{filter:drop-shadow(0 8px 10px rgba(67,79,57,.12))}
+
+#diary .paper-layout{align-items:start}
+#diary .diary-paper{min-height:780px;background:#f9f0df;border-radius:28px;box-shadow:0 16px 30px rgba(89,69,46,.08)}
+#diary .diary-paper .paper-bg{object-fit:cover;opacity:.97}
+#diary .diary-paper .paper-inner{padding:54px 34px 34px 42px}
+#diary .paper-question{
+  display:inline-flex;align-items:center;gap:8px;margin:0 0 18px 54px;padding:10px 16px;
+  background:rgba(255,249,240,.92);border:1px solid #ead7bd;border-radius:18px;
+  color:#785040!important;font-size:22px!important;line-height:1.2;
+  box-shadow:0 8px 20px rgba(103,80,56,.08);
+}
+#diary .paper-question:before{content:'✿';font-size:16px;color:#c78770}
+#diary .moods{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px!important;margin:0 0 18px!important;padding:0 8px 0 6px}
+#diary .mood-btn{
+  width:100%;min-width:0;min-height:90px!important;padding:10px 6px!important;border-radius:18px!important;
+  display:flex!important;flex-direction:column;justify-content:center;align-items:center;gap:7px;
+  background:rgba(255,252,247,.92)!important;border:1px solid #decdb5!important;box-shadow:0 4px 10px rgba(79,62,40,.04)
+}
+#diary .mood-face{
+  width:48px;height:48px;object-fit:contain;display:block;
+  border-radius:50%;background:linear-gradient(180deg,#fffdfa,#f6efe3);padding:3px;
+}
+#diary .mood-label{font-size:13px;font-weight:800;color:#6a5748;letter-spacing:-.01em}
+#diary .mood-btn.selected{background:#eef4e8!important;border-color:#9ab18d!important;box-shadow:0 0 0 3px rgba(154,177,141,.18)}
+#diary .mood-btn.selected .mood-label{color:#496546}
+#diary .paper-inner textarea{
+  margin-top:6px;min-height:240px;border-radius:20px!important;padding:18px 18px 18px 22px!important;
+  line-height:1.8;font-size:16px;background:rgba(255,255,255,.84)!important
+}
+#diary .diary-action-row{margin-top:16px!important;padding:0 6px;justify-content:space-between;align-items:center;gap:10px}
+#diary #saveDiary{padding:15px 22px;border-radius:16px;min-height:56px;white-space:nowrap}
+#diary #diaryReply{margin-top:10px;padding-left:6px}
+#diary .diary-side{display:flex;flex-direction:column;gap:14px}
+#diary .diary-tip-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(140deg,#fffaf3,#f7f0e6 58%,#eef4e8 100%);
+}
+#diary .diary-tip-card:after{
+  content:"";position:absolute;right:-10px;bottom:-12px;width:130px;height:130px;
+  background:url('images/decor/floral_garland_spring.png') center/contain no-repeat;opacity:.18;pointer-events:none;
+}
+#diary .diary-tip-card h3,#diary .diary-list-card h3{font-family:var(--font-title);font-size:22px;color:#5b7355;margin-bottom:12px}
+#diary .diary-tip-card .row{align-items:center!important;gap:14px;position:relative;z-index:1}
+#diary .diary-tip-card img{width:112px!important;filter:drop-shadow(0 8px 10px rgba(84,73,58,.12))}
+#diary .diary-tip-card p{font-size:16px!important;line-height:1.75!important;color:#64584d;background:rgba(255,255,255,.66);border:1px solid #e5d4be;border-radius:18px;padding:14px 15px}
+#diary .diary-list-card{background:linear-gradient(180deg,#fffaf2,#fffdf9)}
+#diary .diary-list-card .entry-head span{font-size:14px}
+#diary .diary-list-card .entry p{font-size:15px;line-height:1.75}
+
+@media (max-width:860px){
+  #diary .paper-layout{grid-template-columns:1fr!important}
+  #diary .diary-paper{min-height:auto}
+}
+@media (max-width:640px){
+  .diary-mini{background:linear-gradient(120deg,rgba(247,251,244,.98),rgba(253,244,233,.98))}
+  .diary-mini .mini-label{margin-bottom:6px}
+  #diary .diary-paper .paper-inner{padding:42px 18px 24px 24px}
+  #diary .paper-question{margin-left:24px;font-size:20px!important;padding:9px 14px}
+  #diary .moods{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:0 2px}
+  #diary .mood-btn{min-height:78px!important;padding:8px 4px!important}
+  #diary .mood-face{width:40px;height:40px}
+  #diary .mood-label{font-size:12px}
+  #diary .paper-inner textarea{min-height:180px;font-size:15.5px}
+  #diary .diary-action-row{flex-direction:column;align-items:stretch}
+  #diary #saveDiary{width:100%}
+  #diary .diary-action-row .muted{text-align:center;width:100%}
+  #diary .diary-tip-card img{width:84px!important}
+  #diary .diary-tip-card p{font-size:15px!important;padding:12px 13px}
+}
+
 </style>
 
 
@@ -1560,11 +1649,11 @@ body,button,input,textarea,select{
   </section>
 
   <section id="diary">
-    <div class="section-hero-mini diary-mini"><img id="diaryAnne" decoding="async" src="images/characters/anne_reading.png" alt="오늘의 앤" loading="lazy"><div><b>오늘 마음을 한 페이지에</b><span>잘 쓰는 것보다 솔직하게 남기는 게 더 중요해요.</span></div></div>
+    <div class="section-hero-mini diary-mini"><img id="diaryAnne" decoding="async" src="images/characters/anne_smiling.png" alt="오늘의 앤" loading="lazy"><div><em class="mini-label">오늘의 작은 기록</em><b>오늘 마음을 한 페이지에</b><span>완벽하게 쓰는 것보다, 지금의 마음을 솔직하게 남기는 게 더 중요해요.</span></div></div>
     <div class="section-head"><div><h2>오늘의 감정 일기</h2><p>좋은 날도, 속상한 날도, 지친 날도 모두 기록할 가치가 있어요.</p></div></div>
     <div class="paper-layout">
-      <div class="paper-card"><img loading="lazy" decoding="async" class="paper-bg" src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3>오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
-      <div><div class="card"><h3>앤의 한마디</h3><div class="row" style="align-items:flex-end"><img loading="lazy" decoding="async" src="images/characters/anne_reading.png" alt="책 읽는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해.</p></div></div><div class="card" style="margin-top:14px"><h3>지난 일기</h3><div id="diaryList"></div></div></div>
+      <div class="paper-card diary-paper"><img loading="lazy" decoding="async" class="paper-bg" src="images/ui/notebook_page_large.png" alt=""><div class="paper-inner"><h3 class="paper-question">오늘 마음은 어땠어?</h3><div class="moods" id="moods"></div><textarea id="diaryText" maxlength="3000" placeholder="오늘 마음에 남은 장면을 자유롭게 적어보세요."></textarea><div class="row diary-action-row" style="margin-top:12px"><button class="action" id="saveDiary">저장하고 씨앗 받기 🌱</button><span class="muted">기록 1회 = 씨앗 3개</span></div><p class="muted" id="diaryReply" aria-live="polite"></p></div></div>
+      <div class="diary-side"><div class="card diary-tip-card"><h3>🌷 앤의 한마디</h3><div class="row" style="align-items:center"><img loading="lazy" decoding="async" src="images/characters/anne_daydream.png" alt="생각하는 앤" style="width:130px"><p class="muted" id="diaryTip" style="flex:1">완벽하게 쓰지 않아도 괜찮아. 오늘의 진짜 마음 한 줄이면 충분해. 솔직한 기록은 내일의 나를 다정하게 안아줄 거야.</p></div></div><div class="card diary-list-card" style="margin-top:14px"><h3>🕊 지난 일기</h3><div id="diaryList"></div></div></div>
     </div>
   </section>
 
@@ -1763,7 +1852,7 @@ window.addEventListener('load',()=>{
 const KEY='annes-happiness-garden-v1';
 const initial={seeds:0,stars:0,diaries:[],flowers:[],letters:[],completedStories:[],activities:0,decor:null,decorItems:[],watered:0,visitStreak:0,lastVisit:'',dailyRewardDate:'',starterGift:false,guideSeen:true,quoteFavorites:[],quoteCollected:[],quoteReplies:[],quoteMissionDates:[],quoteThemePoints:{},framedQuote:null,traits:{bright:0,courage:0,kindness:0,imagination:0},adventureInventory:[],dailyAdventureDate:'',dailyChestDate:'',englishCompletedCards:[],englishCardIndex:0,englishWriting:{},englishSpokenCards:[],englishDailyRewardDate:""};
 let data;try{data={...initial,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{data={...initial}};
-let mood='😊', currentStory=0, selectedPlant=0;
+let mood='happy', currentStory=0, selectedPlant=0;
 const $=id=>document.getElementById(id); const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today=()=>new Date().toLocaleDateString('ko-KR'); const isoToday=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(data))}catch{alert('브라우저 저장 공간이 부족해요. 그림책 메뉴에서 기록을 백업해 주세요.')}};
@@ -2601,11 +2690,34 @@ function refresh(){
  renderDailyLoop();
 }
 function renderTimeline(){$('timeline').innerHTML=levels.map((l,i)=>`<div class="stage ${data.activities>=l.at?'done':''} ${i===levelIndex()?'current':''}"><img loading="lazy" decoding="async" src="${l.img}" alt=""><b>${safe(l.name)}</b><small>${l.at} 활동</small></div>`).join('')}
-const moodData=[['😊','행복'],['😌','평온'],['😐','보통'],['😢','속상'],['😠','화남'],['🥱','지침'],['🥰','설렘']];
-$('moods').innerHTML=moodData.map(([m,n])=>`<button class="mood-btn" data-mood="${m}" title="${n}">${m}</button>`).join('');
-function paintMood(){document.querySelectorAll('[data-mood]').forEach(b=>b.classList.toggle('selected',b.dataset.mood===mood))}paintMood();$('moods').addEventListener('click',e=>{const b=e.target.closest('[data-mood]');if(b){mood=b.dataset.mood;paintMood()}});
-$('saveDiary').addEventListener('click',()=>{const text=$('diaryText').value.trim();if(!text)return alert('오늘의 마음을 한 줄이라도 적어줘.');data.diaries.unshift({id:Date.now(),date:today(),mood,text});data.seeds+=3;data.activities++;save();$('diaryText').value='';$('diaryReply').textContent='앤: 오늘의 마음을 들려줘서 고마워. 🌱 씨앗 3개를 받았어!';refresh()});
-function renderDiaries(){$('diaryList').innerHTML=data.diaries.length?data.diaries.slice(0,6).map(d=>`<div class="entry"><div class="entry-head"><span>${safe(d.mood)} ${safe(d.date)}</span></div><p>${safe(d.text)}</p></div>`).join(''):'<p class="muted">아직 기록이 없어요. 오늘 첫 페이지를 시작해 볼까요?</p>'}
+const moodData=[
+  {id:'happy',name:'행복',img:'images/characters/anne_happy.png'},
+  {id:'calm',name:'평온',img:'images/characters/anne_smiling.png'},
+  {id:'ordinary',name:'보통',img:'images/characters/anne_default.png'},
+  {id:'sad',name:'속상',img:'images/characters/anne_sad.png'},
+  {id:'upset',name:'화남',img:'images/characters/anne_curious.png'},
+  {id:'tired',name:'지침',img:'images/characters/anne_reading.png'},
+  {id:'flutter',name:'설렘',img:'images/characters/anne_heart_flutter.png'}
+];
+const legacyMoodLabelMap={'😊':'행복','😌':'평온','😐':'보통','😢':'속상','😠':'화남','🥱':'지침','🥰':'설렘'};
+function moodLabel(value){
+  if(!value) return '';
+  const found=moodData.find(item=>item.id===value||item.name===value);
+  return found?found.name:(legacyMoodLabelMap[value]||value);
+}
+$('moods').innerHTML=moodData.map(item=>`<button class="mood-btn" data-mood="${item.id}" title="${item.name}" aria-label="${item.name}"><img class="mood-face" loading="lazy" decoding="async" src="${item.img}" alt="${item.name}"><span class="mood-label">${item.name}</span></button>`).join('');
+function paintMood(){document.querySelectorAll('[data-mood]').forEach(b=>b.classList.toggle('selected',b.dataset.mood===mood))}
+paintMood();
+$('moods').addEventListener('click',e=>{const b=e.target.closest('[data-mood]');if(b){mood=b.dataset.mood;paintMood()}});
+$('saveDiary').addEventListener('click',()=>{
+  const text=$('diaryText').value.trim();
+  if(!text)return alert('오늘의 마음을 한 줄이라도 적어줘.');
+  data.diaries.unshift({id:Date.now(),date:today(),mood,moodLabel:moodLabel(mood),text});
+  data.seeds+=3;data.activities++;save();$('diaryText').value='';
+  $('diaryReply').textContent='앤: 오늘의 마음을 들려줘서 고마워. 🌱 씨앗 3개를 받았어!';
+  refresh();
+});
+function renderDiaries(){$('diaryList').innerHTML=data.diaries.length?data.diaries.slice(0,6).map(d=>`<div class="entry"><div class="entry-head"><span>${safe(moodLabel(d.moodLabel||d.mood))} · ${safe(d.date)}</span></div><p>${safe(d.text)}</p></div>`).join(''):'<p class="muted">아직 기록이 없어요. 오늘 첫 페이지를 시작해 볼까요?</p>'}
 function renderPicker(){$('plantPicker').innerHTML=plantCatalog.map((p,i)=>`<button class="plant-choice ${i===selectedPlant?'selected':''}" data-plant="${i}"><img loading="lazy" decoding="async" src="${p.img}" alt="${safe(p.name)}"><span>${safe(p.name)}</span></button>`).join('');$('selectedPlantName').textContent=`선택: ${plantCatalog[selectedPlant].name}`}
 $('plantPicker').addEventListener('click',e=>{const b=e.target.closest('[data-plant]');if(b){selectedPlant=Number(b.dataset.plant);renderPicker()}});renderPicker();
 $('plant').addEventListener('click',()=>{if(data.seeds<3)return alert('씨앗이 3개 필요해요. 감정 일기를 쓰면 씨앗 3개를 받을 수 있어요.');const p=plantCatalog[selectedPlant];data.seeds-=3;data.flowers.push({id:Date.now(),date:today(),name:p.name,img:p.img,memory:data.diaries[0]?.text||'오늘 심은 작은 희망'});data.activities++;save();refresh()});
@@ -2671,7 +2783,7 @@ $('storyBody').addEventListener('click',e=>{
 renderStory();
 $('letterDate').min=isoToday();$('letterDate').value=isoToday();$('saveLetter').addEventListener('click',()=>{const date=$('letterDate').value,text=$('letterText').value.trim();if(!date||!text)return alert('날짜와 편지 내용을 모두 적어주세요.');if(date<isoToday())return alert('오늘 또는 미래 날짜를 선택해 주세요.');data.letters.unshift({id:Date.now(),date,text});data.activities++;save();$('letterText').value='';refresh();alert('편지를 안전하게 봉인했어요. 💌')});
 function renderLetters(){$('letterList').innerHTML=data.letters.length?data.letters.map(l=>`<div class="entry"><div class="entry-head"><span>💌 ${safe(l.date)}에 열리는 편지</span></div><p>${l.date<=isoToday()?safe(l.text):'🔒 아직 봉인되어 있어요. 약속한 날 다시 만나요.'}</p></div>`).join(''):'<p class="muted">아직 편지가 없어요. 미래의 나에게 첫 편지를 보내볼까요?</p>'}
-function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span><span class="level-tag">📝 문장 ${data.quoteCollected?.length||0}장</span><span class="level-tag">🎒 보물 ${data.adventureInventory?.length||0}개</span>`;const quotePages=(data.quoteReplies||[]).map(r=>{const q=dailyQuoteCards[r.index];return {date:r.date,title:'오늘의 문장',text:(q?q.ko+'\n':'')+'나의 답장: '+r.text,img:'images/ui/open_book.png'}});const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${d.mood} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg})),...quotePages].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img loading="lazy" decoding="async" src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
+function renderBook(){$('bookStats').innerHTML=`<span class="level-tag">📖 일기 ${data.diaries.length}편</span><span class="level-tag">🌷 꽃 ${data.flowers.length}송이</span><span class="level-tag">✨ 모험 ${data.completedStories.length}회</span><span class="level-tag">💌 편지 ${data.letters.length}통</span><span class="level-tag">📝 문장 ${data.quoteCollected?.length||0}장</span><span class="level-tag">🎒 보물 ${data.adventureInventory?.length||0}개</span>`;const quotePages=(data.quoteReplies||[]).map(r=>{const q=dailyQuoteCards[r.index];return {date:r.date,title:'오늘의 문장',text:(q?q.ko+'\n':'')+'나의 답장: '+r.text,img:'images/ui/open_book.png'}});const pages=[...data.diaries.map(d=>({date:d.date,title:'감정 일기',text:`${moodLabel(d.moodLabel||d.mood)} ${d.text}`,img:'images/backgrounds/writing_room.png'})),...data.completedStories.map(s=>({date:s.date,title:s.title,text:s.ending,img:s.bg})),...quotePages].slice(-12).reverse();$('bookPages').innerHTML=pages.length?pages.map(p=>`<article class="memory"><img loading="lazy" decoding="async" src="${p.img}" alt=""><div class="mem-body"><b>${safe(p.title)}</b><div class="tiny-note">${safe(p.date)}</div><p>${safe(p.text)}</p></div></article>`).join(''):'<div class="card" style="grid-column:1/-1"><p class="muted">아직 그림책의 첫 페이지가 비어 있어요. 일기나 모험을 시작해 보세요.</p></div>'}
 $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'앤의 행복 정원',exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='annes-happiness-garden-'+isoToday()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 
 const decorPositions={
