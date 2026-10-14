@@ -1,0 +1,100 @@
+name: Auto Compress PNG Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "images/**/*.png"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compress-png:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PNG compressors
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pngquant optipng
+
+      - name: Compress background PNGs
+        shell: bash
+        run: |
+          set -e
+          if [ -d "images/backgrounds" ]; then
+            find images/backgrounds -type f -iname "*.png" -print0 | while IFS= read -r -d '' file; do
+              echo "Background: $file"
+
+              pngquant \
+                --force \
+                --ext .png \
+                --quality=70-88 \
+                --speed 1 \
+                --strip \
+                --skip-if-larger \
+                "$file" || true
+
+              optipng -quiet -o2 -strip all "$file" || true
+            done
+          fi
+
+      - name: Compress characters pets plants and UI PNGs
+        shell: bash
+        run: |
+          set -e
+
+          for dir in characters pets plants growth objects decor ui; do
+            if [ -d "images/$dir" ]; then
+
+              find "images/$dir" -type f -iname "*.png" -print0 | while IFS= read -r -d '' file; do
+                echo "Asset: $file"
+
+                pngquant \
+                  --force \
+                  --ext .png \
+                  --quality=82-95 \
+                  --speed 1 \
+                  --strip \
+                  --skip-if-larger \
+                  "$file" || true
+
+                optipng -quiet -o2 -strip all "$file" || true
+              done
+
+            fi
+          done
+
+      - name: Show compression result
+        shell: bash
+        run: |
+          echo "Changed PNG files:"
+          git status --short
+
+          echo
+          echo "Current images folder size:"
+          du -sh images || true
+
+      - name: Commit compressed images
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No PNG files needed compression."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add images
+          git commit -m "chore: auto-compress PNG images"
+          git push
