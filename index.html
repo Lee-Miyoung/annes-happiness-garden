@@ -1334,6 +1334,26 @@ body,button,input,textarea,select{
 #englishRecordAudio{width:100%;margin-top:9px;height:42px}
 @media(max-width:640px){.english-record-actions{display:grid;grid-template-columns:1fr 1fr}.english-record-actions button{width:100%;font-size:12.5px}}
 
+
+/* ===== 영어 한입: 핵심 프레이즈 + 감성 마음가짐 ===== */
+.english-mindset-box{
+  margin-top:12px;padding:13px 15px;border-radius:15px;
+  background:linear-gradient(135deg,#f3f7ea,#fff8eb);border:1px solid #dce4cf;
+}
+.english-mindset-box>span{display:block;font-weight:800;color:#587258;font-size:14px;margin-bottom:5px}
+.english-mindset-box p{margin:0;color:#655d55;font-size:15px;line-height:1.72;word-break:keep-all}
+.english-key-phrase-card{position:relative;background:linear-gradient(145deg,#fffdf7,#f7f2e7)!important}
+.english-key-label{margin:7px 0 7px;color:#83715c;font-size:13px;font-weight:700}
+.english-key-chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.english-key-chips em{font-style:normal;background:#fff0a8;border:1px solid #e8d071;color:#625126;border-radius:999px;padding:5px 9px;font-size:13px;font-weight:800}
+.english-key-mark{background:linear-gradient(transparent 45%,#fff0a8 45%,#fff0a8 92%,transparent 92%);color:inherit;padding:0 2px;border-radius:2px}
+.english-application-box b,.english-example b{line-height:1.65}
+.english-application-box p{line-height:1.75!important}
+@media(max-width:640px){
+  .english-mindset-box{padding:11px 12px}.english-mindset-box p{font-size:14.5px}
+  .english-key-chips em{font-size:12.5px;padding:5px 8px}
+}
+
 </style>
 
 
@@ -1581,14 +1601,14 @@ body,button,input,textarea,select{
   <section id="english">
     <div class="section-hero-mini english-mini">
       <img id="englishAnne" decoding="async" src="images/characters/anne_reading.png" alt="영어를 읽는 앤" loading="lazy">
-      <div><b>앤의 영어 한입</b><span>Anne 원문에서 출발해 B1+~B2 표현·어휘·영작까지 부담 없이 깊게 공부해요.</span></div>
+      <div><b>앤의 영어 한입</b><span>Anne 원문에서 출발해 B1+~B2 정도로, 어렵지 않게 한 단계씩 깊어져요.</span></div>
       <img id="englishDog" class="english-dog" decoding="async" src="images/pets/dog_sit_happy.png" alt="함께 공부하는 강아지" loading="lazy">
     </div>
     <div class="section-head"><div><h2>오늘의 원문 영어</h2><p>총 500카드. 원문을 읽고 → 표현을 이해하고 → 소리 내어 말하고 → 직접 한 문장 써보는 순서예요.</p></div></div>
 
     <div class="english-study-card" id="englishStudyCard">
       <div class="english-study-top">
-        <div class="english-badge-wrap"><span class="english-badge" id="englishBadge">원문 활용 중급+ · B1+~B2</span><span class="english-counter" id="englishCounter">1 / 500</span></div>
+        <div class="english-badge-wrap"><span class="english-badge" id="englishBadge">원문 활용 중급 · B1+~B2</span><span class="english-counter" id="englishCounter">1 / 500</span></div>
         <div class="english-nav-buttons">
           <button type="button" class="english-next" id="englishPrev">← 이전</button>
           <button type="button" class="english-next" id="englishRandom">랜덤</button>
@@ -1604,6 +1624,7 @@ body,button,input,textarea,select{
         <span class="english-source-label">Anne 원문</span>
         <blockquote id="englishSourceSentence">“Isn't it splendid to think of all the things there are to find out about?”</blockquote>
         <p class="english-translation" id="englishSourceTranslation">아직 알아갈 것이 이렇게 많다는 건 참 멋진 일이야.</p>
+        <div class="english-mindset-box"><span>🌷 앤의 마음으로 읽기</span><p id="englishMindset">모르는 것이 많다는 건 부족하다는 뜻이 아니라, 앞으로 발견할 기쁨이 많이 남아 있다는 뜻으로 읽어봐요.</p></div>
       </div>
 
       <div class="english-buttons">
@@ -1620,7 +1641,7 @@ body,button,input,textarea,select{
       </div>
 
       <div class="english-grid">
-        <article><span>① 핵심 표현</span><b id="englishPattern">Even when A, we can B without C.</b><p id="englishPatternKo">‘A한 상황에서도 C하지 않고 B할 수 있다’는 자연스러운 대조 표현이에요.</p></article>
+        <article class="english-key-phrase-card"><span>① 핵심 표현</span><div class="english-key-label">⭐ 문장에서 이 부분을 눈여겨보세요</div><div class="english-key-chips" id="englishKeyPhraseChips"><em>Even when</em><em>without</em></div><b id="englishPattern">Even when A, we can B without C.</b><p id="englishPatternKo">‘A한 상황에서도 C하지 않고 B할 수 있다’는 자연스러운 대조 표현이에요.</p></article>
         <article><span>② 핵심 어휘 5개</span><div id="englishWords" class="english-words"><div class="english-word"><b>uncertainty</b><span>불확실성</span></div><div class="english-word"><b>attentive</b><span>주의 깊은</span></div><div class="english-word"><b>possibility</b><span>가능성</span></div><div class="english-word"><b>overlook</b><span>간과하다</span></div><div class="english-word"><b>possible</b><span>가능한</span></div></div></article>
         <article class="english-example"><span>③ 응용 예문</span><b id="englishExample">Even when the outcome is unclear, it is possible to stay thoughtful without becoming passive.</b><p id="englishExampleKo">결과가 불분명해도 수동적이 되지 않고 신중함을 유지할 수 있어.</p></article>
         <article class="english-practice"><span>④ 소리 내어 말하기</span><b id="englishSay">Even when the future feels uncertain.</b><p>먼저 듣고, 화면을 보지 않고 한 번 말해보세요.</p><div class="english-inline-actions"><button type="button" id="englishSayListen">🔊 따라 듣기</button><button type="button" id="englishSpokenDone">✓ 읽었어요</button></div><div class="english-record-box"><strong>🎙 내 발음 녹음</strong><p>내 목소리를 녹음한 뒤 바로 들어볼 수 있어요. 녹음은 서버에 올라가지 않고 이 화면에서만 사용돼요.</p><div class="english-record-actions"><button type="button" id="englishRecordStart">● 녹음 시작</button><button type="button" id="englishRecordStop" disabled>■ 중지</button><button type="button" id="englishRecordPlay" disabled>▶ 내 녹음 듣기</button><button type="button" id="englishRecordDelete" disabled>삭제</button></div><div class="english-record-status" id="englishRecordStatus">마이크 권한은 처음 한 번만 허용하면 돼요.</div><audio id="englishRecordAudio" controls hidden></audio></div></article>
@@ -1978,20 +1999,88 @@ const ENGLISH_PATTERN_SOFTEN={
   'There is a peculiar freedom in -ing ...':['There is a special kind of freedom in -ing ...','~하는 데에는 특별한 자유로움이 있다는 표현이에요.'],
   'become less A when ... rather than ...':['feel less A when ... instead of ...','~보다 …에 집중하면 덜 A하게 느껴진다는 표현이에요.']
 };
+
+function naturalizeEnglishKorean(s){
+  if(!s)return s;
+  let x=String(s);
+  const pairs=[
+    ['때에도','때도'],['위압적으로','부담스럽게'],['완전한 답','모든 답'],['최종 판결','마지막 결론'],
+    ['유용한 정보','배울 수 있는 힌트'],['수동적이 되지 않고','가만히 포기하지 않고'],['진전을 기대보다','변화가 기대보다'],
+    ['공통점을 의도적으로 찾는 것','일부러 공통점을 찾는 것'],['의도적인 회복','제대로 쉬고 회복하는 시간'],
+    ['모호함 속에 머무를 수 있는 태도','모호한 상태를 조금 견뎌보는 태도'],['의도적인 여백','일부러 남겨둔 여유'],
+    ['덧없는 순간','짧게 지나가는 순간'],['지속 가능한 균형','오래 유지할 수 있는 균형'],
+    ['온전한 주의','온전히 마음을 두는 것'],['재해석','다시 바라보기'],['분별력','판단력']
+  ];
+  for(const [a,b] of pairs)x=x.split(a).join(b);
+  x=x.replace(/당장 모든 답을 요구하는 것 없이/g,'모든 답을 당장 알아야 한다고 조급해하지 않고');
+  x=x.replace(/당장 완전한 답을 요구하는 것 없이/g,'모든 답을 당장 알아야 한다고 조급해하지 않고');
+  x=x.replace(/한 번의 실패를 마지막 결론처럼 여기는 것 없이/g,'한 번의 실패를 마지막 결론처럼 여기지 않고');
+  x=x.replace(/극적인 일이 생기기만을 기다리는 것 없이/g,'특별한 일이 생기기만 기다리지 않고');
+  x=x.replace(/모든 평가를 똑같이 타당하다고 받아들이는 것 없이/g,'모든 평가를 다 맞는 말이라고 받아들이지 않고');
+  x=x.replace(/어차피 아무도 이해하지 못할 거라고 단정하는 것 없이/g,'아무도 나를 이해하지 못할 거라고 미리 단정하지 않고');
+  x=x.replace(/느린 진전을 아예 진전이 없는 것으로 착각하는 것 없이/g,'느리다고 해서 아무것도 나아지지 않았다고 생각하지 않고');
+  x=x.replace(/익숙하다는 이유만으로 예전 모습에 매달리는 것 없이/g,'익숙하다는 이유만으로 예전 모습에 매달리지 않고');
+  x=x.replace(/상처를 이해하기 전에 먼저 자신을 변호하는 것 없이/g,'상처를 이해하기도 전에 나부터 변호하려 하지 않고');
+  x=x.replace(/두려움이 완전히 사라질 때까지 기다리는 것 없이/g,'두려움이 완전히 사라질 때까지 기다리지 않고');
+  x=x.replace(/다른 사람의 시간표로 내 삶을 재는 것 없이/g,'다른 사람의 속도로 내 삶을 재지 않고');
+  x=x.replace(/어떤 대가를 치르더라도 대화에서 이기려는 것 없이/g,'무조건 대화에서 이기려 하지 않고');
+  x=x.replace(/것은 가능해\.?$/,'수 있어.');
+  return x;
+}
+function englishMindsetFor(c){
+  try{
+    const q=(dailyQuoteCards||[]).find(x=>x.en===c.sourceEn);
+    if(q?.reflection)return q.reflection;
+  }catch(e){}
+  const s=c.sourceEn||'';
+  if(/Tomorrow is a new day/i.test(s))return '어제의 실수를 오늘까지 끌고 갈 필요는 없어요. 새 하루에는 새 선택을 할 여지가 남아 있어요.';
+  if(/Octobers/i.test(s))return '행복은 거창한 사건보다 계절과 햇살처럼 이미 곁에 있는 아름다움을 알아차리는 데서 시작될 수 있어요.';
+  if(/imagin/i.test(s))return '상상은 현실을 피하는 일이 아니라, 평범한 하루에서 다른 가능성을 발견하는 힘으로 써볼 수 있어요.';
+  if(/kindred spirits/i.test(s))return '마음이 통하는 사람은 생각보다 가까이에 있을 수 있어요. 먼저 다정함을 건네는 것도 좋은 시작이에요.';
+  return '이 문장은 오늘을 완벽하게 만들라는 말보다, 평범한 하루 안에서도 작은 가능성과 기쁨을 발견해보자는 마음으로 읽어봐요.';
+}
+function englishKeyPhrases(pattern){
+  const p=String(pattern||'');
+  const rules=[
+    [/^Even when/i,['Even when','without']], [/^What feels/i,['at first','may later']],
+    [/learned over time/i,['over time','matters more than']], [/^Instead of/i,['Instead of','would rather']],
+    [/It takes courage/i,['It takes courage to','especially when']], [/comforting about/i,['There is something','about']],
+    [/depend more on/i,['depend more on','than']], [/Choosing to/i,['Choosing to','can slowly change']],
+    [/easy to forget/i,['It is easy to','affect the way']], [/do not have to be opposites/i,['do not have to','sometimes']],
+    [/Instead of seeing/i,['Instead of seeing','I can see']], [/difference between/i,['the difference between']],
+    [/The chance that/i,['The chance that','enough reason to']], [/Maybe .* means learning/i,['means learning to']],
+    [/Being able to/i,['Being able to','especially useful when']], [/develop the kind of/i,['develop the kind of']],
+    [/best response to/i,['the best response to']], [/special kind of freedom/i,['a special kind of freedom']],
+    [/feels less difficult when/i,['feels less difficult when','instead of']]
+  ];
+  for(const [re,arr] of rules)if(re.test(p))return arr;
+  return p.split(/[,;]/).slice(0,2).map(x=>x.trim()).filter(Boolean);
+}
+function highlightEnglishPhrases(text,phrases){
+  let html=safe(text||'');
+  (phrases||[]).slice().sort((a,b)=>b.length-a.length).forEach(ph=>{
+    const esc=String(ph).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    try{html=html.replace(new RegExp('('+esc+')','gi'),'<mark class="english-key-mark">$1</mark>')}catch(e){}
+  });
+  return html;
+}
+
 function softenEnglishCard(raw,idx){
   if(!raw)return raw;
   const c={...raw};
   c.en=softenEnglishText(raw.en);
   c.example=softenEnglishText(raw.example);
   c.say=softenEnglishText(raw.say);
+  c.ko=naturalizeEnglishKorean(raw.ko);
+  c.exampleKo=naturalizeEnglishKorean(raw.exampleKo);
   const pm=ENGLISH_PATTERN_SOFTEN[raw.pattern];
   if(pm){c.pattern=pm[0];c.patternKo=pm[1];}
   c.words=(raw.words||[]).map(([w,k])=>{
     const m=ENGLISH_WORD_SOFTEN[String(w).toLowerCase()];
     return m?[m[0],m[1]]:[w,k];
   }).slice(0,5);
-  c.level=(idx%4===0?'B2':'B1+–B2');
-  c.kind='원문 활용 중급+';
+  c.level=(idx%5===0?'B2':'B1+–B2');
+  c.kind='원문 활용 중급';
   return c;
 }
 function englishStudyCard(){ return softenEnglishCard(englishStudyCards[englishStudyIndex()],englishStudyIndex()); }
@@ -2009,18 +2098,21 @@ function renderEnglishStudy(){
   try{
     ensureEnglishStudyData();
     const idx=englishStudyIndex();
-    const c=englishStudyCards[idx];
+    const c=englishStudyCard();
     if(!c || !$('englishSentence')) return;
     $('englishBadge').textContent=`${c.kind||'원문 활용 중급+'} · ${c.level||'B1+–B2'}`;
     $('englishCounter').textContent=`${idx+1} / ${englishStudyCards.length}`;
     $('englishSourceSentence').textContent='“'+c.sourceEn+'”';
     $('englishSourceTranslation').textContent=c.sourceKo;
-    $('englishSentence').textContent=c.en;
+    if($('englishMindset')) $('englishMindset').textContent=englishMindsetFor(c);
+    const keyPhrases=englishKeyPhrases(c.pattern);
+    $('englishSentence').innerHTML=highlightEnglishPhrases(c.en,keyPhrases);
     $('englishTranslation').textContent=c.ko;
     $('englishPattern').textContent=c.pattern;
+    if($('englishKeyPhraseChips')) $('englishKeyPhraseChips').innerHTML=keyPhrases.map(x=>`<em>${safe(x)}</em>`).join('');
     $('englishPatternKo').textContent=c.patternKo;
     $('englishWords').innerHTML=(c.words||[]).map(w=>`<div class="english-word"><b>${safe(w[0])}</b><span>${safe(w[1])}</span></div>`).join('');
-    $('englishExample').textContent=c.example;
+    $('englishExample').innerHTML=highlightEnglishPhrases(c.example,keyPhrases);
     $('englishExampleKo').textContent=c.exampleKo;
     $('englishSay').textContent=c.say;
     $('englishChallenge').textContent=c.challenge;
