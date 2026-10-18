@@ -1,11 +1,11 @@
 'use strict';
 (() => {
-  const { plants, cardCount, englishCard } = window.GardenContent;
+  const { cardCount, englishCard } = window.GardenContent;
   const KEY = 'annes-happiness-garden-v1';
-  const pageIds = ['home', 'diary', 'garden', 'letter', 'english'];
+  const pageIds = ['home', 'diary', 'english', 'letter', 'garden'];
+  const scenes = window.GardenScenes;
   const $ = id => document.getElementById(id);
   const safe = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-  const imagePath = (value, fallback = 'images/plants/daisy_pot.png') => /^images\/[a-zA-Z0-9_/-]+\.(png|webp|jpg)$/.test(String(value)) && !String(value).includes('..') ? value : fallback;
   const localDate = (date = new Date()) => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
   const humanDate = (date = new Date()) => date.toLocaleDateString('ko-KR');
   const dayNumber = () => { const d = new Date(); return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); };
@@ -18,7 +18,7 @@
   ];
   const legacyMoods = { '😊':'happy', '😌':'calm', '😐':'ordinary', '😢':'sad', '😠':'upset', '🥱':'tired', '🥰':'flutter' };
   const moodFor = value => moods.find(m => m.id === value || m.name === value || m.id === legacyMoods[value]) || moods[2];
-  const defaults = { seeds:0, activities:0, diaries:[], flowers:[], letters:[], decorItems:[], watered:0, englishCardIndex:0, englishWriting:{}, englishCompletedCards:[], englishSpokenCards:[], englishDailyRewardDate:'' };
+  const defaults = { diaries:[], letters:[], englishCardIndex:0, englishWriting:{}, englishCompletedCards:[], englishSpokenCards:[], sceneUnlocks:{}, sceneViews:[] };
   let data, rawStorage = '', storageBroken = false;
   try {
     rawStorage = localStorage.getItem(KEY) || '';
@@ -26,7 +26,7 @@
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw Error('Invalid data');
     data = { ...defaults, ...parsed };
     // Preserve unrecognized and retired fields so every existing record remains in a backup.
-    for (const key of ['diaries','flowers','letters','decorItems','englishCompletedCards','englishSpokenCards']) {
+    for (const key of ['diaries','letters','englishCompletedCards','englishSpokenCards']) {
       if (!Array.isArray(data[key])) throw Error('Invalid records');
     }
     if (!data.englishWriting || typeof data.englishWriting !== 'object' || Array.isArray(data.englishWriting)) throw Error('Invalid English records');
@@ -36,36 +36,53 @@
     $('storageNotice').hidden = false;
     $('storageNotice').textContent = '보관된 기록을 읽지 못했어요. 원본을 덮어쓰지 않도록 저장을 잠시 멈췄어요. 아래 ‘내 기록 백업하기’로 원본을 먼저 간직해주세요.';
   }
-  const numeric = value => Math.max(0, Number(value) || 0);
   const cardIndex = () => Math.max(0, Math.min(cardCount-1, Math.floor(Number(data.englishCardIndex)||0)));
   let mood = 'happy', currentPage = 'home', diaryLimit = 6, letterLimit = 6, savedEnglishLimit = 5, letterFilter = 'all';
-  let gardenPage = -1, chosenSlot = null, selectedPlant = 0, planting = false, toastTimer, speakingButton = null;
+  let sceneFilter = 'all', toastTimer, speakingButton = null, openedSceneId = null;
   const englishDrafts = new Map();
-  const plotAnchors = [[19,57],[75,57],[11,74],[32,73],[65,74],[87,74],[12,95],[34,94],[64,94],[88,95]];
-  const props = [
-    {name:'작은 벤치',img:'images/objects/garden_bench_daffodil.png',x:61,y:33,w:26,h:20},
-    {name:'꽃 자전거',img:'images/objects/vintage_flower_bicycle.png',x:8,y:27,w:26,h:25},
-    {name:'빨간 우체통',img:'images/objects/red_mailbox.png',x:82,y:26,w:13,h:23},
-    {name:'피크닉 바구니',img:'images/objects/picnic_basket_books_flowers.png',x:39,y:68,w:15,h:16},
-    {name:'정원 이름표',img:'images/objects/wood_sign_cafe_garden.png',x:4,y:30,w:16,h:20},
-    {name:'장미 아치',img:'images/decor/rose_trellis.png',x:47,y:9,w:19,h:31}
-  ];
+  function activityStats(state=data) {
+    const english = new Set(state.englishCompletedCards.map(Number).filter(i=>Number.isInteger(i)&&i>=0&&i<cardCount)).size;
+    return {diaries:state.diaries.length,english,letters:state.letters.length};
+  }
+  function unlockedSceneIds(state=data) {
+    const stats=activityStats(state),ledger=state.sceneUnlocks&&typeof state.sceneUnlocks==='object'?state.sceneUnlocks:{};
+    return new Set(scenes.filter(scene=>ledger[scene.id]||Object.entries(scene.rule).every(([key,n])=>stats[key]>=n)).map(scene=>scene.id));
+  }
+  function retainUnlocks(state) {
+    const ledger=state.sceneUnlocks&&typeof state.sceneUnlocks==='object'&&!Array.isArray(state.sceneUnlocks)?{...state.sceneUnlocks}:{};
+    unlockedSceneIds(state).forEach(id=>{if(!ledger[id])ledger[id]=new Date().toISOString();});
+    state.sceneUnlocks=ledger;
+  }
+  function todayActivities() {
+    return {
+      diary:data.diaries.some(d=>d.dateISO===localDate()||d.date===humanDate()),
+      english:Object.values(data.englishCompletedDates||{}).includes(localDate())||data.englishDailyRewardDate===localDate(),
+      letter:data.letters.some(l=>l.createdDate===localDate())
+    };
+  }
   function toast(message) {
     clearTimeout(toastTimer); $('rewardToast').textContent = message; $('rewardToast').hidden = false;
     toastTimer = setTimeout(() => { $('rewardToast').hidden = true; }, 4300);
   }
-  function commit(change, message) {
+  function commit(change, message, kind=null) {
     if (storageBroken) { toast('원본 기록을 보호하고 있어요. 먼저 기록을 백업해주세요.'); return false; }
+    const before=unlockedSceneIds();
     const next = JSON.parse(JSON.stringify(data));
     change(next);
+    retainUnlocks(next);
+    const newlyOpened=scenes.filter(scene=>!before.has(scene.id)&&unlockedSceneIds(next).has(scene.id));
     try { localStorage.setItem(KEY, JSON.stringify(next)); }
     catch { $('storageNotice').hidden = false; $('storageNotice').textContent = '지금은 기록을 저장하지 못했어요. 입력한 마음은 그대로 두었어요. 저장 공간과 브라우저 설정을 확인하고, 기존 기록은 아래에서 백업해주세요.'; toast('저장하지 못했어요. 입력한 내용을 지우지 않았어요.'); return false; }
     data = next; rawStorage = JSON.stringify(data); $('storageNotice').hidden = true;
-    renderAll(); if (message) toast(message); return true;
+    renderAll();
+    if(message)toast(message+(newlyOpened.length?' 새 장면 '+newlyOpened.length+'개가 열렸어요.':''));
+    if(kind){const target=$(({diary:'diaryReply',english:'englishUnlockNote',letter:'letterReply'})[kind]);if(target)target.innerHTML='<span>'+safe(newlyOpened.length?'새로 열린 장면 · '+newlyOpened.map(x=>x.title).join(' / '):'오늘의 작은 기록이 행복정원에 함께 쌓였어요.')+'</span><button type="button" class="text-button" data-go="garden">앤의 장면 만나러 가기 ↗</button>';}
+    return true;
   }
   function navigate(id, push = true, focus = true) {
     if (!pageIds.includes(id)) id = 'home';
     if (currentPage === 'english' && id !== 'english') stopSpeaking();
+    if($('sceneDialog').open)$('sceneDialog').close();
     currentPage = id;
     pageIds.forEach(name => { $(name).hidden = name !== id; $(name).classList.toggle('active',name === id); });
     document.querySelectorAll('[data-tab]').forEach(b => { const on = b.dataset.tab === id; b.classList.toggle('active',on); if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current'); });
@@ -75,7 +92,7 @@
     if (focus) { $(id+'Title').focus({preventScroll:true}); window.scrollTo({top:0,behavior:'instant'}); }
   }
   function renderHome() {
-    $('seeds').textContent = numeric(data.seeds);
+    const opened=unlockedSceneIds();$('headerSceneCount').textContent=opened.size+' / '+scenes.length;
     $('homeDate').textContent = new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'long'});
     const daily = englishCard(dayNumber()%cardCount);
     $('homeQuoteKo').textContent = '“'+daily.sourceKo+'”'; $('homeQuoteEn').textContent = daily.sourceEn; $('homeQuoteReflection').textContent = daily.mindset;
@@ -84,9 +101,12 @@
     $('homeMoodWeather').textContent = latest ? moodFor(latest.moodLabel || latest.mood).weather : '오늘 마음에는 어떤 날씨가 머물렀나요?';
     $('homeDiaryTitle').textContent = latest ? moodFor(latest.moodLabel || latest.mood).name+'의 마음을 남겼어요' : '아직 펼치지 않은 한 페이지';
     $('homeDiaryPreview').textContent = latest ? String(latest.text).slice(0,65)+(String(latest.text).length>65?'…':'') : '지금의 마음을 조용히 들려주세요.';
-    const flowersToday = data.flowers.filter(f => f.dateISO === localDate() || f.date === humanDate());
-    $('homeGardenTitle').textContent = flowersToday.length ? '오늘, '+flowersToday.length+'송이의 기억이 피었어요' : data.flowers.length ? '지금까지 '+data.flowers.length+'송이의 작은 기쁨' : '첫 꽃을 기다리는 정원';
-    $('homeGardenPreview').textContent = data.flowers.length ? '가장 최근에 심은 꽃은 '+String(data.flowers[data.flowers.length-1].name)+'예요.' : '마음 한 줄에서 작은 꽃이 시작돼요.';
+    $('homeGardenTitle').textContent='앤의 장면 '+opened.size+'개가 열렸어요';
+    $('homeGardenPreview').textContent=opened.size===scenes.length?'모든 장면이 열렸어요. 마음에 드는 풍경에 잠깐 머물러요.':'마음과 문장, 편지가 모일수록 앤의 세계도 풍성해져요.';
+    const done=todayActivities(),count=Object.values(done).filter(Boolean).length;
+    const mission=!done.diary?{text:'지금 마음에 가장 가까운 표정을 고르고 한 줄 남겨봐요.',go:'diary'}:!done.english?{text:'앤의 문장 한 줄을 천천히 읽고, 오늘의 한 입을 마쳐봐요.',go:'english'}:!done.letter?{text:'미래의 나에게 다정한 안부 한 줄을 보내볼까요?',go:'letter'}:{text:'오늘의 작은 마음들을 잘 간직했어요. 열린 풍경에서 잠깐 쉬어요.',go:'garden'};
+    $('dailyMissionText').textContent=mission.text;$('dailyMissionProgress').textContent=count?'오늘의 작은 발걸음 '+count+' / 3 · 하나만 해도 충분해요.':'오늘은 마음이 가는 하나부터. 서두르지 않아도 괜찮아요.';
+    $('dailyMissionGo').dataset.go=mission.go;$('dailyMissionGo').textContent=count===3?'풍경 보러 가기 ↗':'지금 해보기 ↗';
     const arrived = data.letters.filter(l => l.date <= localDate()), waiting = data.letters.filter(l => l.date > localDate());
     $('homeLetterTitle').textContent = arrived.length ? '도착한 마음이 '+arrived.length+'통 있어요' : waiting.length ? '나에게 오는 편지 '+waiting.length+'통' : '미래의 나를 위한 자리';
     $('homeLetterPreview').textContent = waiting.length ? dateLabel(waiting.map(l=>l.date).sort()[0])+'에 다음 마음이 도착해요.' : arrived.length ? '약속한 날의 내가 되어 편지를 펼쳐봐요.' : '언젠가 다시 읽고 싶은 말을 남겨요.';
@@ -101,43 +121,31 @@
     $('diaryList').innerHTML = data.diaries.length ? data.diaries.slice(0,diaryLimit).map(d=>`<article class="diary-entry"><header><b>${safe(moodFor(d.moodLabel||d.mood).name)}</b><span>${safe(dateLabel(d.dateISO||d.date))}</span></header><p>${safe(d.text)}</p></article>`).join('') : '<p class="empty-state">아직 남기지 않은 마음들이 기다리고 있어요.<br>오늘, 첫 페이지를 시작해볼까요?</p>';
     $('diaryMore').hidden = data.diaries.length <= diaryLimit;
   }
-  function layoutFlowers() {
-    const used = new Set();
-    return data.flowers.map((f,index)=>{
-      let page = Number.isInteger(f.gardenPage)&&f.gardenPage>=0 ? f.gardenPage : Math.floor(index/10);
-      let slot = Number.isInteger(f.gardenSlot)&&f.gardenSlot>=0&&f.gardenSlot<10 ? f.gardenSlot : index%10;
-      while(used.has(`${page}:${slot}`)){slot++;if(slot===10){slot=0;page++;}}
-      used.add(`${page}:${slot}`);return {f,index,page,slot};
-    });
+  function renderGallery() {
+    const opened=unlockedSceneIds(),available=scenes.filter(scene=>opened.has(scene.id));
+    const featured=available[available.length-1]||scenes[0];
+    $('galleryFeatureImage').src=featured.image;$('galleryFeatureImage').alt=featured.alt;$('galleryFeatureTitle').textContent=featured.title;$('galleryFeatureText').textContent=featured.description;$('galleryFeatureOpen').dataset.scene=featured.id;
+    const seen=new Set((Array.isArray(data.sceneViews)?data.sceneViews:[]).filter(id=>opened.has(id)));
+    $('galleryProgressText').textContent=`열린 장면 ${opened.size} / ${scenes.length} · 둘러본 장면 ${seen.size}개`;
+    $('sceneProgress').setAttribute('aria-valuemax',scenes.length);$('sceneProgress').setAttribute('aria-valuenow',opened.size);$('sceneProgressBar').style.width=opened.size/scenes.length*100+'%';
+    const visible=scenes.filter(scene=>sceneFilter==='all'||(sceneFilter==='open'?opened.has(scene.id):!opened.has(scene.id)));
+    $('sceneGrid').innerHTML=visible.length?visible.map(scene=>{const on=opened.has(scene.id);return `<button type="button" class="scene-card ${on?'is-open':'is-locked'}" data-scene="${scene.id}" aria-label="${safe(scene.title)} · ${on?'열린 장면 보기':scene.condition}"><span class="scene-card-art"><img src="${scene.image}" alt="${safe(scene.alt)}" width="1536" height="1024" loading="lazy"><span class="scene-card-status">${on?'열린 장면':'기다리는 장면'}</span></span><span class="scene-card-copy"><small>${safe(scene.category)}</small><b>${safe(scene.title)}</b><span>${safe(on?scene.quote:scene.condition)}</span></span></button>`;}).join(''):'<div class="surface gallery-empty"><p>기다리던 풍경이 모두 열렸어요.<br>마음에 드는 장면을 다시 만나보세요.</p><button type="button" class="text-button" data-scene-filter="all">모든 풍경 보기 ↗</button></div>';
+    document.querySelectorAll('[data-scene-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sceneFilter===sceneFilter)));
+    const memory=data.diaries.find(d=>d.dateISO===localDate()||d.date===humanDate());
+    $('gardenMemoryTitle').textContent=memory?moodFor(memory.moodLabel||memory.mood).name+'의 마음을 남긴 오늘':'아직 쓰이지 않은 오늘의 페이지';
+    $('gardenMemoryText').textContent=memory?String(memory.text).slice(0,160)+(String(memory.text).length>160?'…':''):'한 줄의 마음으로 시작해도 좋아요. 오늘의 작은 기억이 이곳에 함께 남을 거예요.';
   }
-  function gardenPageCount(layout=layoutFlowers()) { return Math.max(1,...layout.map(x=>x.page+1)); }
-  function lastGardenPage(layout=layoutFlowers()) { const last=gardenPageCount(layout)-1;return last+(layout.filter(x=>x.page===last).length===10?1:0); }
-  function renderGarden() {
-    const layout = layoutFlowers(); if(gardenPage<0)gardenPage=gardenPageCount(layout)-1;
-    const current = layout.filter(x=>x.page===gardenPage);
-    $('gardenScene').dataset.planting = String(planting);
-    $('chooseSpot').setAttribute('aria-pressed',String(planting));
-    $('chooseSpot').textContent = planting ? '자리 고르기 마치기 ✓' : '꽃 심을 자리 고르기 ＋';
-    $('gardenItems').innerHTML = plotAnchors.map(([x,y],i)=>{
-      const item=current.find(v=>v.slot===i),anchor=`--plot-x:${x}%;--plot-y:${y}%;z-index:${i+1}`;
-      return item ? `<button type="button" class="garden-plant" data-flower="${item.index}" style="${anchor}" aria-label="${safe(item.f.name)} · 그날의 마음 보기"><img src="${safe(imagePath(item.f.img))}" alt="${safe(item.f.name)}" loading="lazy"></button>` : `<button type="button" class="plant-spot" data-garden-slot="${i}" style="${anchor}" aria-label="${i+1}번째 흙자리에 심기" aria-pressed="${chosenSlot===i}">+</button>`;
-    }).join('');
-    $('gardenCount').textContent = data.flowers.length ? '내 마음이 피운 꽃, '+data.flowers.length+'송이' : '첫 꽃을 기다리는 작은 정원';
-    $('gardenPageLabel').textContent = `${gardenPage+1}번째 풍경 · ${current.length}송이`;
-    $('gardenPrev').disabled = gardenPage===0; $('gardenNext').disabled = gardenPage>=lastGardenPage(layout);
-    $('gardenGrowth').textContent = planting ? '마음에 드는 흙자리를 눌러주세요.' : '꽃을 누르면 그날의 기억을 만나요.';
-    $('selectedSpotName').textContent = chosenSlot===null ? '자리는 정원에 맡기기' : `${gardenPage+1}번째 풍경 · ${chosenSlot+1}번째 흙자리`;
-    $('gardenSeedHelp').textContent = numeric(data.seeds)<3 ? '지금 씨앗 '+numeric(data.seeds)+'개 · 감정일기 한 줄이면 꽃을 심을 수 있어요.' : '지금 씨앗 '+numeric(data.seeds)+'개 · 한 송이를 심으면 3개를 사용해요.';
-    renderGardenDecor();
-  }
-  function renderPicker() {
-    $('plantVarieties').textContent = plants.length+'가지 꽃';
-    $('plantPicker').innerHTML = plants.map((p,i)=>`<button type="button" class="plant-choice" data-plant="${i}" aria-pressed="${i===selectedPlant}"><img src="${safe(p.img)}" alt="" loading="lazy"><span>${safe(p.name)}</span></button>`).join('');
-    $('selectedPlantName').textContent = plants[selectedPlant].name;
-  }
-  function renderGardenDecor() {
-    $('gardenDecorLayer').innerHTML = props.filter(p=>data.decorItems.includes(p.img)||data.decor===p.img).map(p=>`<img src="${p.img}" alt="${p.name}" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;height:${p.h}%" loading="lazy">`).join('');
-    $('decorGrid').innerHTML = props.map((p,i)=>`<button type="button" class="prop-choice" data-decor="${i}" aria-pressed="${data.decorItems.includes(p.img)||data.decor===p.img}"><img src="${p.img}" alt="" loading="lazy"><span>${p.name}</span></button>`).join('');
+  function openScene(id) {
+    const scene=scenes.find(s=>s.id===id);if(!scene)return;
+    const on=unlockedSceneIds().has(id);openedSceneId=id;
+    if(on&&!storageBroken&&!(Array.isArray(data.sceneViews)?data.sceneViews:[]).includes(id))commit(d=>{d.sceneViews=Array.isArray(d.sceneViews)?d.sceneViews:[];d.sceneViews.push(id);});
+    const dialog=$('sceneDialog');dialog.classList.toggle('is-locked',!on);
+    $('sceneDialogImage').src=scene.image;$('sceneDialogImage').alt=scene.alt;$('sceneDialogTag').textContent=on?scene.category:'곧 만나게 될 앤의 풍경';$('sceneDialogTitle').textContent=scene.title;
+    $('sceneDialogText').textContent=on?scene.description:'작은 기록이 모이면 이 장면을 온전히 만날 수 있어요. 기다림에도 저마다의 다정한 이야기가 있어요.';
+    $('sceneDialogQuote').textContent=on?'“'+scene.quote+'”':'';$('sceneDialogQuote').hidden=!on;
+    $('sceneDialogRequirement').textContent=on?'이미 남겨주신 마음과 활동으로 열린 장면이에요.':scene.condition;
+    $('sceneDialogAction').textContent=on?'장면을 마음에 담고 돌아가기':'이 장면을 여는 작은 행동 ↗';
+    if(!dialog.open)dialog.showModal();
   }
   function renderLetters() {
     const today=localDate(),waiting=data.letters.filter(l=>l.date>today),arrived=data.letters.filter(l=>l.date<=today);
@@ -172,7 +180,7 @@
     $('englishProgressBar').style.width = count/cardCount*100+'%'; $('englishProgressText').textContent = `완료 ${count} / ${cardCount}`;
     $('englishProgress').setAttribute('aria-valuenow',count);
     $('englishDone').textContent = completed ? '이미 간직한 한 입이에요 ✓' : '오늘의 한 입 마치기 ✓';
-    $('englishDoneNote').textContent = data.englishDailyRewardDate===localDate() ? '오늘의 씨앗은 받았어요. 남은 문장은 천천히 만나도 좋아요.' : '하루 첫 마무리에는 씨앗 한 개를 드려요.';
+    $('englishDoneNote').textContent = completed?'간직한 배움은 행복정원의 풍경으로 이어져요. 다음 문장은 천천히 만나도 좋아요.':'첫 카드의 마무리로 ‘편지에 담긴 작은 용기’ 장면이 열려요.';
     const spoken=data.englishSpokenCards.includes(idx); $('englishSpokenDone').setAttribute('aria-pressed',String(spoken)); $('englishSpokenDone').textContent = spoken ? '소리 내어 읽었어요 ✓' : '소리 내어 한 번 읽었어요 ✓';
     renderSavedEnglish();
   }
@@ -202,16 +210,13 @@
     utterance.onerror=e=>{utterance.onend();if(e.error!=='canceled'&&e.error!=='interrupted')toast('영어 음성을 재생하지 못했어요. 기기의 영어 음성 설정을 확인해주세요.');};
     window.speechSynthesis.speak(utterance);
   }
-  function renderAll() { renderHome();renderMoods();renderDiaries();renderGarden();renderPicker();renderLetters();renderEnglish(); }
+  function renderAll() { renderHome();renderMoods();renderDiaries();renderGallery();renderLetters();renderEnglish(); }
   function sayHello() { commit(d=>{d.pettedDate=localDate();},'보리가 꼬리를 흔들어요. 오늘도 함께, 천천히 걸어요. 🐾'); }
   document.addEventListener('click',e=>{
     const go=e.target.closest('[data-go],[data-tab]');if(go){e.preventDefault();navigate(go.dataset.go||go.dataset.tab);return;}
     const m=e.target.closest('[data-mood]');if(m){mood=m.dataset.mood;renderMoods();return;}
-    const p=e.target.closest('[data-plant]');if(p){selectedPlant=Number(p.dataset.plant);renderPicker();planting=true;renderGarden();return;}
-    const slot=e.target.closest('[data-garden-slot]');if(slot){chosenSlot=Number(slot.dataset.gardenSlot);renderGarden();toast('이 자리에 '+plants[selectedPlant].name+'를 심을게요. 아래에서 ‘이 꽃 심기’를 눌러주세요.');return;}
-    const flower=e.target.closest('[data-flower]');if(flower){const f=data.flowers[Number(flower.dataset.flower)];$('gardenDetail').hidden=false;$('gardenDetail').innerHTML=`<div><b>${safe(f.name)}</b><p>${safe(dateLabel(f.dateISO||f.date))}에 심은 마음</p><p>${safe(f.memory||'오늘 심은 작은 희망')}</p></div><button type="button" class="icon-button" id="closeGardenDetail" aria-label="꽃의 기억 닫기">×</button>`;return;}
-    if(e.target.closest('#closeGardenDetail')){$('gardenDetail').hidden=true;return;}
-    const prop=e.target.closest('[data-decor]');if(prop){const selected=props[Number(prop.dataset.decor)];commit(d=>{const i=d.decorItems.indexOf(selected.img);if(i>=0)d.decorItems.splice(i,1);else if(d.decor!==selected.img)d.decorItems.push(selected.img);if(d.decor===selected.img)d.decor=null;},'마음에 드는 자리에서 정원의 풍경이 되었어요.');return;}
+    const scene=e.target.closest('[data-scene]');if(scene){openScene(scene.dataset.scene);return;}
+    const sceneFilterButton=e.target.closest('[data-scene-filter]');if(sceneFilterButton){sceneFilter=sceneFilterButton.dataset.sceneFilter;renderGallery();return;}
     const filter=e.target.closest('[data-letter-filter]');if(filter){letterFilter=filter.dataset.letterFilter;letterLimit=6;renderLetters();return;}
     const card=e.target.closest('[data-english-card]');if(card){setEnglishIndex(Number(card.dataset.englishCard));return;}
   });
@@ -224,36 +229,20 @@
   $('diaryForm').addEventListener('submit',e=>{
     e.preventDefault();const text=$('diaryText').value.trim();if(!text){toast('지금의 마음 한 줄을 적어주세요.');$('diaryText').focus();return;}
     const name=moodFor(mood).name;
-    if(commit(d=>{d.diaries.unshift({id:Date.now(),date:humanDate(),dateISO:localDate(),mood,moodLabel:name,text});d.seeds=numeric(d.seeds)+3;d.activities=numeric(d.activities)+1;},'마음 한 줄이 씨앗이 되었어요. 씨앗 3개를 간직했어요. 🌱')){
-      $('diaryText').value='';$('diaryCount').textContent='0 / 3000';$('diaryReply').textContent=name+'의 마음을 다정히 남겼어요. 꽃 한 송이로 오늘을 기억해볼까요?';
+    if(commit(d=>{d.diaries.unshift({id:Date.now(),date:humanDate(),dateISO:localDate(),mood,moodLabel:name,text});},'오늘 마음이 정원 한쪽에 조용히 놓였어요.','diary')){
+      $('diaryText').value='';$('diaryCount').textContent='0 / 3000';
     }
   });
   $('diaryMore').addEventListener('click',()=>{diaryLimit+=6;renderDiaries();});
-  $('chooseSpot').addEventListener('click',()=>{planting=!planting;renderGarden();});
-  $('plantPickerToggle').addEventListener('click',()=>{const expanded=$('plantPicker').dataset.expanded!=='true';$('plantPicker').dataset.expanded=String(expanded);$('plantPickerToggle').setAttribute('aria-expanded',String(expanded));$('plantPickerToggle').textContent=expanded?'꽃 목록 조용히 접기 ↑':'다른 꽃도 만나보기 ↓';});
-  $('plant').addEventListener('click',()=>{
-    if(numeric(data.seeds)<3){toast('감정일기 한 줄을 남기면 꽃을 심을 씨앗 3개를 받아요.');$('gardenSeedHelp').innerHTML='꽃을 심을 씨앗이 조금 더 필요해요. <button type="button" class="text-button" data-go="diary">마음 남기러 가기 ↗</button>';return;}
-    const layout=layoutFlowers(),occupied=new Set(layout.filter(x=>x.page===gardenPage).map(x=>x.slot));
-    let slot=chosenSlot,page=gardenPage;
-    if(slot===null||occupied.has(slot))slot=Array.from({length:10},(_,i)=>i).find(i=>!occupied.has(i));
-    if(slot===undefined){page=gardenPageCount(layout);slot=0;}
-    const p=plants[selectedPlant];
-    const ok=commit(d=>{d.seeds=numeric(d.seeds)-3;d.flowers.push({id:Date.now(),date:humanDate(),dateISO:localDate(),name:p.name,img:p.img,memory:d.diaries[0]?.text||'오늘 심은 작은 희망',gardenPage:page,gardenSlot:slot});d.activities=numeric(d.activities)+1;},p.name+' 한 송이가 오늘의 정원에 피었어요. ✿');
-    if(ok){gardenPage=page;chosenSlot=null;planting=false;renderGarden();$('gardenScene').scrollIntoView({block:'center',behavior:'instant'});}
-  });
-  function turnGarden(delta){gardenPage=Math.max(0,Math.min(lastGardenPage(),gardenPage+delta));chosenSlot=null;$('gardenDetail').hidden=true;renderGarden();}
-  $('gardenPrev').addEventListener('click',()=>turnGarden(-1));$('gardenNext').addEventListener('click',()=>turnGarden(1));
-  $('waterGarden').addEventListener('click',()=>{
-    if(!data.flowers.length){toast('먼저 작은 꽃 한 송이를 심어볼까요?');return;}
-    if(commit(d=>{d.watered=numeric(d.watered)+1;d.lastWateredDate=localDate();},'흙에 물 한 모금, 마음에 쉬어갈 틈. 정원이 더 싱그러워졌어요.')){
-      $('gardenScene').classList.remove('garden-ripple');void $('gardenScene').offsetWidth;$('gardenScene').classList.add('garden-ripple');
-    }
-  });
-  $('petDog').addEventListener('click',sayHello);$('gardenPetDog').addEventListener('click',sayHello);
+  $('petDog').addEventListener('click',sayHello);
+  $('closeSceneDialog').addEventListener('click',()=>$('sceneDialog').close());
+  $('sceneDialog').addEventListener('close',()=>{if(currentPage==='garden'&&openedSceneId){const target=document.querySelector('.scene-card[data-scene="'+openedSceneId+'"]');if(target)target.focus({preventScroll:true});}});
+  $('sceneDialog').addEventListener('click',e=>{const box=$('sceneDialog').getBoundingClientRect();if(e.target===$('sceneDialog')&&(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom))$('sceneDialog').close();});
+  $('sceneDialogAction').addEventListener('click',()=>{const scene=scenes.find(x=>x.id===openedSceneId);if(!scene)return;const on=unlockedSceneIds().has(scene.id);$('sceneDialog').close();if(!on)navigate(scene.go);});
   $('letterForm').addEventListener('submit',e=>{
     e.preventDefault();const text=$('letterText').value.trim(),date=$('letterDate').value;
     if(!text||!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<localDate()){toast('편지 내용과 오늘 이후의 날짜를 확인해주세요.');return;}
-    if(commit(d=>{d.letters.unshift({id:Date.now(),date,text,createdDate:localDate()});d.activities=numeric(d.activities)+1;},dateLabel(date)+'의 나에게, 마음을 다정히 보냈어요. 💌')){$('letterText').value='';}
+    if(commit(d=>{d.letters.unshift({id:Date.now(),date,text,createdDate:localDate()});},dateLabel(date)+'의 나에게, 마음을 다정히 보냈어요.','letter')){$('letterText').value='';}
   });
   $('letterMore').addEventListener('click',()=>{letterLimit+=6;renderLetters();});
   $('englishNext').addEventListener('click',()=>setEnglishIndex(cardIndex()+1));$('englishPrev').addEventListener('click',()=>setEnglishIndex(cardIndex()-1));
@@ -267,8 +256,8 @@
   });
   $('englishSpokenDone').addEventListener('click',()=>{const idx=cardIndex();commit(d=>{if(!d.englishSpokenCards.includes(idx))d.englishSpokenCards.push(idx);},'앤의 문장이 나의 목소리를 만났어요.');});
   $('englishDone').addEventListener('click',()=>{
-    const idx=cardIndex(),text=$('englishWritingInput').value.trim(),reward=data.englishDailyRewardDate!==localDate();
-    const ok=commit(d=>{if(!d.englishCompletedCards.includes(idx))d.englishCompletedCards.push(idx);d.englishCompletedDates={...(d.englishCompletedDates||{}),[idx]:localDate()};if(text){d.englishWriting[String(idx)]=text;d.englishWritingDates={...(d.englishWritingDates||{}),[idx]:localDate()};}if(reward){d.seeds=numeric(d.seeds)+1;d.englishDailyRewardDate=localDate();}},reward?'오늘의 작은 배움에 씨앗 한 개. 수고했어요. 🌱':'오늘의 한 입을 간직했어요. 이만큼이면 충분해요.');
+    const idx=cardIndex(),text=$('englishWritingInput').value.trim();
+    const ok=commit(d=>{if(!d.englishCompletedCards.includes(idx))d.englishCompletedCards.push(idx);d.englishCompletedDates={...(d.englishCompletedDates||{}),[idx]:localDate()};if(text){d.englishWriting[String(idx)]=text;d.englishWritingDates={...(d.englishWritingDates||{}),[idx]:localDate()};}},'오늘의 한 입을 간직했어요. 이만큼이면 충분해요.','english');
     if(ok&&text){englishDrafts.set(idx,text);renderEnglish();}
   });
   $('englishSavedMore').addEventListener('click',()=>{savedEnglishLimit+=5;renderSavedEnglish();});

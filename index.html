@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f7f5ed">
-  <meta name="description" content="마음 한 줄을 기록하고, 꽃 한 송이를 심고, 미래의 나에게 편지를 보내요. 앤과 보리가 함께하는 작고 따뜻한 정원.">
+  <meta name="description" content="마음과 문장, 편지를 남길 때마다 앤의 세계가 한 장면씩 열려요. 앤과 보리와 함께 모아가는 작고 따뜻한 행복 정원.">
   <title>앤의 행복 정원 · 작은 기쁨이 자라는 곳</title>
   <link rel="icon" href="images/ui/icon_flower.png" type="image/png">
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/garden.css">
-  <link rel="preload" as="image" href="images/scenes/garden-morning.png">
+  <link rel="preload" as="image" href="images/scenes/garden-morning.webp">
   <script defer src="assets/content.js"></script>
+  <script defer src="assets/scenes.js"></script>
   <script defer src="assets/app.js"></script>
 </head>
 <body>
@@ -29,15 +30,15 @@
     <div class="header-inner">
       <a href="#home" class="brand" data-go="home" aria-label="앤의 행복 정원 홈"><svg class="brand-flower icon" aria-hidden="true"><use href="#icon-bloom"/></svg><span><b>앤</b>의 행복 정원</span></a>
       <span class="header-note">내 마음에도, 작은 정원 하나.</span>
-      <span class="seed-balance" aria-label="보유 씨앗"><svg class="icon"><use href="#icon-garden"/></svg>씨앗 <b id="seeds">0</b></span>
+      <button type="button" class="collection-balance" data-go="garden" aria-label="열린 장면 컬렉션 보기"><svg class="icon"><use href="#icon-garden"/></svg><span>장면 <b id="headerSceneCount">1 / 6</b></span></button>
     </div>
   </header>
   <div class="nav-wrap"><nav class="tabbar" aria-label="주요 메뉴">
     <button type="button" class="tab-btn active" data-tab="home" aria-current="page"><svg class="icon"><use href="#icon-home"/></svg><span>홈</span></button>
     <button type="button" class="tab-btn" data-tab="diary"><svg class="icon"><use href="#icon-diary"/></svg><span>감정일기</span></button>
-    <button type="button" class="tab-btn" data-tab="garden"><svg class="icon"><use href="#icon-garden"/></svg><span>행복정원</span></button>
-    <button type="button" class="tab-btn" data-tab="letter"><svg class="icon"><use href="#icon-letter"/></svg><span>마음우체통</span></button>
     <button type="button" class="tab-btn" data-tab="english"><svg class="icon"><use href="#icon-english"/></svg><span>영어한입</span></button>
+    <button type="button" class="tab-btn" data-tab="letter" aria-label="마음우체통"><svg class="icon"><use href="#icon-letter"/></svg><span class="full-label">마음우체통</span><span class="compact-label" aria-hidden="true">우체통</span></button>
+    <button type="button" class="tab-btn" data-tab="garden"><svg class="icon"><use href="#icon-garden"/></svg><span>행복정원</span></button>
   </nav></div>
   <main id="main">
     <div id="storageNotice" class="storage-notice" role="alert" hidden></div>
@@ -46,13 +47,14 @@
         <div class="hero-copy">
           <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#icon-bloom"/></svg> A LITTLE ROOM FOR HOPE</p>
           <h1 id="homeTitle" tabindex="-1">오늘도, 작은 기쁨이<br><em>자라는 곳.</em></h1>
-          <p class="hero-description">대단한 하루가 아니어도 괜찮아요.<br>마음 한 줄, 꽃 한 송이, 나에게 보내는 편지.<br>앤과 보리 곁에서 오늘의 나를 돌봐요.</p>
-          <div class="hero-actions"><button type="button" class="button primary" data-go="diary">오늘 마음 남기기 <svg class="icon"><use href="#icon-arrow"/></svg></button><button type="button" class="button quiet" data-go="garden">정원 가꾸기</button></div>
+          <p class="hero-description">대단한 하루가 아니어도 괜찮아요.<br>마음 한 줄은 씨앗이 되고,<br>작은 문장은 오늘의 햇살이 돼요.</p>
+          <div class="hero-actions"><button type="button" class="button primary" data-go="diary">오늘 마음 남기기 <svg class="icon"><use href="#icon-arrow"/></svg></button><button type="button" class="button quiet" data-go="garden">앤의 장면 만나기</button></div>
           <span class="hero-footnote">당신의 속도로, 당신만의 계절을.</span>
         </div>
-        <figure class="hero-art"><img src="images/scenes/garden-morning.png" alt="꽃이 핀 집 앞 벤치에 앉은 앤과 발치에서 앤을 바라보는 강아지 보리" fetchpriority="high" width="1536" height="1024"><figcaption>초록 지붕 아래, 우리만의 작은 세계</figcaption></figure>
+        <figure class="hero-art"><img src="images/scenes/garden-morning.webp" alt="꽃이 핀 집 앞 벤치에 앉은 앤과 발치에서 앤을 바라보는 강아지 보리" fetchpriority="high" width="1536" height="1024"><figcaption>초록 지붕 아래, 우리만의 작은 세계</figcaption></figure>
       </div>
       <div class="today-heading"><p id="homeDate"></p><span id="homeMoodWeather">오늘 마음에는 어떤 날씨가 머물렀나요?</span></div>
+      <aside class="daily-mission surface"><span class="mission-flower" aria-hidden="true">✿</span><div><span class="eyebrow">오늘의 작은 미션</span><p id="dailyMissionText"></p><span id="dailyMissionProgress"></span></div><button type="button" class="button quiet small" id="dailyMissionGo">지금 해보기 ↗</button></aside>
       <div class="home-content">
         <article class="today-quote surface">
           <div class="card-topline"><span class="eyebrow">앤이 건네는 한 줄</span><svg class="icon sun-icon" aria-hidden="true"><use href="#icon-sun"/></svg></div>
@@ -60,86 +62,74 @@
           <div class="quote-bottom"><span>L. M. Montgomery · Anne of Green Gables</span><button type="button" class="text-button" id="homeEnglish">이 문장으로 영어 한입 <span aria-hidden="true">↗</span></button></div>
         </article>
         <article class="little-actions surface">
-          <span class="eyebrow">오늘은 무엇을 해볼까요?</span><h2>작은 행동 하나면 충분해요</h2>
+          <span class="eyebrow">오늘의 입구, 작은 행동 세 가지</span><h2>하나만 해도 좋은 하루</h2>
           <div class="action-list">
-            <button type="button" data-go="diary"><span class="action-icon"><svg class="icon"><use href="#icon-diary"/></svg></span><span><b>지금 마음을 한 줄로</b><small>기록하면 씨앗 3개가 생겨요</small></span><span aria-hidden="true">↗</span></button>
-            <button type="button" data-go="garden"><span class="action-icon rose"><svg class="icon"><use href="#icon-garden"/></svg></span><span><b>오늘을 꽃으로 남기기</b><small>작은 정원에 기억을 심어요</small></span><span aria-hidden="true">↗</span></button>
-            <button type="button" data-go="letter"><span class="action-icon peach"><svg class="icon"><use href="#icon-letter"/></svg></span><span><b>미래의 나에게 안부를</b><small>다시 만날 날을 약속해요</small></span><span aria-hidden="true">↗</span></button>
-            <button type="button" data-go="english"><span class="action-icon sand"><svg class="icon"><use href="#icon-english"/></svg></span><span><b>영어 한 줄, 마음 한 입</b><small>앤의 문장을 나의 문장으로</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-go="diary"><span class="action-icon"><svg class="icon"><use href="#icon-diary"/></svg></span><span><b>감정 한 줄 남기기</b><small>마음을 기록하면 앤의 창가가 열려요</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-go="english"><span class="action-icon sand"><svg class="icon"><use href="#icon-english"/></svg></span><span><b>영어 한입 읽기</b><small>앤의 문장을 나의 하루로 가져와요</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-go="letter"><span class="action-icon peach"><svg class="icon"><use href="#icon-letter"/></svg></span><span><b>미래의 나에게 편지 쓰기</b><small>한 통의 마음이 또 다른 장면이 돼요</small></span><span aria-hidden="true">↗</span></button>
           </div>
         </article>
       </div>
       <div class="section-caption"><h2>내 하루가 남긴 작은 흔적</h2><span>서두르지 않아도, 조금씩 쌓이고 있어요.</span></div>
       <div class="home-summaries">
         <button type="button" class="summary-card" data-go="diary"><span class="eyebrow">오늘의 마음 메모</span><b id="homeDiaryTitle">아직 펼치지 않은 한 페이지</b><span id="homeDiaryPreview">지금의 마음을 조용히 들려주세요.</span><i aria-hidden="true">↗</i></button>
-        <button type="button" class="summary-card" data-go="garden"><span class="eyebrow">오늘의 정원 변화</span><b id="homeGardenTitle">첫 꽃을 기다리는 정원</b><span id="homeGardenPreview">마음 한 줄에서 작은 꽃이 시작돼요.</span><i aria-hidden="true">↗</i></button>
+        <button type="button" class="summary-card" data-go="garden"><span class="eyebrow">나의 행복 컬렉션</span><b id="homeGardenTitle">앤의 세계에 첫발을</b><span id="homeGardenPreview">기록을 남길 때마다 새로운 장면을 만나요.</span><i aria-hidden="true">↗</i></button>
         <button type="button" class="summary-card" data-go="letter"><span class="eyebrow">나에게 오는 편지</span><b id="homeLetterTitle">미래의 나를 위한 자리</b><span id="homeLetterPreview">언젠가 다시 읽고 싶은 말을 남겨요.</span><i aria-hidden="true">↗</i></button>
       </div>
       <aside class="companion-line"><span aria-hidden="true">🐾</span><p id="companionMessage">보리는 오늘도 네 편이에요. 함께라면 평범한 하루도 조금 특별해져요.</p><button type="button" class="text-button" id="petDog">보리에게 인사하기 ♡</button></aside>
     </section>
     <section id="diary" class="page" hidden aria-labelledby="diaryTitle">
       <header class="page-heading"><p class="eyebrow">A PAGE FOR MY HEART</p><h1 id="diaryTitle" tabindex="-1">마음에도, 이름을 붙여요.</h1><p>기쁜 날도, 지친 날도. 지금의 마음은 모두 기록할 가치가 있어요.</p></header>
+      <aside class="tab-illustration diary-welcome"><img src="images/scenes/anne-window.webp" alt="햇살이 드는 창가에서 책을 읽는 앤과 곁에서 쉬는 보리" width="1536" height="1024" loading="lazy"><div><span class="eyebrow">앤의 일기장에 잠깐 앉아볼까요?</span><h2>어떤 마음이든,<br>여기서는 괜찮아.</h2><p>말로 하기 어려웠던 오늘도 한 줄씩.<br>차곡차곡 쌓인 마음이 새로운 풍경을 열어줄 거예요.</p></div></aside>
       <div class="diary-layout">
         <form id="diaryForm" class="surface diary-paper">
-          <div class="question-heading"><span class="chapter-number">01</span><div><h2 id="moodQuestion">오늘 마음은 어땠어?</h2><p>가장 가까운 표정 하나를 골라주세요.</p></div></div>
+          <div class="question-heading"><span class="chapter-number">01</span><div><h2 id="moodQuestion">오늘, 어떤 마음이 머물렀나요?</h2><p>가장 가까운 표정 하나를 골라주세요.</p></div></div>
           <div class="moods" id="moods" role="radiogroup" aria-labelledby="moodQuestion"></div>
           <label class="field-label" for="diaryText">마음에 남은 장면 한 줄</label>
-          <textarea id="diaryText" class="notebook" maxlength="3000" rows="7" placeholder="오늘 나를 웃게 한 일, 조금 속상했던 마음… 무엇이든 괜찮아요." required></textarea>
+          <textarea id="diaryText" class="notebook" maxlength="3000" rows="7" placeholder="오늘 마음에 남은 장면을 한 줄, 두 줄 남겨 보세요." required></textarea>
           <div class="form-meta"><span>잘 쓰려 애쓰지 않아도 괜찮아요.</span><span id="diaryCount">0 / 3000</span></div>
-          <div class="form-footer"><button class="button primary" id="saveDiary" type="submit">마음 저장하고 씨앗 받기 <svg class="icon" aria-hidden="true"><use href="#icon-garden"/></svg></button><span>마음 한 줄 = 씨앗 3개</span></div>
+          <div class="form-footer"><button class="button primary" id="saveDiary" type="submit">오늘의 마음 간직하기 <svg class="icon" aria-hidden="true"><use href="#icon-garden"/></svg></button><span>마음 한 줄이 앤의 새로운 장면으로 이어져요</span></div>
           <p id="diaryReply" class="inline-note" role="status"></p>
         </form>
         <aside class="diary-aside">
-          <article class="anne-note"><span class="eyebrow">앤의 작은 응원</span><p>“꽃마다 피어나는 때가 다르듯,<br>우리 마음에도 저마다의 계절이 있어.”</p><span>오늘의 나를 다정하게 바라봐요.</span><small>앤의 낙관적인 마음에서 영감을 받은 우리말 응원</small></article>
+          <article class="anne-note"><img class="note-anne" src="images/characters/anne_daydream.png" alt="생각에 잠긴 앤" width="160" height="200" loading="lazy"><span class="eyebrow">앤의 작은 응원</span><p>“꽃마다 피어나는 때가 다르듯,<br>우리 마음에도 저마다의 계절이 있어.”</p><span>오늘의 나를 다정하게 바라봐요.</span><small>앤의 낙관적인 마음에서 영감을 받은 우리말 응원</small></article>
           <div class="diary-history surface"><div class="card-topline"><h2>지나온 마음들</h2><span id="diaryTotal"></span></div><div id="diaryList"></div><button type="button" class="text-button load-more" id="diaryMore" hidden>지난 마음 더 펼치기 ↓</button></div>
         </aside>
       </div>
     </section>
     <section id="garden" class="page" hidden aria-labelledby="gardenTitle">
-      <header class="page-heading garden-heading"><div><p class="eyebrow">A LITTLE GARDEN OF MY OWN</p><h1 id="gardenTitle" tabindex="-1">기억이 꽃으로 피는 정원.</h1><p>오늘의 마음에서 얻은 씨앗으로, 나만의 계절을 가꿔요.</p></div><span class="garden-seed-note"><svg class="icon"><use href="#icon-garden"/></svg>씨앗 3개로 꽃 한 송이</span></header>
-      <div class="garden-toolbar"><div><b id="gardenCount">첫 꽃을 기다려요</b><span id="gardenGrowth">꽃을 누르면 그날의 기억을 만나요.</span></div><button type="button" class="button quiet small" id="chooseSpot" aria-pressed="false">꽃 심을 자리 고르기 <span aria-hidden="true">＋</span></button></div>
-      <div class="garden-landscape" id="gardenScene" data-planting="false">
-        <img class="garden-background" src="images/scenes/quiet-garden.png" alt="초록 온실과 울타리 앞, 흙길을 따라 부드럽게 펼쳐진 작은 정원" width="1536" height="1024" loading="lazy">
-        <div class="garden-decor" id="gardenDecorLayer"></div><div class="garden-plants" id="gardenItems"></div>
-        <button type="button" class="garden-dog" id="gardenPetDog" aria-label="정원 친구 보리에게 인사하기"><img src="images/pets/garden-companion.png" alt="" width="180" height="210" loading="lazy"></button>
-        <span class="garden-caption" id="gardenSceneCaption">내 마음이 자라는 자리</span>
-      </div>
-      <div class="garden-page-row"><div class="garden-pages"><button type="button" class="icon-button" id="gardenPrev" aria-label="이전 정원">←</button><span id="gardenPageLabel" aria-live="polite">나의 첫 번째 풍경</span><button type="button" class="icon-button" id="gardenNext" aria-label="다음 정원">→</button></div><button type="button" class="text-button" id="waterGarden">작은 물 한 모금 주기 <span aria-hidden="true">💧</span></button></div>
-      <div class="garden-memory surface" id="gardenDetail" hidden aria-live="polite"></div>
-      <div class="garden-below">
-        <article class="surface flower-selection"><div class="card-topline"><div><span class="eyebrow">오늘 심을 한 송이</span><h2>어떤 꽃으로 기억할까요?</h2></div><span class="subtle-count" id="plantVarieties"></span></div><p class="muted">꽃을 고르면 정원에서 자리를 정할 수 있어요. 선택하지 않으면 빈자리에 다정히 놓아드릴게요.</p>
-          <div class="plant-picker" id="plantPicker" data-expanded="false"></div><button type="button" class="text-button load-more" id="plantPickerToggle" aria-expanded="false" aria-controls="plantPicker">다른 꽃도 만나보기 ↓</button>
-          <div class="planting-actions"><div><span id="selectedPlantName"></span><small id="selectedSpotName">자리는 정원에 맡기기</small></div><button type="button" class="button primary" id="plant">이 꽃 심기 · 씨앗 3개</button></div>
-          <p class="inline-note" id="gardenSeedHelp"></p>
-        </article>
-        <aside class="garden-notes"><article class="surface seed-story"><span class="eyebrow">한 줄의 마음이 한 송이의 꽃으로</span><h2>기록하고, 심고, 바라보고.</h2><p>감정일기를 쓰면 씨앗 3개가 생겨요.<br>꽃에는 그날의 마음이 함께 담겨요.<br>급하게 채우지 않아도 좋아요.</p><button type="button" class="text-button" data-go="diary">씨앗이 되는 마음 남기기 ↗</button></article>
-          <details class="surface garden-props"><summary>정원에 작은 소품 놓기 <span aria-hidden="true">＋</span></summary><p class="muted">별이나 점수 없이, 마음에 드는 것만 놓아봐요.</p><div class="prop-picker" id="decorGrid"></div></details>
-        </aside>
-      </div>
+      <header class="page-heading"><p class="eyebrow">LITTLE SCENES OF HAPPINESS</p><h1 id="gardenTitle" tabindex="-1">마음을 남길수록, 앤의 세계가 열려요.</h1><p>일기 한 페이지, 영어 한 줄, 나에게 보낸 편지. 작은 날들이 모이는 행복 컬렉션.</p></header>
+      <article class="gallery-feature surface"><img id="galleryFeatureImage" src="images/scenes/garden-morning.webp" alt="초록 지붕 아래에서 보리와 함께 쉬는 앤" width="1536" height="1024" loading="lazy"><div><span class="eyebrow">앤과 함께 모아가는 풍경</span><h2 id="galleryFeatureTitle">초록지붕 아래의 첫 인사</h2><p id="galleryFeatureText"></p><button type="button" class="text-button" id="galleryFeatureOpen">이 장면에 잠깐 머물기 ↗</button></div></article>
+      <div class="collection-overview"><div><span class="eyebrow">마음이 쌓인 만큼, 풍성해지는 곳</span><h2>나의 작은 장면들</h2><p id="galleryProgressText"></p></div><div class="scene-progress" id="sceneProgress" role="progressbar" aria-label="열린 장면 수" aria-valuemin="0" aria-valuemax="6" aria-valuenow="1"><span id="sceneProgressBar"></span></div></div>
+      <div class="gallery-filters" role="group" aria-label="장면 보기"><button type="button" data-scene-filter="all" aria-pressed="true">모든 풍경</button><button type="button" data-scene-filter="open" aria-pressed="false">열린 장면</button><button type="button" data-scene-filter="locked" aria-pressed="false">기다리는 장면</button></div>
+      <div class="scene-grid" id="sceneGrid" aria-live="polite"></div>
+      <div class="collection-bottom"><article class="surface daily-memory"><span class="eyebrow">오늘의 작은 기억</span><h2 id="gardenMemoryTitle">아직 쓰이지 않은 오늘의 페이지</h2><p id="gardenMemoryText"></p><button type="button" class="text-button" data-go="diary">내 마음 펼쳐보기 ↗</button></article><aside class="surface collection-guide"><img src="images/characters/anne_bouquet.png" alt="꽃다발을 안고 웃는 앤" width="150" height="190" loading="lazy"><div><h2>서두르지 않아도 좋아요.</h2><p>일기를 남기면 창가의 앤을,<br>영어를 마치면 편지를 읽는 앤을,<br>편지를 보내면 보리와 우체통 앞의 앤을 만나요.</p><span>이미 남겨둔 기록도 장면을 여는 데 함께해요.</span></div></aside></div>
     </section>
     <section id="letter" class="page" hidden aria-labelledby="letterTitle">
       <header class="page-heading"><p class="eyebrow">A LETTER TO MY FUTURE SELF</p><h1 id="letterTitle" tabindex="-1">오늘의 마음을, 그날의 나에게.</h1><p>잊고 싶지 않은 말 하나를 봉투에 담아요. 약속한 날, 여기서 다시 만나요.</p></header>
       <div class="letter-layout">
-        <aside class="letter-scene"><img class="mailbox-art" src="images/objects/red_mailbox.png" alt="꽃이 핀 정원에 놓인 빨간 우체통" width="600" height="700" loading="lazy"><div><span class="eyebrow">A PROMISE TO ME</span><p>미래의 나도<br>이 마음을 반가워하겠지.</p><span>기다림도 다정한 선물이 되도록.</span></div><img class="mail-dog" src="images/pets/garden-companion.png" alt="우체통 곁에서 기다리는 보리" width="160" height="190" loading="lazy"></aside>
-        <form class="surface letter-form" id="letterForm"><div class="letter-steps"><span><b>1</b> 마음 쓰기</span><span><b>2</b> 날짜 정하기</span><span><b>3</b> 봉인하기</span></div><h2>미래의 나에게</h2><label for="letterText" class="field-label">그날의 나에게 들려주고 싶은 이야기</label><textarea id="letterText" class="notebook" rows="8" maxlength="3000" required placeholder="안녕, 조금 더 자라 있을 나에게.&#10;오늘 나는…"></textarea><div class="letter-date-row"><div><label for="letterDate" class="field-label">다시 만나고 싶은 날</label><input type="date" id="letterDate" required></div><span>오늘이나 미래의 날짜를 골라주세요.</span></div><button type="submit" id="saveLetter" class="button primary rose-button">편지를 다정히 봉인하기 <svg class="icon"><use href="#icon-letter"/></svg></button><p class="inline-note">이 편지는 이 브라우저에 보관돼요. 정한 날 앱에 돌아오면 열어볼 수 있어요.</p></form>
+        <aside class="letter-scene"><img class="letter-anne-scene" src="images/scenes/anne-postbox.webp" alt="보리와 함께 빨간 우체통에 편지를 넣는 앤" width="1536" height="1024" loading="lazy"><div><span class="eyebrow">A PROMISE TO ME</span><p>미래의 나도<br>이 마음을 반가워하겠지.</p><span>오늘 보낸 마음이, 내일의 작은 위로가 되도록.</span></div></aside>
+        <form class="surface letter-form" id="letterForm"><div class="letter-steps"><span><b>1</b> 마음 쓰기</span><span><b>2</b> 날짜 정하기</span><span><b>3</b> 봉인하기</span></div><h2>미래의 나에게</h2><label for="letterText" class="field-label">그날의 나에게 들려주고 싶은 이야기</label><textarea id="letterText" class="notebook" rows="8" maxlength="3000" required placeholder="안녕, 조금 더 자라 있을 나에게.&#10;오늘 나는…"></textarea><div class="letter-date-row"><div><label for="letterDate" class="field-label">다시 만나고 싶은 날</label><input type="date" id="letterDate" required></div><span>오늘이나 미래의 날짜를 골라주세요.</span></div><button type="submit" id="saveLetter" class="button primary rose-button">편지를 다정히 봉인하기 <svg class="icon"><use href="#icon-letter"/></svg></button><p id="letterReply" class="activity-reply" role="status"></p><p class="inline-note">이 편지는 이 브라우저에 보관돼요. 정한 날 앱에 돌아오면 열어볼 수 있어요.</p></form>
       </div>
       <article class="surface mailbox-list"><div class="card-topline"><div><span class="eyebrow">보낸 마음, 도착한 마음</span><h2>나의 편지함</h2></div><span id="letterTotal" class="subtle-count"></span></div><p id="letterArrival" class="muted"></p><div class="letter-filters" role="group" aria-label="편지 상태"><button type="button" data-letter-filter="all" aria-pressed="true">모두</button><button type="button" data-letter-filter="waiting" aria-pressed="false">가는 중</button><button type="button" data-letter-filter="arrived" aria-pressed="false">도착한 편지</button></div><div id="letterList"></div><button type="button" class="text-button load-more" id="letterMore" hidden>편지 더 펼치기 ↓</button></article>
     </section>
     <section id="english" class="page" hidden aria-labelledby="englishTitle">
       <header class="page-heading english-heading"><div><p class="eyebrow">A LITTLE ENGLISH, A LITTLE COMFORT</p><h1 id="englishTitle" tabindex="-1">앤의 문장으로, 마음 한 입.</h1><p>한 줄을 읽고, 뜻을 느끼고, 나의 말로 옮겨봐요. 오늘은 이만큼이면 충분해요.</p></div><span class="english-level">원문에서 일상으로 · B1–B2</span></header>
+      <aside class="tab-illustration english-welcome"><img src="images/scenes/anne-letter.webp" alt="창가의 책상에서 편지를 읽으며 미소 짓는 앤" width="1536" height="1024" loading="lazy"><div><span class="eyebrow">오늘의 앤 문장 한 장</span><h2>좋은 문장은,<br>마음에 작은 창문을 열어줘요.</h2><p>뜻을 느끼고, 소리 내어 읽고, 내 하루에 옮겨봐요.<br>한 장을 마칠 때마다 앤의 풍경도 조금씩 깊어져요.</p></div></aside>
       <article class="surface english-study-card" id="englishStudyCard">
         <div class="english-navigation"><div><span class="eyebrow">오늘 펼친 문장</span><b id="englishCounter">1 / 500</b></div><div class="english-nav-buttons"><button type="button" class="icon-button" id="englishPrev" aria-label="이전 영어 카드">←</button><button type="button" class="text-button" id="englishRandom">우연히 만난 문장</button><button type="button" class="icon-button" id="englishNext" aria-label="다음 영어 카드">→</button></div></div>
-        <div class="english-source-box"><span class="lesson-label">ANNE'S WORDS · 원문</span><blockquote id="englishSourceSentence" lang="en"></blockquote><p id="englishSourceTranslation" class="source-translation"></p><div class="english-buttons"><button type="button" class="listen-button" id="englishListen"><span aria-hidden="true">▷</span> 원문 듣기</button><button type="button" class="listen-button" id="englishSlow"><span aria-hidden="true">◷</span> 천천히 듣기</button></div><div class="english-mindset"><span>이 문장이 내 마음에 닿는다면</span><p id="englishMindset"></p></div><small class="source-credit">L. M. Montgomery · Anne of Green Gables · 자연스러운 우리말 해석</small></div>
+        <div class="english-source-box"><div class="lesson-decoration"><span class="lesson-label">ANNE'S WORDS · 원문</span><img src="images/ui/open_book.png" alt="" width="80" height="60" loading="lazy"></div><blockquote id="englishSourceSentence" lang="en"></blockquote><p id="englishSourceTranslation" class="source-translation"></p><div class="english-buttons"><button type="button" class="listen-button" id="englishListen"><span aria-hidden="true">▷</span> 원문 듣기</button><button type="button" class="listen-button" id="englishSlow"><span aria-hidden="true">◷</span> 천천히 듣기</button></div><div class="english-mindset"><span>이 문장이 내 마음에 닿는다면</span><p id="englishMindset"></p></div><small class="source-credit">L. M. Montgomery · Anne of Green Gables · 자연스러운 우리말 해석</small></div>
         <div class="english-application"><div class="chapter-heading"><span class="chapter-number">01</span><h2>원문의 마음을, 오늘의 문장으로</h2></div><p id="englishConnection" class="muted"></p><b id="englishSentence" lang="en"></b><p id="englishTranslation"></p><button type="button" class="listen-button" id="englishApplyListen">▷ 응용문장 듣기</button></div>
-        <div class="english-learning-grid"><article><span class="lesson-label">내 문장에 쓸 핵심 표현</span><div class="english-key-chips" id="englishKeyPhraseChips"></div><b id="englishPattern" lang="en"></b><p id="englishPatternKo" class="muted"></p></article><article><span class="lesson-label">오늘 알아둘 단어 다섯</span><div id="englishWords" class="english-words"></div></article></div>
-        <details class="english-example"><summary>이 표현으로 한 문장 더 <span aria-hidden="true">＋</span></summary><b id="englishExample" lang="en"></b><p id="englishExampleKo"></p><div class="read-aloud"><p id="englishSay" lang="en"></p><button type="button" class="text-button" id="englishSpokenDone" aria-pressed="false">소리 내어 한 번 읽었어요 ✓</button></div></details>
+        <div class="english-learning-grid"><article><span class="lesson-label">내 문장에 쓸 핵심 표현</span><div class="english-key-chips" id="englishKeyPhraseChips"></div><b id="englishPattern" lang="en"></b><p id="englishPatternKo" class="muted"></p></article><article><div class="lesson-decoration"><span class="lesson-label">오늘 알아둘 단어 다섯</span><img src="images/decor/daisy_stem.png" alt="" width="40" height="55" loading="lazy"></div><div id="englishWords" class="english-words"></div></article></div>
+        <details class="english-example" open><summary>이 표현으로 한 문장 더 <span aria-hidden="true">＋</span></summary><b id="englishExample" lang="en"></b><p id="englishExampleKo"></p><div class="read-aloud"><p id="englishSay" lang="en"></p><button type="button" class="text-button" id="englishSpokenDone" aria-pressed="false">소리 내어 한 번 읽었어요 ✓</button></div></details>
         <div class="english-writing"><div class="chapter-heading"><span class="chapter-number">02</span><h2>이제 나의 하루를 한 문장으로</h2></div><label class="muted" for="englishWritingInput" id="englishChallenge">오늘 배운 표현으로 자유롭게 써보세요.</label><textarea id="englishWritingInput" rows="3" maxlength="500" placeholder="A little thought about my day…" lang="en"></textarea><div class="writing-footer"><span id="englishWritingNote" class="inline-note">완벽한 문장보다, 직접 써본 한 줄이 소중해요.</span><button type="button" class="button quiet small" id="englishWritingSave">내 문장 간직하기</button></div></div>
-        <div class="english-completion"><div><div class="lesson-progress" role="progressbar" aria-label="영어 학습 진행도" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" id="englishProgress"><span id="englishProgressBar"></span></div><span id="englishProgressText">완료 0 / 500</span></div><button type="button" class="button primary" id="englishDone">오늘의 한 입 마치기 ✓</button><p id="englishDoneNote" class="inline-note">하루 첫 마무리에는 씨앗 한 개를 드려요.</p></div>
+        <div class="english-completion"><div><div class="lesson-progress" role="progressbar" aria-label="영어 학습 진행도" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" id="englishProgress"><span id="englishProgressBar"></span></div><span id="englishProgressText">완료 0 / 500</span></div><button type="button" class="button primary" id="englishDone">오늘의 한 입 마치기 ✓</button><p id="englishDoneNote" class="inline-note">작은 배움이 모이면, 앤의 새로운 장면을 만나요.</p><p id="englishUnlockNote" class="activity-reply" role="status"></p></div>
       </article>
       <div class="surface saved-english"><details><summary>간직한 나의 영어 문장 <span id="englishSavedCount"></span></summary><div id="englishSavedList"></div><button type="button" class="text-button load-more" id="englishSavedMore" hidden>내 문장 더 보기 ↓</button></details></div>
     </section>
   </main>
   <footer class="site-footer"><a class="footer-brand" href="#home" data-go="home">앤의 행복 정원</a><p>마음 한 줄에서 시작되는, 나만의 작은 계절.</p><div><span>기록은 이 브라우저에 차곡차곡 보관돼요.</span><button type="button" class="text-button" id="export">내 기록 백업하기 ↓</button></div><small>앤의 낙관적인 마음과 자연에서 영감을 받은 독립 창작 공간</small></footer>
+  <dialog id="sceneDialog" class="scene-dialog" aria-labelledby="sceneDialogTitle"><button type="button" id="closeSceneDialog" class="dialog-close" aria-label="장면 닫기">×</button><div class="dialog-art"><img id="sceneDialogImage" alt="" width="1536" height="1024"></div><div class="dialog-copy"><span class="eyebrow" id="sceneDialogTag"></span><h2 id="sceneDialogTitle"></h2><p id="sceneDialogText"></p><blockquote id="sceneDialogQuote"></blockquote><small class="scene-credit">앤의 마음에서 영감을 받은 창작 장면과 문장이에요.</small><p class="scene-requirement" id="sceneDialogRequirement"></p><button type="button" class="button primary" id="sceneDialogAction">마음 남기러 가기 ↗</button></div></dialog>
   <div id="rewardToast" class="reward-toast" role="status" aria-live="polite" hidden></div>
   <noscript><p class="storage-notice">마음 기록과 정원 가꾸기를 사용하려면 브라우저에서 JavaScript를 켜주세요.</p></noscript>
 </body>

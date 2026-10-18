@@ -1,6 +1,6 @@
 {
   "name": "annes-happiness-garden",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "앤의 행복 정원 — 마음 기록과 작은 성장의 정적 웹 앱",
   "scripts": {
